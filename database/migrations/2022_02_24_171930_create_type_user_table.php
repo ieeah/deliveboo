@@ -13,13 +13,16 @@ class CreateTypeUserTable extends Migration
      */
     public function up()
     {
-        Schema::table('type_user', function (Blueprint $table) {
+        Schema::create('type_user', function (Blueprint $table) {
             $table->id();
+
             $table->foreignId('type_id')
                 ->constrained();
 
             $table->foreignId('user_id')
                 ->constrained();
+                
+            $table->timestamps();
         });
     }
 
@@ -30,8 +33,6 @@ class CreateTypeUserTable extends Migration
      */
     public function down()
     {
-        Schema::table('type_user', function (Blueprint $table) {
-            Schema::dropIfExists('type_user');
-        });
+        Schema::dropIfExists('type_user');
     }
 }
