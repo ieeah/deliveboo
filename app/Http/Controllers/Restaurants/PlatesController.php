@@ -87,6 +87,6 @@ class PlatesController extends Controller
 
         $plate->delete();
 
-        return redirect()->route('restaurant.plates.index')->with('deleted',$plate->name);
+        return redirect()->route('restaurants.plates.index')->with('deleted',$plate->name);
     }
 }
