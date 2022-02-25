@@ -131,6 +131,7 @@ class PlatesController extends Controller
     public function destroy($id)
     {
         $plate = Plate::find($id);
+        
         Storage::delete($plate->thumb);
         $plate->delete();
         return redirect()->route('restaurants.plates.index')->with('deleted', $plate->name);
