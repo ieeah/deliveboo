@@ -104,9 +104,10 @@ class PlatesController extends Controller
      */
     public function destroy($id)
     {
-        //
-        // Storage::delete($plate->thumb);
-        // TODO - aggiornare la linea per il delete del file da storage utilizzando la variabile usata da chi crea la funzione destroy
+        $plate = Plate::find($id);
+        Storage::delete($plate->thumb);
+        $plate->delete();
+        return redirect()->route('restaurants.plates.index')->with('deleted', $plate->name);
     }
 
     protected function createSlug($title) {
@@ -141,5 +142,6 @@ class PlatesController extends Controller
             // 'category_id.exists' => 'The selected category doesn\'t exists',
             // 'cover' => 'The :attribute should be a jpg/bmp/png file',
         ];
+
     }
 }
