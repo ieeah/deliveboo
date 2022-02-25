@@ -9,4 +9,10 @@ class Plate extends Model
     public function user() {
         $this->belongsTo('App\User');
     }
+
+    //Relation with Order
+    public function orders() {
+        $this->belongsToMany('App\Order')
+        ->withPivot(['quantity']);
+    }
 }
