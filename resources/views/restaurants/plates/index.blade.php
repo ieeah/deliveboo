@@ -29,13 +29,13 @@
 						<td>{{$plate->name}}</td>
 						<td>
 							@if ($plate->visibility)
-								<i class="fa-solid fa-circle-check"></i>
+								<i class="fa-solid fa-circle-check text-success"></i>
 							@else
-								<i class="fa-solid fa-circle-xmark"></i>
+								<i class="fa-solid fa-circle-xmark text-danger"></i>
 							@endif
 						</td>
 						<td>{{$plate->price}}</td>
-						<td>
+						{{-- <td>
 							<a class="btn btn-primary" href="{{route('restaurants.plate.show', $plate->id)}}">DETTAGLI</a>
 						</td>
 						<td>
@@ -46,7 +46,7 @@
 								@csrf @method('DELETE')
 								<input class="fw-bold text-danger" type="submit" value="DELETE">
 							</form>
-						</td>
+						</td> --}}
 					</tr>
 				@endforeach
 			</tbody>
