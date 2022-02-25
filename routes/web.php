@@ -26,6 +26,10 @@ Route::middleware('auth')
     ->name('restaurants.')
     ->prefix('restaurants')
     ->group(function() {
+    
+    Route::get('/dashboard', function() {
+        return view('restaurants.dashboard');
+    });
 
     Route::resource('/plates', 'PlatesController');
 });
