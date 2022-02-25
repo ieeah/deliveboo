@@ -57,8 +57,8 @@ class PlatesController extends Controller
 
         $new_plate->save();
 
-        //return redirect()->route('restaurants.plates.index');
-        return view('restaurants.plates.index');
+        return redirect()->route('restaurants.plates.index');
+        // return view('restaurants.plates.index');
     }
 
     /**
@@ -113,10 +113,14 @@ class PlatesController extends Controller
             $data['thumb'] = Storage::put('plates_thumbs', $data['thumb']);
         }
 
-        if($data['visibility']){
+        
+        
+        if(array_key_exists('visibility', $data)) {
             $data['visibility'] = true;
+        } else {
+            $data['visibility'] = false;
         }
-
+        
         $plate->update($data);
 
         return redirect()->route('restaurants.plates.index');

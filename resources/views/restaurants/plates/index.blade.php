@@ -45,9 +45,6 @@
 						</td>
 						<td>{{$plate->price}}</td>
 						<td>
-							<img src="{{asset('storage/' . $plate->thumb)}}" alt="{{$plate->name}}">
-						</td>
-						<td>
 							<a class="btn btn-primary" href="{{route('restaurants.plates.show', $plate->slug)}}">DETTAGLI</a>
 						</td>
 						<td>
