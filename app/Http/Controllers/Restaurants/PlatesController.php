@@ -29,7 +29,7 @@ class PlatesController extends Controller
      */
     public function create()
     {
-        return view('restaurants.plates/create');
+        return view('restaurants.plates.create');
     }
 
     /**
@@ -87,7 +87,7 @@ class PlatesController extends Controller
             abort(404);
         }
 
-        return view('resturants.plates.show', compact('plate'));
+        return view('resturants.plates.edit', compact('plate'));
     }
 
     /**
