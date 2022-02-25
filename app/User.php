@@ -38,10 +38,14 @@ class User extends Authenticatable
     ];
 
     public function orders() {
-        $this->hasMany('App\Order');
+        return $this->hasMany('App\Order');
     }
 
     public function plates() {
-        $this->hasMany('App\Plate');
+        return $this->hasMany('App\Plate');
+    }
+
+    public function types() {
+        return $this->belongsToMany('App\Type');
     }
 }
