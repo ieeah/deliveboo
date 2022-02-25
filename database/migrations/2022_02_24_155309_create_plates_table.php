@@ -17,11 +17,11 @@ class CreatePlatesTable extends Migration
             $table->id();
             $table->string('name', 200);
             $table->string('slug', 200);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->text('ingredients');
             $table->decimal('price', 4, 2);
             $table->boolean('visibility')->default(true);
-            $table->text('thumb');
+            $table->text('thumb')->nullable();
             $table->timestamps();
         });
     }

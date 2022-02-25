@@ -16,31 +16,31 @@
 			method="POST" enctype="multipart/form-data">
 			@csrf
 			<div class="mb-4">
-				<label for="name">Nome Piatto</label>
-				<input class="form-control" type="text" name="name" id="name" value="{{ old('title') }}">
+				<label for="name">Nome Piatto *</label>
+				<input class="form-control" type="text" name="name" id="name" value="{{ old('title') }}" required minlength="2" maxlength="200">
 				@error('name')
 					<div class="text-danger fw-bold">{{ $message }}</div>
 				@enderror
 			</div>
 			<div class="mb-4">
 				<label for="description">Descrizione</label>
-				<textarea class="form-control" type="text" name="description" id="description">{{ old('description') }}</textarea>
+				<textarea class="form-control" type="text" name="description" id="description" maxlength="1000">{{ old('description') }}</textarea>
 				@error('description')
 					<div class="text-danger fw-bold">{{ $message }}</div>
 				@enderror
 			</div>
 
 			<div class="mb-4">
-				<label for="ingredients">Ingredienti</label>
-				<textarea class="form-control" type="text" name="ingredients" id="ingredients">{{ old('ingredients') }}</textarea>
+				<label for="ingredients">Ingredienti *</label>
+				<textarea class="form-control" type="text" name="ingredients" id="ingredients" required maxlength="1000">{{ old('ingredients') }}</textarea>
 				@error('ingredients')
 					<div class="text-danger fw-bold">{{ $message }}</div>
 				@enderror
 			</div>
 
 			<div class="mb-4">
-				<label for="price">Prezzo</label>
-				<input class="form-control" type="number" name="price" id="price" min="0" step="0.1">
+				<label for="price">Prezzo *</label>
+				<input class="form-control" type="number" name="price" id="price" min="0" max="99.90" step="0.1" required>
 			</div>
 
 			<div class="mb-4">
@@ -49,8 +49,8 @@
 			</div>
 
 			<div class="mb-4">
-				<label for="thumb">Cover Image</label>
-				<input class="form-control-file" type="file" name="thumb" id="thumb">
+				<label for="thumb">Cover Image</label><span>solo file png/jpg</span>
+				<input class="form-control-file" type="file" name="thumb" id="thumb" accept="image/png, image/jpeg">
 				@error('thumb')
 					<div class="text-danger">{{$message}}</div>
 				@enderror
