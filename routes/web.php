@@ -27,5 +27,6 @@ Route::middleware('auth')
     ->prefix('restaurants')
     ->group(function() {
 
+    Route::resource('/plates', 'PlatesController');
 });
 

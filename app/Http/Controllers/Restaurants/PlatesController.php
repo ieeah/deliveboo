@@ -14,7 +14,7 @@ class PlatesController extends Controller
      */
     public function index()
     {
-        //
+        return 'ciaone';
     }
 
     /**
