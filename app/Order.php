@@ -13,6 +13,6 @@ class Order extends Model
     //Relation with Plate
     public function plates() {
         $this->belongsToMany('App\Plate')
-        ->withPivot(['quantity']);
+        ->withPivot('quantity');
     }
 }
