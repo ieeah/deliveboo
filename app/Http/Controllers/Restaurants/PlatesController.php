@@ -47,8 +47,8 @@ class PlatesController extends Controller
      */
     public function show($slug)
     {
-        $plate = Plate::find($slug);
-        return view('restaurants.show', compact('plate'));
+        $plate = Plate::where('slug', $slug)->first();
+        return view('restaurants.plates.show', compact('plate'));
     }
 
     /**
