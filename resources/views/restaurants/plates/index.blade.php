@@ -38,14 +38,14 @@
 						<td>
 							<img src="{{asset('storage/' . $plate->thumb)}}" alt="{{$plate->name}}">
 						</td>
-						{{-- <td>
-							<a class="btn btn-primary" href="{{route('restaurants.plate.show', $plate->id)}}">DETTAGLI</a>
+						<td>
+							<a class="btn btn-primary" href="{{route('restaurants.plate.show', $plate->slug)}}">DETTAGLI</a>
 						</td>
 						<td>
-							<a class="btn btn-success" href="{{ route('restaurants.plate.edit', $plate->id) }}">MODIFICA</a>
-						</td> --}}
+							<a class="btn btn-success" href="{{ route('restaurants.plates.edit', $plate->id) }}">MODIFICA</a>
+						</td>
 						<td>
-							<form action="{{ route('restaurants.plate.destroy', $plate->id) }}" method="POST">
+							<form action="{{ route('restaurants.plates.destroy', $plate->id) }}" method="POST">
 								@csrf @method('DELETE')
 								<input class="fw-bold text-danger" type="submit" value="DELETE">
 							</form>
