@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Restaurants;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Plate;
 
 class PlatesController extends Controller
 {
@@ -41,12 +42,13 @@ class PlatesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $plate = Plate::find($slug);
+        return view('restaurants.show', compact('plate'));
     }
 
     /**
