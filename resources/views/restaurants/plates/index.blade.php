@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-	<div class="heading">
-		<h1>
+	<div class="heading mb-5">
+		<h1 class="mb-2">
 			{{Auth::user()->name}}
 		</h1>
 		<h2>
@@ -35,18 +35,21 @@
 							@endif
 						</td>
 						<td>{{$plate->price}}</td>
+						<td>
+							<img src="{{asset('storage/' . $plate->thumb)}}" alt="{{$plate->name}}">
+						</td>
 						{{-- <td>
 							<a class="btn btn-primary" href="{{route('restaurants.plate.show', $plate->id)}}">DETTAGLI</a>
 						</td>
 						<td>
 							<a class="btn btn-success" href="{{ route('restaurants.plate.edit', $plate->id) }}">MODIFICA</a>
-						</td>
+						</td> --}}
 						<td>
 							<form action="{{ route('restaurants.plate.destroy', $plate->id) }}" method="POST">
 								@csrf @method('DELETE')
 								<input class="fw-bold text-danger" type="submit" value="DELETE">
 							</form>
-						</td> --}}
+						</td>
 					</tr>
 				@endforeach
 			</tbody>
