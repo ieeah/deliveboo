@@ -17,10 +17,12 @@ class CreateOrderPlateTable extends Migration
             $table->id();
 
             $table->foreignId('order_id')
-                ->constrained();
+                ->constrained()
+                ->onDelete('cascade');
 
             $table->foreignId('plate_id')
-                ->constrained();
+                ->constrained()
+                ->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -18,7 +18,8 @@ class UpdatePlatesTable extends Migration
 
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 
@@ -30,6 +31,8 @@ class UpdatePlatesTable extends Migration
     public function down()
     {
         Schema::table('plates', function (Blueprint $table) {
+            // TODO - verificare che la sintassi sia corretta
+            $table->dropForeign('plates_user_id_foreign');
             $table->dropColumn('user_id');
         });
     }

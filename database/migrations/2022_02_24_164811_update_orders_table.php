@@ -18,7 +18,8 @@ class UpdateOrdersTable extends Migration
             
             $table->foreign('user_id')
             ->references('id')
-            ->on('users');
+            ->on('users')
+            ->onDelete('cascade');
         });
     }
 
@@ -30,6 +31,7 @@ class UpdateOrdersTable extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
+            $table->dropForeign('orders_user_id_foreign');
             $table->dropColumn('user_id');
         });
     }

@@ -17,10 +17,12 @@ class CreateTypeUserTable extends Migration
             $table->id();
 
             $table->foreignId('type_id')
-                ->constrained();
+                ->constrained()
+                ->onDelete('cascade');
 
             $table->foreignId('user_id')
-                ->constrained();
+                ->constrained()
+                ->onDelete('cascade');
                 
             $table->timestamps();
         });
