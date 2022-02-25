@@ -12,7 +12,7 @@
 	</div>
 
 	<div class="food">
-
+		
 		{{-- Deleted alert --}}
 		@if(session('deleted'))
 		<div class="alert alert-success">
@@ -20,6 +20,11 @@
 			successfully deleted.
 		</div>
 		@endif
+
+		<a href="{{route('restaurants.plates.create')}}" class="btn btn-primary mb-4"
+		>
+			Inserisci nuovo Piatto
+		</a>
 
 		<table class="table">
 			<thead>
@@ -53,7 +58,7 @@
 						<td>
 							<form action="{{ route('restaurants.plates.destroy', $plate->id) }}" method="POST">
 								@csrf @method('DELETE')
-								<input class="fw-bold text-danger" type="submit" value="DELETE">
+								<input class="fw-bold text-danger btn border-danger" type="submit" value="DELETE">
 							</form>
 						</td>
 					</tr>
