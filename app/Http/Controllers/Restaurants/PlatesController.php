@@ -57,8 +57,8 @@ class PlatesController extends Controller
 
         $new_plate->save();
 
-        return redirect()->route('restaurants.plates.index');
-
+        //return redirect()->route('restaurants.plates.index');
+        return view('restaurants.plates.index');
     }
 
     /**
@@ -87,7 +87,7 @@ class PlatesController extends Controller
             abort(404);
         }
 
-        return view('resturants.plates.edit', compact('plate'));
+        return view('restaurants.plates.edit', compact('plate'));
     }
 
     /**
@@ -99,6 +99,7 @@ class PlatesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $data = $request->all();
 
         $data['slug'] = $this->createSlug($data['name']);
@@ -112,9 +113,13 @@ class PlatesController extends Controller
             $data['thumb'] = Storage::put('plates_thumbs', $data['thumb']);
         }
 
+        if($data['visibility']){
+            $data['visibility'] = true;
+        }
+
         $plate->update($data);
 
-        return redirect()->route('restaurants.plates.show', $plate->slug);
+        return redirect()->route('restaurants.plates.index');
     }
 
     /**

@@ -39,7 +39,7 @@
 							<img src="{{asset('storage/' . $plate->thumb)}}" alt="{{$plate->name}}">
 						</td>
 						<td>
-							<a class="btn btn-primary" href="{{route('restaurants.plate.show', $plate->slug)}}">DETTAGLI</a>
+							<a class="btn btn-primary" href="{{route('restaurants.plates.show', $plate->slug)}}">DETTAGLI</a>
 						</td>
 						<td>
 							<a class="btn btn-success" href="{{ route('restaurants.plates.edit', $plate->id) }}">MODIFICA</a>
