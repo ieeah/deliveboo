@@ -27,7 +27,7 @@ class AddQuantityToOrderPlateTable extends Migration
     public function down()
     {
         Schema::table('order_plate', function (Blueprint $table) {
-            //
+            $table->dropColumn('quantity');
         });
     }
 }
