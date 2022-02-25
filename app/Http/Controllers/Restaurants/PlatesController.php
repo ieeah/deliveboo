@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Restaurants;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use App\Plate;
 
 class PlatesController extends Controller
@@ -15,7 +18,8 @@ class PlatesController extends Controller
      */
     public function index()
     {
-        return 'ciaone';
+        $plates = Plate::all();
+        return view('restaurants.plates.index', compact('plates'));
     }
 
     /**
@@ -25,7 +29,7 @@ class PlatesController extends Controller
      */
     public function create()
     {
-        //
+        return view('restaurants.plates/create');
     }
 
     /**
@@ -36,7 +40,25 @@ class PlatesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new_plate = new Plate();
+        $data = $request->all();
+        $data['slug'] = $this->createSlug($data['name']);
+
+        if(array_key_exists('thumb', $data)) {
+            $data['thumb'] = Storage::put('plates_thumbs', $data['thumb']);
+        }
+
+        $new_plate->user_id = Auth::user()->id;
+        $new_plate->fill($data);
+
+        if ($new_plate->visibility) {
+            $new_plate->visibility = true;
+        }
+
+        $new_plate->save();
+
+        return redirect()->route('restaurants.plates.index');
+
     }
 
     /**

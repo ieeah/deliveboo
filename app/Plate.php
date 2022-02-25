@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plate extends Model
 {
+
+    protected $fillable = [
+        'name', 'slug', 'description', 'ingredients', 'price', 'visibility', 'thumb', 'user_id',
+    ];
+
     public function user() {
         return $this->belongsTo('App\User');
     }
