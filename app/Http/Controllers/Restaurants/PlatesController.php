@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Restaurants;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Plate;
 
 class PlatesController extends Controller
 {
@@ -81,5 +82,10 @@ class PlatesController extends Controller
     public function destroy($id)
     {
         //
+        $plate = Plate::find($id);
+
+        $plate->delete();
+
+        return redirect()->route('restaurant.plates.index')->with('deleted',$plate->name);
     }
 }
