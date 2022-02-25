@@ -21,7 +21,7 @@ class CreatePlatesTable extends Migration
             $table->text('ingredients');
             $table->decimal('price', 4, 2);
             $table->boolean('visibility')->default(true);
-            $table->text('thumb')->nullable();
+            $table->text('thumb')->default('plates_thumbs/food_placeholder.jpg');
             $table->timestamps();
         });
     }
