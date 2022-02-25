@@ -12,6 +12,15 @@
 	</div>
 
 	<div class="food">
+
+		{{-- Deleted alert --}}
+		@if(session('deleted'))
+		<div class="alert alert-success">
+			<strong>{{session('deleted')}}</strong>
+			successfully deleted.
+		</div>
+		@endif
+
 		<table class="table">
 			<thead>
 				<tr>

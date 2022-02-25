@@ -104,11 +104,45 @@ class PlatesController extends Controller
      */
     public function destroy($id)
     {
-        //
         $plate = Plate::find($id);
-
+        
+        Storage::delete($plate->thumb);
         $plate->delete();
+        return redirect()->route('restaurants.plates.index')->with('deleted', $plate->name);
+    }
 
-        return redirect()->route('restaurants.plates.index')->with('deleted',$plate->name);
+    protected function createSlug($title) {
+
+        $new_slug = Str::slug($title, '-');
+        $old_slug = $new_slug;
+        $count = 1;
+
+        while (Plate::where('slug', $new_slug)->first()) {
+            $new_slug = $old_slug . '-' . $count;
+            $count++;
+        }
+
+        return $new_slug;
+    }
+
+    protected function validateRules() {
+        return [
+            // 'title' => 'required|max:255',
+            // 'content' => 'required',
+            // 'author' => 'required|max:130',
+            // 'category_id' => 'nullable|exists:categories,id',
+            // 'tags' => 'nullable|exists:tags,id',
+            // 'cover' => 'nullable|file|mimes:jpg,bmp,png',
+        ];
+    }
+
+    protected function validateMessages() {
+        return [
+            // 'required' => 'The :attribute field is required',
+            // 'max' => 'Max :max characters allowed for this field',
+            // 'category_id.exists' => 'The selected category doesn\'t exists',
+            // 'cover' => 'The :attribute should be a jpg/bmp/png file',
+        ];
+
     }
 }
