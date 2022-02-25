@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Restaurants;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Plate;
 
 class PlatesController extends Controller
 {
@@ -57,7 +58,13 @@ class PlatesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $plate = Plate::find($id);
+
+        if(! $plate){
+            abort(404);
+        }
+
+        return view('resturants.plates.show', compact('plate'));
     }
 
     /**
@@ -69,7 +76,22 @@ class PlatesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $data['slug'] = $this->createSlug($data['name']);
+
+        $plate = Plate::find($id);
+
+        if(array_key_exists('thumb', $data)){
+            if($plate->thumb){
+                Storage::delete($plate->thumb);
+            }
+            $data['thumb'] = Storage::put('plates_thumbs', $data['thumb']);
+        }
+
+        $plate->update($data);
+
+        return redirect()->route('restaurants.plates.show', $plate->slug);
     }
 
     /**
