@@ -1,16 +1,17 @@
 <template>
 	<div class="col-6 offset-3">
-		<h1>ciaone</h1>
-		<ExampleComponent />
+		<!-- importare qui header -->
+		<router-view></router-view>
+		<!-- importare qui footer -->
 	</div>
 </template>
 
 <script>
-import ExampleComponent from '../components/ExampleComponent.vue';
+// import ExampleComponent from '../components/ExampleComponent.vue';
 export default {
 	name: 'App',
 	components: {
-		ExampleComponent,
+		// ExampleComponent,
 	},
 }
 </script>
