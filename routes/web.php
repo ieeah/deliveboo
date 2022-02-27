@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Auth;
 */
 
 // l'home page è temporaneamente statica, poi implementeremo Vue e tutta la parte front-end
-Route::get('/', function() {
-    return view('guests.home');
-})->name('home');
+// Route::get('/', function() {
+//     return view('guests.front');
+// })->name('home');
 
 Auth::routes();
 
@@ -33,3 +33,6 @@ Route::middleware('auth')
     Route::resource('/plates', 'PlatesController');
 });
 
+Route::get('{any?}', function () {
+    return view('guests.front');
+})->where('any', '.*');
