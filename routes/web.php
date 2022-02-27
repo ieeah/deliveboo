@@ -30,6 +30,9 @@ Route::middleware('auth')
     Route::get('/dashboard', function() {
         return view('restaurants.dashboard');
     });
+
+    Route::resource('/statistic', 'StatisticController');
+
     Route::resource('/plates', 'PlatesController');
 });
 
