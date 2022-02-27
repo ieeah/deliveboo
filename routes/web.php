@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// l'home page è temporaneamente statica, poi implementeremo Vue e tutta la parte front-end
-// Route::get('/', function() {
-//     return view('guests.front');
-// })->name('home');
 
 Auth::routes();
 
