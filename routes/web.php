@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
+
 Route::middleware('auth')
     ->namespace('Restaurants')
     ->name('restaurants.')

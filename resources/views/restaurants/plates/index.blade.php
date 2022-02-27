@@ -65,6 +65,7 @@
 				@endforeach
 			</tbody>
 		</table>
+		{{$plates->links()}}
 	</div>
 
 
