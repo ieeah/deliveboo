@@ -15,7 +15,9 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">*{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus
+                                {{-- required --}}
+                                >
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -29,7 +31,9 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">*{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
+                                {{-- required  --}}
+                                autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -43,7 +47,9 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">*{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password"
+                                {{-- required --}}
+                                >
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -57,7 +63,9 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">*{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" 
+                                {{-- required --}}
+                                 autocomplete="new-password">
                             </div>
                         </div>
 
@@ -65,7 +73,14 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">*{{ __('Inserisci Indirizzo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address" required>
+                                <input id="address" type="text" class="form-control" name="address"
+                                {{-- required --}}
+                                >
+                                @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -73,21 +88,32 @@
                             <label for="vat_number" class="col-md-4 col-form-label text-md-right">*{{ __('Partita Iva') }}</label>
 
                             <div class="col-md-6">
-                                <input id="vat_number" type="text" class="form-control" name="vat_number" required>
+                                <input id="vat_number" type="text" class="form-control" name="vat_number"
+                                {{-- required --}}
+                                >
+                                @error('vat_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">*{{ __('tipologia ristorante') }}</label>
+                            <p class="col-md-4 col-form-label text-md-right">
+                                *{{ __('tipologia ristorante') }}
+                            </p>
                                 
                             <section>
                                 @foreach($types as $type)
-                                    <span class="d-inline-block">
-
-                                        <input type="checkbox" name="types" id="type{{$loop->iteration}}" value="{{$type->id}}" required>
-                                        <label class= "col-form-label" for="type{{$loop->iteration}}">{{$type['name']}}</label>
-
-                                    </span>
+                                    <div class="d-inline-block">
+                                        <label class= "col-form-label" for="type{{$loop->iteration}}">
+                                            {{$type['name']}}
+                                        </label>
+                                        <input type="checkbox" name="types" id="type{{$loop->iteration}}" value="{{$type->id}}"
+                                        {{-- required --}}
+                                        >
+                                    </div>
                                 @endforeach
                             </section>
 
