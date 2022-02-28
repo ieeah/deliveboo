@@ -25,7 +25,8 @@
 		>
 			Inserisci nuovo Piatto
 		</a>
-
+        
+		<div class="table-responsive-md">
 		<table class="table">
 			<thead>
 				<tr>
@@ -65,6 +66,7 @@
 				@endforeach
 			</tbody>
 		</table>
+	</div>
 		{{$plates->links()}}
 	</div>
 
