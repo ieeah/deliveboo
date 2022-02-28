@@ -77,6 +77,22 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="address" class="col-md-4 col-form-label text-md-right">*{{ __('tipologia ristorante') }}</label>
+                                
+                            <section>
+                                @foreach($types as $type)
+                                    <span class="d-inline-block">
+
+                                        <input type="checkbox" name="types" id="type{{$loop->iteration}}" value="{{$type->id}}" required>
+                                        <label class= "col-form-label" for="type{{$loop->iteration}}">{{$type['name']}}</label>
+
+                                    </span>
+                                @endforeach
+                            </section>
+
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
