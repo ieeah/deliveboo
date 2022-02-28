@@ -28,7 +28,10 @@ Route::middleware('auth')
         return view('restaurants.dashboard');
     });
     Route::resource('/plates', 'PlatesController');
+    
+    Route::get('/statistic', 'StatisticController@index');
 });
+
 
 Route::get('{any?}', function () {
     return view('guests.front');
