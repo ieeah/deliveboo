@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Type;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -24,6 +25,17 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+    
+    /**
+ * Show the application registration form.
+ *
+ * @return \Illuminate\Http\Response
+ */
+    public function showRegistrationForm()
+   {
+    $types = Type::all();
+    return view('auth.register', compact('types'));
+   }
 
     /**
      * Where to redirect users after registration.
@@ -37,6 +49,8 @@ class RegisterController extends Controller
      *
      * @return void
      */
+
+
     public function __construct()
     {
         $this->middleware('guest');
@@ -54,6 +68,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'types' => ['required']
         ]);
     }
 
