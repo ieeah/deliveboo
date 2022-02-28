@@ -70,7 +70,12 @@ class PlatesController extends Controller
     public function show($slug)
     {
         $plate = Plate::where('slug', $slug)->first();
-        return view('restaurants.plates.show', compact('plate'));
+
+        if($plate->user_id == Auth::user()->id){
+            return view('restaurants.plates.show', compact('plate'));
+        }else{
+            abort(404);
+        }
     }
 
     /**
@@ -86,8 +91,12 @@ class PlatesController extends Controller
         if(! $plate){
             abort(404);
         }
-
-        return view('restaurants.plates.edit', compact('plate'));
+        
+        if($plate->user_id == Auth::user()->id){
+            return view('restaurants.plates.edit', compact('plate'));
+        }else{
+            abort(404);
+        }
     }
 
     /**
