@@ -1,0 +1,98 @@
+<?php
+
+return [
+    [
+        "customer_name" => "Paolo",
+        "customer_surname" => "Duzioni",
+        "customer_address" => "Viale Ungheria",
+        "customer_email" => "paolo@test.com",
+        "customer_phone" => "3935426159",
+        "total_price" => 12.50,
+        "user_id" => 1,
+    ],
+    [
+        "customer_name" => "Antonio",
+        "customer_surname" => "Rossi",
+        "customer_address" => "Viale Rossi",
+        "customer_email" => "antonio@test.com",
+        "customer_phone" => "3935426159",
+        "total_price" => 19.50,
+        "user_id" => 1,
+    ],
+    [
+        "customer_name" => "Fabrizio",
+        "customer_surname" => "Biachi",
+        "customer_address" => "Viale Bianchi",
+        "customer_email" => "fabri@test.com",
+        "customer_phone" => "3935426159",
+        "total_price" => 21.50,
+        "user_id" => 1,
+    ],
+    [
+        "customer_name" => "Galileo",
+        "customer_surname" => "Galilei",
+        "customer_address" => "Viale Galileo",
+        "customer_email" => "gali@test.com",
+        "customer_phone" => "3935426159",
+        "total_price" => 32.50,
+        "user_id" => 1,
+    ],
+    [
+        "customer_name" => "Luigi",
+        "customer_surname" => "Scarponi",
+        "customer_address" => "Viale scarpe",
+        "customer_email" => "luigi@test.com",
+        "customer_phone" => "3935426159",
+        "total_price" => 9.90,
+        "user_id" => 1,
+    ],
+    [
+        "customer_name" => "Mirko",
+        "customer_surname" => "Marchi",
+        "customer_address" => "Viale Marzo",
+        "customer_email" => "mirko@test.com",
+        "customer_phone" => "3935426159",
+        "total_price" => 10.00,
+        "user_id" => 1,
+    ],
+    [
+        "customer_name" => "Antonella",
+        "customer_surname" => "Clerici",
+        "customer_address" => "Viale Rai",
+        "customer_email" => "antonella@test.com",
+        "customer_phone" => "3935426159",
+        "total_price" => 41.70,
+        "user_id" => 1,
+    ],
+    [
+        "customer_name" => "Barbara",
+        "customer_surname" => "Durso",
+        "customer_address" => "Viale Dementi",
+        "customer_email" => "barb@test.com",
+        "customer_phone" => "3935426159",
+        "total_price" => 54.49,
+        "user_id" => 1,
+    ],
+    [
+        "customer_name" => "Michael",
+        "customer_surname" => "Jordan",
+        "customer_address" => "Viale Palla",
+        "customer_email" => "mm@test.com",
+        "customer_phone" => "3935426159",
+        "total_price" => 78.50,
+        "user_id" => 1,
+    ],
+    [
+        "customer_name" => "Francesco",
+        "customer_surname" => "Totti",
+        "customer_address" => "Viale Roma",
+        "customer_email" => "pupone@test.com",
+        "customer_phone" => "3935426159",
+        "total_price" => 21.50,
+        "user_id" => 1,
+    ],
+]
+
+
+
+?>
