@@ -59,7 +59,7 @@
 						<td>
 							<form action="{{ route('restaurants.plates.destroy', $plate->id) }}" method="POST">
 								@csrf @method('DELETE')
-								<input class="fw-bold text-danger btn border-danger" type="submit" value="DELETE">
+								<input onclick="return confirm('Sei sicuro di voler cancellare questo elemento?')" class="fw-bold text-danger btn border-danger" type="submit" value="DELETE">
 							</form>
 						</td>
 					</tr>
