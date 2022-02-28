@@ -18,8 +18,8 @@
                     <p class="card-text border border-warning rounded p-2">{{$plate->ingredients}}</p>
                     <h6 class='font-weight-bold'>Prezzo</h6>
                     <p class="card-text border border-success rounded p-2">{{$plate->price}}</p>
-                    <div class='img-container my-3'>
-                        <img class='img-fluid' src="" alt="thumb">
+                    <div class='img-container md-3 mb-3'>
+                        <img class='img-fluid' width="400" src="{{asset('storage/'. $plate->thumb)}}" alt="{{$plate->thumb}}">
                     </div>
                     <a href="{{route('restaurants.plates.edit', $plate->id)}}" class="btn btn-warning">Modifica</a>
                     <a href="{{route('restaurants.plates.index')}}" class="btn btn-success">Torna alla list piatti</a>
