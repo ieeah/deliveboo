@@ -7,7 +7,7 @@
 				{{Auth::user()->name}}
 			</h1>
 			<h2>
-				Aggiungi un nuovo piatto al menù
+				Modifica {{$plate->name}}
 			</h2>
 		</div>
 
@@ -19,14 +19,18 @@
 
 			<div class="mb-4">
 				<label for="name">Nome Piatto *</label>
-				<input class="form-control" type="text" name="name" id="name" value="{{ old('title', $plate->name) }}" required minlength="2" maxlength="200">
+				<input class="form-control" type="text" name="name" id="name" value="{{ old('title', $plate->name) }}" 
+				required minlength="2" maxlength="200"
+				>
 				@error('name')
 					<div class="text-danger fw-bold">{{ $message }}</div>
 				@enderror
 			</div>
 			<div class="mb-4">
 				<label for="description">Descrizione</label>
-				<textarea class="form-control" type="text" name="description" id="description" maxlength="1000">{{ old('description', $plate->description) }}</textarea>
+				<textarea class="form-control" type="text" name="description" id="description" 
+				maxlength="1000"
+				>{{ old('description', $plate->description) }}</textarea>
 				@error('description')
 					<div class="text-danger fw-bold">{{ $message }}</div>
 				@enderror
@@ -34,15 +38,22 @@
 
 			<div class="mb-4">
 				<label for="ingredients">Ingredienti *</label>
-				<textarea class="form-control" type="text" name="ingredients" id="ingredients" maxlength="1000" required>{{ old('ingredients', $plate->ingredients) }}</textarea>
+				<textarea class="form-control" type="text" name="ingredients" id="ingredients" 
+				maxlength="1000" required
+				>{{ old('ingredients', $plate->ingredients) }}</textarea>
 				@error('ingredients')
 					<div class="text-danger fw-bold">{{ $message }}</div>
 				@enderror
 			</div>
 
 			<div class="mb-4">
-				<label for="price">Prezzo</label>
-				<input class="form-control" type="number" name="price" id="price" min="0" max="99.90" required step="0.1" value="{{ old('price', $plate->price)}}">
+				<label for="price">Prezzo *</label>
+				<input class="form-control"  step="0.1" name="price" id="price" type="number"
+				 min="0" max="99.90" required  
+				value="{{ old('price', $plate->price)}}">
+				@error('price')
+					<div class="text-danger">{{$message}}</div>
+				@enderror
 			</div>
 
 			<div class="mb-4">
@@ -54,10 +65,12 @@
 				<label for="thumb">Cover Image</label>
 				@if ($plate->thumb)
 				<figure class="mb-3">
-					<img width="300" src="{{asset('storage/'. $plate->thumb)}}" alt="{{$plate->thumb}}">
+					<img width="300" src="{{asset('storage/' . $plate->thumb)}}" alt="{{$plate->thumb}}">
 				</figure>
 				@endif
-				<input class="form-control-file" type="file" name="thumb" id="thumb" accept="image/png, image/jpeg">
+				<input class="form-control-file" type="file" name="thumb" id="thumb" 
+				accept="image/png, image/jpeg"
+				>
 				@error('thumb')
 					<div class="text-danger">{{$message}}</div>
 				@enderror

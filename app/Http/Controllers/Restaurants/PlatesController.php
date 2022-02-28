@@ -40,6 +40,8 @@ class PlatesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->price = intval($request->price);
+        $request->validate($this->validateRules(), $this->validateMessages());
         $new_plate = new Plate();
         $data = $request->all();
         $data['slug'] = $this->createSlug($data['name']);
@@ -81,6 +83,7 @@ class PlatesController extends Controller
      */
     public function edit($id)
     {
+        
         $plate = Plate::find($id);
 
         if(! $plate){
@@ -99,9 +102,9 @@ class PlatesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $request->price = intval($request->price);
+        $request->validate($this->validateRules(), $this->validateMessages());
         $data = $request->all();
-
         $data['slug'] = $this->createSlug($data['name']);
 
         $plate = Plate::find($id);
@@ -122,6 +125,7 @@ class PlatesController extends Controller
         }
         
         $plate->update($data);
+        
 
         return redirect()->route('restaurants.plates.index');
     }
@@ -157,21 +161,27 @@ class PlatesController extends Controller
 
     protected function validateRules() {
         return [
-            // 'title' => 'required|max:255',
-            // 'content' => 'required',
-            // 'author' => 'required|max:130',
-            // 'category_id' => 'nullable|exists:categories,id',
-            // 'tags' => 'nullable|exists:tags,id',
-            // 'cover' => 'nullable|file|mimes:jpg,bmp,png',
+            'name' => 'required|min:2|max:255',
+            // 'email' => 'required|email:rfc,dns',
+            'description' => 'max:1000',
+            'ingredients' => 'required|max:1000',
+            'price' => 'required|numeric',
+            'thumb' => 'image|mimes:jpg,png|size:2000',
         ];
     }
 
     protected function validateMessages() {
         return [
-            // 'required' => 'The :attribute field is required',
-            // 'max' => 'Max :max characters allowed for this field',
+            'required' => 'Non lasciare vuoto il campo',
+            'min' => 'Minimo :min caratteri',
+            'max' => 'Massimo :max caratteri',
+            'email' => 'la mail inserita non è valida',
+            'mimes' => 'il file inserito non è del formato corretto',
+            'numeric' => 'il valore inserito non è un numero',
+            'image' => "il file non è un' immagine",
+            'mimes' => 'il formato non è corretto',
             // 'category_id.exists' => 'The selected category doesn\'t exists',
-            // 'cover' => 'The :attribute should be a jpg/bmp/png file',
+            'thumb.size' => 'La dimensione massima per la foto è di 2MB',
         ];
 
     }
