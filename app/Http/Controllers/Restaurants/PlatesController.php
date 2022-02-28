@@ -162,7 +162,7 @@ class PlatesController extends Controller
     protected function validateRules() {
         return [
             'name' => 'required|min:2|max:255',
-            // 'email' => 'required|email:rfc,dns',
+            'email' => 'required|email',
             'description' => 'max:1000',
             'ingredients' => 'required|max:1000',
             'price' => 'required|numeric',

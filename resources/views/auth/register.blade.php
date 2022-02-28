@@ -81,6 +81,11 @@
                             <div class="col-md-6">
                                 <input id="vat_number" type="text" class="form-control" name="vat_number" required min="11" max="11">
                             </div>
+                            @error('vat_number')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="form-group row mb-0">
