@@ -62,14 +62,19 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'types' => ['required']
-        ]);
+    protected function validator(array $data) {
+        return Validator::make(
+            $data,
+            [
+                'name' => ['required', 'string', 'size:10'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'max:255', 'confirmed'],
+                'address' => ['required', 'max:255', 'min:5'],
+                'vat_number' => ['required', 'string', 'size:11']
+            ]
+
+            // TODO - aggiungere messaggi di errore
+        );
     }
 
     /**

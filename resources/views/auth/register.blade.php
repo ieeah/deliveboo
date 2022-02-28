@@ -5,8 +5,16 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
+                <div class="card-header">
+                    {{ __('Register') }}
+                    <p class="text-danger">tutti i campi sono richiesti</p>
+                </div>
+                
+                @if($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <div class="text-danger">{{ $error }}</div>
+                    @endforeach
+                @endif
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
@@ -63,7 +71,7 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">*{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" 
+                                <input id="password-confirm" type="password" class="form-control @error('address') is-invalid @enderror" name="password_confirmation" 
                                 {{-- required --}}
                                  autocomplete="new-password">
                             </div>
@@ -73,7 +81,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">*{{ __('Inserisci Indirizzo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address"
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address"
                                 {{-- required --}}
                                 >
                                 @error('address')
@@ -88,7 +96,7 @@
                             <label for="vat_number" class="col-md-4 col-form-label text-md-right">*{{ __('Partita Iva') }}</label>
 
                             <div class="col-md-6">
-                                <input id="vat_number" type="text" class="form-control" name="vat_number"
+                                <input id="vat_number" type="text" class="form-control @error('vat_number') is-invalid @enderror" name="vat_number"
                                 {{-- required --}}
                                 >
                                 @error('vat_number')
@@ -112,6 +120,8 @@
                                         </label>
                                         <input type="checkbox" name="types" id="type{{$loop->iteration}}" value="{{$type->id}}"
                                         {{-- required --}}
+                                        {{-- FIXME - verificare funzionalità checkbox / inserire [] per raccolta checkbox --}}
+                                        {{-- TODO - aggiungere validazione front-end --}}
                                         >
                                     </div>
                                 @endforeach
