@@ -52,6 +52,11 @@
 
 			<div class="mb-4">
 				<label for="thumb">Cover Image</label>
+				@if ($plate->thumb)
+				<figure class="mb-3">
+					<img width="300" src="{{asset('storage/'. $plate->thumb)}}" alt="{{$plate->thumb}}">
+				</figure>
+				@endif
 				<input class="form-control-file" type="file" name="thumb" id="thumb" accept="image/png, image/jpeg">
 				@error('thumb')
 					<div class="text-danger">{{$message}}</div>
