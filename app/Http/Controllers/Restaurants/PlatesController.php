@@ -16,8 +16,7 @@ class PlatesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $plates = Plate::where('user_id', Auth::User()->id)->paginate(5);
         return view('restaurants.plates.index', compact('plates'));
     }
@@ -27,8 +26,7 @@ class PlatesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         return view('restaurants.plates.create');
     }
 
@@ -38,10 +36,12 @@ class PlatesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+
+    public function store(Request $request) {
+
         $request->price = intval($request->price);
         $request->validate($this->validateRules(), $this->validateMessages());
+
         $new_plate = new Plate();
         $data = $request->all();
         $data['slug'] = $this->createSlug($data['name']);
@@ -64,7 +64,6 @@ class PlatesController extends Controller
         $new_plate->save();
 
         return redirect()->route('restaurants.plates.index');
-        // return view('restaurants.plates.index');
     }
 
     /**
@@ -73,8 +72,7 @@ class PlatesController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
-    {
+    public function show($slug) {
         $plate = Plate::where('slug', $slug)->first();
 
         if($plate->user_id == Auth::user()->id){
@@ -91,9 +89,9 @@ class PlatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        
+
+    public function edit($id) {
+
         $plate = Plate::find($id);
 
         if(! $plate){
@@ -114,10 +112,12 @@ class PlatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+
+    public function update(Request $request, $id) {
+        
         $request->price = intval($request->price);
         $request->validate($this->validateRules(), $this->validateMessages());
+
         $data = $request->all();
         $data['slug'] = $this->createSlug($data['name']);
 
@@ -156,8 +156,7 @@ class PlatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $plate = Plate::find($id);
         
         Storage::delete($plate->thumb);
