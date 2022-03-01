@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Type;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -24,6 +25,17 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+    
+    /**
+ * Show the application registration form.
+ *
+ * @return \Illuminate\Http\Response
+ */
+    public function showRegistrationForm()
+   {
+    $types = Type::all();
+    return view('auth.register', compact('types'));
+   }
 
     /**
      * Where to redirect users after registration.
@@ -37,7 +49,10 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct() {
+
+    public function __construct()
+    {
+
         $this->middleware('guest');
     }
 
@@ -47,15 +62,24 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255', 'min:5'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'address' => 'required|min:5',
-            'vat_number' => ['min:11', 'max:11'],
-        ]);
+    protected function validator(array $data) {
+        return Validator::make(
+            $data,
+            [
+                'name' => ['required', 'string', 'min:2', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'max:25', 'confirmed'],
+                'address' => ['required', 'max:255', 'min:5'],
+                'vat_number' => ['required', 'string', 'size:11']
+            ], [
+                'required' => 'Il campo non può essere vuoto',
+                'min' => 'Il campo non può avere meno di :min caratteri',
+                'max' => 'Il campo non può avere più di :max caratteri',
+                'email.unique' => 'Esiste già un utente registrato con questa mail',
+                'vat_number.size' => 'La partita Iva deve avere esattamente 11 caratteri',
+                'email.email' => 'Non è stata inserita una mail valida'
+            ]
+        );
     }
 
     /**
@@ -66,7 +90,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -74,7 +98,9 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'vat_number' => $data['vat_number'],
         ]);
+        $user->types()->attach($data['types']);
 
+        return $user;
     }
 
     protected function createSlug($name) {

@@ -21,9 +21,10 @@ class PlatesSeeder extends Seeder
 
             $new->name = $plate['name'];
             $new->slug = Str::slug($plate['name'], '-');
-            if (array_key_exists('tdescription', $plate)) {
+            if (array_key_exists('description', $plate)) {
                 $new->description = $plate['description'];
             }
+            $new->thumb = 'plates_thumbs/food_placeholder.jpg';
             $new->ingredients = $plate['ingredients'];
             $new->price = rand(5, 25);
             $new->visibility = $plate['visibility'];

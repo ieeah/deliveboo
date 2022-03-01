@@ -50,6 +50,10 @@ class PlatesController extends Controller
             $data['thumb'] = Storage::put('plates_thumbs', $data['thumb']);
         }
 
+        if (!array_key_exists('thumb', $data)) {
+            $data['thumb'] = 'plates_thumbs/food_placeholder.jpg';
+        }
+
         $new_plate->user_id = Auth::user()->id;
         $new_plate->fill($data);
 
@@ -72,7 +76,13 @@ class PlatesController extends Controller
     public function show($slug)
     {
         $plate = Plate::where('slug', $slug)->first();
-        return view('restaurants.plates.show', compact('plate'));
+
+        if($plate->user_id == Auth::user()->id){
+            return view('restaurants.plates.show', compact('plate'));
+            dump($plate);
+        } else {
+            return view('restaurants.plates.denied');
+        }
     }
 
     /**
@@ -89,8 +99,12 @@ class PlatesController extends Controller
         if(! $plate){
             abort(404);
         }
-
-        return view('restaurants.plates.edit', compact('plate'));
+        
+        if($plate->user_id == Auth::user()->id){
+            return view('restaurants.plates.edit', compact('plate'));
+        } else {
+            return view('restaurants.plates.denied');
+        }
     }
 
     /**
@@ -114,6 +128,12 @@ class PlatesController extends Controller
                 Storage::delete($plate->thumb);
             }
             $data['thumb'] = Storage::put('plates_thumbs', $data['thumb']);
+        }
+
+        if (!array_key_exists('thumb', $data)) {
+            if(!$plate->thumb){
+                $data['thumb'] = 'plates_thumbs/food_placeholder.jpg';
+            }
         }
 
         
@@ -172,6 +192,7 @@ class PlatesController extends Controller
 
     protected function validateMessages() {
         return [
+
             'required' => 'Non lasciare vuoto il campo',
             'min' => 'Minimo :min caratteri',
             'max' => 'Massimo :max caratteri',
@@ -182,6 +203,7 @@ class PlatesController extends Controller
             'mimes' => 'il formato non è corretto',
             // 'category_id.exists' => 'The selected category doesn\'t exists',
             'thumb.size' => 'La dimensione massima per la foto è di 2MB',
+
         ];
 
     }

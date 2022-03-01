@@ -31,7 +31,6 @@ class UpdatePlatesTable extends Migration
     public function down()
     {
         Schema::table('plates', function (Blueprint $table) {
-            // TODO - verificare che la sintassi sia corretta
             $table->dropForeign('plates_user_id_foreign');
             $table->dropColumn('user_id');
         });
