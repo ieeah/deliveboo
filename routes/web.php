@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+use Carbon\Carbon;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +27,9 @@ Route::middleware('auth')
     ->group(function() {
     
     Route::get('/dashboard', function() {
-        return view('restaurants.dashboard');
+        $now = Carbon::now();
+        $today = $now->toDateString();
+        return view('restaurants.dashboard', compact('today'));
     });
     Route::resource('/plates', 'PlatesController');
     
