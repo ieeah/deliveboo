@@ -1,15 +1,21 @@
 .statistics {
+    position: relative;
     .chart {
         padding: 20px;
         border-radius: 30px;
         box-shadow: $deliveroo-shadow;
         margin-bottom: 50px;
         position: relative;
-        .buttons {
-            position: absolute; 
-            top: 15px; 
-            right: 15px;
-
+    }
+    .select {
+        width: 100%;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h5 {
+            text-align: center;
         }
     }
 }

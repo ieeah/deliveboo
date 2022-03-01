@@ -2,28 +2,34 @@
 
 @section('content')
 
-<main class="statistics container">
-    <div class="chart">
-        <h3 class="text-primary">Statistiche Mensili</h3>
-        <canvas id="monthlyChart" height="100" width="200"></canvas>
-
+<main class="statistics container mt-3">
+    <h1 class="text-primary">Statistiche</h1>
+    <div class="select">
+        <h5 class="text-primary">Seleziona L'anno</h5>
         <div class="buttons">
             <button class="btn btn-primary btn-left"><i class="fa-solid fa-caret-left"></i></button>
             <div class="btn btn-primary btn-year"></div>
             <button class="btn btn-primary btn-right"><i class="fa-solid fa-caret-right"></i></button>
         </div>
     </div>
-
-
     <div class="chart">
-        <h3 class="text-primary">Statistiche Ammontare Vendite</h3>
-        <canvas id="yearlyChart" height="100" width="200"></canvas>
+        <h3 class="text-primary">Statistiche Numero Ordini per Mese</h3>
+        <canvas id="monthlyChart" height="100" width="200"></canvas>
+
     </div>
 
     
     <div class="chart">
-        <h3 class="text-primary">Statistiche Ammontare Vendite</h3>
-        <canvas id="myChart" height="100" width="200"></canvas>
+        <h3 class="text-primary">Statistiche Guadagni per Mese</h3>
+        <canvas id="earningChart" height="100" width="200"></canvas>
+    </div>
+
+    <hr>
+    
+    
+    <div class="chart">
+        <h3 class="text-primary">Statistiche Numero Ordini per Anno</h3>
+        <canvas id="yearlyChart" height="100" width="200"></canvas>
     </div>
 </main>
 
@@ -38,8 +44,6 @@
 
 //Set Year
 const orders = @json($orders);
-console.log(orders);
-
 
 const today = new Date();
 let currentYear = today.getUTCFullYear()
@@ -71,84 +75,160 @@ for (let i = 0; i < orders.length; i++) {
 
 //MONTHLY CHART
 orderMonthly = [];
-let gennaio = [];
-let febbraio = [];
-let marzo = [];
-let aprile = [];
-let maggio = [];
-let giugno = [];
-let luglio = [];
-let agosto = [];
-let settembre = [];
-let ottobre = [];
-let novembre = [];
-let dicembre = [];
+let anno = [
+    gennaio = [
+        order = [],
+        total_earn = 0,
+    ],
+    febbraio = [
+        order = [],
+        total_earn = 0,
+    ],
+    marzo = [
+        order = [],
+        total_earn = 0,
+    ],
+    aprile = [
+        order = [],
+        total_earn = 0,
+    ],
+    maggio = [
+        order = [],
+        total_earn = 0,
+    ],
+    giugno = [
+        order = [],
+        total_earn = 0,
+    ],
+    luglio = [
+        order = [],
+        total_earn = 0,
+    ],
+    agosto = [
+        order = [],
+        total_earn = 0,
+    ],
+    settembre = [
+        order = [],
+        total_earn = 0,
+    ],
+    ottobre = [
+        order = [],
+        total_earn = 0,
+    ],
+    novembre = [
+        order = [],
+        total_earn = 0,
+    ],
+    dicembre = [
+        order = [],
+        total_earn = 0,
+    ],
+];
 
 function getMonthlyOrders() {
     //Reset month Array
-    gennaio = [];
-    febbraio = [];
-    marzo = [];
-    aprile = [];
-    maggio = [];
-    giugno = [];
-    luglio = [];
-    agosto = [];
-    settembre = [];
-    ottobre = [];
-    novembre = [];
-    dicembre = [];
+    anno = [
+        gennaio = [
+            order = [],
+            total_earn = 0,
+        ],
+        febbraio = [
+            order = [],
+            total_earn = 0,
+        ],
+        marzo = [
+            order = [],
+            total_earn = 0,
+        ],
+        aprile = [
+            order = [],
+            total_earn = 0,
+        ],
+        maggio = [
+            order = [],
+            total_earn = 0,
+        ],
+        giugno = [
+            order = [],
+            total_earn = 0,
+        ],
+        luglio = [
+            order = [],
+            total_earn = 0,
+        ],
+        agosto = [
+            order = [],
+            total_earn = 0,
+        ],
+        settembre = [
+            order = [],
+            total_earn = 0,
+        ],
+        ottobre = [
+            order = [],
+            total_earn = 0,
+        ],
+        novembre = [
+            order = [],
+            total_earn = 0,
+        ],
+        dicembre = [
+            order = [],
+            total_earn = 0,
+        ],
+    ];
 
     for (let i = 0; i < filteredOrder.length; i++) {
         const date = new Date(filteredOrder[i].created_at);
         const month = date.getUTCMonth() + 1;
         switch (month) {
             case 1: 
-            gennaio.push(filteredOrder[i]);
+            anno[0][0].push(filteredOrder[i]);
             break;
 
             case 2:
-            febbraio.push(filteredOrder[i]);
+            anno[1][0].push(filteredOrder[i]);
             break;
 
             case 3:
-            marzo.push(filteredOrder[i]);
+            anno[2][0].push(filteredOrder[i]);
             break;
 
             case 4:
-            aprile.push(filteredOrder[i]);
+            anno[3][0].push(filteredOrder[i]);
             break;
 
             case 5:
-            maggio.push(filteredOrder[i]);
+            anno[4][0].push(filteredOrder[i]);
             break;
 
             case 6:
-            giugno.push(filteredOrder[i]);
+            anno[5][0].push(filteredOrder[i]);
             break;
 
             case 7:
-            luglio.push(filteredOrder[i]);
+            anno[6][0].push(filteredOrder[i]);
             break;
 
             case 8:
-            agosto.push(filteredOrder[i]);
+            anno[7][0].push(filteredOrder[i]);
             break;
 
             case 9:
-            settembre.push(filteredOrder[i]);
+            anno[8][0].push(filteredOrder[i]);
             break;
 
             case 10:
-            ottobre.push(filteredOrder[i]);
+            anno[9][0].push(filteredOrder[i]);
             break;
 
             case 11:
-            novembre.push(filteredOrder[i]);
+            anno[10][0].push(filteredOrder[i]);
             break;
 
             case 12:
-            dicembre.push(filteredOrder[i]);
+            anno[11][0].push(filteredOrder[i]);
             break;     
         }
     }
@@ -156,6 +236,7 @@ function getMonthlyOrders() {
 
 getYearlyOrders();
 getMonthlyOrders();
+earnMonthly()
 
 let monthlyChart = document.getElementById("monthlyChart").getContext('2d');
 
@@ -165,17 +246,18 @@ let massPopChart = new Chart(monthlyChart, {
         datasets: [{
             label: [],
             data: {
-                Gennaio: gennaio.length,
-                Febbraio: febbraio.length,
-                Marzo: marzo.length,
-                Aprile: aprile.length,
-                Maggio: maggio.length,
-                Giugno: giugno.length,
-                Luglio: luglio.length,
-                Settembre: settembre.length,
-                Ottobre: ottobre.length,
-                Novembre: novembre.length,
-                Dicembre: marzo.length,
+                Gennaio: anno[0][0].length,
+                Febbraio: anno[1][0].length,
+                Marzo: anno[2][0].length,
+                Aprile: anno[3][0].length,
+                Maggio: anno[4][0].length,
+                Giugno: anno[5][0].length,
+                Luglio: anno[6][0].length,
+                Agosto: anno[7][0],length,
+                Settembre: anno[8][0].length,
+                Ottobre: anno[9][0].length,
+                Novembre: anno[10][0].length,
+                Dicembre: anno[11][0].length,
             },
             backgroundColor: [
                 'rgba(0, 100, 255, 0.7)',
@@ -194,38 +276,56 @@ let massPopChart = new Chart(monthlyChart, {
 
 function updateChart() {
     massPopChart.data.datasets[0].data = {
-        Gennaio: gennaio.length,
-        Febbraio: febbraio.length,
-        Marzo: marzo.length,
-        Aprile: aprile.length,
-        Maggio: maggio.length,
-        Giugno: giugno.length,
-        Luglio: luglio.length,
-        Settembre: settembre.length,
-        Ottobre: ottobre.length,
-        Novembre: novembre.length,
-        Dicembre: marzo.length,
+        Gennaio: anno[0][0].length,
+        Febbraio: anno[1][0].length,
+        Marzo: anno[2][0].length,
+        Aprile: anno[3][0].length,
+        Maggio: anno[4][0].length,
+        Giugno: anno[5][0].length,
+        Luglio: anno[6][0].length,
+        Agosto: anno[7][0].length,
+        Settembre: anno[8][0].length,
+        Ottobre: anno[9][0].length,
+        Novembre: anno[10][0].length,
+        Dicembre: anno[11][0].length,
     };
     massPopChart.update()
+
+    massEarnChart.data.datasets[0].data = {
+        Gennaio: anno[0][1],
+        Febbraio: anno[1][1],
+        Marzo: anno[2][1],
+        Aprile: anno[3][1],
+        Maggio: anno[4][1],
+        Giugno: anno[5][1],
+        Luglio: anno[6][1],
+        Agosto: anno[7][1],
+        Settembre: anno[8][1],
+        Ottobre: anno[9][1],
+        Novembre: anno[10][1],
+        Dicembre: anno[11][1], 
+    };
+    massEarnChart.update()
 }
-
-
 
 buttonLeft.addEventListener('click', function() {
     currentYear-- 
     buttonYear.innerHTML = `${currentYear}`;
-    getYearlyOrders()
+    getYearlyOrders();
     getMonthlyOrders();
-    updateChart()
+    earnMonthly();
+    updateChart();
 })
 
 buttonRight.addEventListener('click', function() {
     currentYear++
     buttonYear.innerHTML = `${currentYear}`;
     getYearlyOrders();
-    getMonthlyOrders()
-    updateChart()
+    getMonthlyOrders();
+    earnMonthly();
+    updateChart();
 })
+
 
 
 //YEARLY CHART
@@ -235,12 +335,9 @@ let year2024 = []
 let year2025 = []
 let year2026 = []
 
-
-
 for ( let i = 0; i < orders.length; i++) {
     const date = new Date(orders[i].created_at);
     const year = date.getUTCFullYear();
-    console.log(year);
     switch (year) {
         case 2022:
             year2022.push(orders[i]);
@@ -287,14 +384,48 @@ let massYearChart = new Chart(yearlyChart, {
 })
 
 
+//EARN MONTHLY
+function earnMonthly() {
+    anno.forEach(e => {
+    e[0].forEach(mese => {
+        e[1] += parseInt(mese.total_price);
+    })
+})
+}
 
+let earningChart = document.getElementById('earningChart').getContext('2d');
 
+let massEarnChart = new Chart(earningChart, {
+    type: 'bar',
+    data: {
+        datasets: [{
+            label: [],
+            data: {
+                Gennaio: anno[0][1],
+                Febbraio: anno[1][1],
+                Marzo: anno[2][1],
+                Aprile: anno[3][1],
+                Maggio: anno[4][1],
+                Giugno: anno[5][1],
+                Luglio: anno[6][1],
+                Agosto: anno[7][1],
+                Settembre: anno[8][1],
+                Ottobre: anno[9][1],
+                Novembre: anno[10][1],
+                Dicembre: anno[11][1], 
+            },
 
-
-
-
-
-
+            backgroundColor: [
+                'rgba(200, 0, 0, 0.7)',
+            ],
+            borderColor: [
+                'rgba(200, 0, 0, 0.7)',
+            ] 
+        }], 
+    },
+    options: {
+    },
+})
 
 </script>
 
