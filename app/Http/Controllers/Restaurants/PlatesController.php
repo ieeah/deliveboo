@@ -49,9 +49,7 @@ class PlatesController extends Controller
         }
 
         if (!array_key_exists('thumb', $data)) {
-            if (!$plate->thumb) {
-                $data['thumb'] = 'plates_thumbs/food_placeholder.jpg';
-            }
+            $data['thumb'] = 'plates_thumbs/food_placeholder.jpg';
         }
 
         $new_plate->user_id = Auth::user()->id;
