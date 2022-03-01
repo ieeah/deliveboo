@@ -47,7 +47,7 @@
 
 			<div class="mb-4">
 				<label for="visibility" class="d-block">Disponibile</label>
-				<input type="checkbox" name="visibility" id="visibility" checked>
+				<input type="checkbox" name="visibility" id="visibility" @if ($plate->visibility) checked @endif>
 			</div>
 
 			<div class="mb-4">
