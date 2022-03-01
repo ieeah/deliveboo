@@ -79,8 +79,6 @@ class RegisterController extends Controller
                 'vat_number.size' => 'La partita Iva deve avere 11 caratteri',
                 'email.email' => 'Non è stata inserita una mail valida'
             ]
-
-            // TODO - aggiungere messaggi di errore
         );
     }
 
