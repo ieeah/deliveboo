@@ -62,14 +62,26 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'types' => ['required']
-        ]);
+    protected function validator(array $data) {
+        return Validator::make(
+            $data,
+            [
+                'name' => ['required', 'string', 'min:2', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'max:25', 'confirmed'],
+                'address' => ['required', 'max:255', 'min:5'],
+                'vat_number' => ['required', 'string', 'size:11']
+            ], [
+                'required' => 'Il campo non può essere vuoto',
+                'min' => 'Il campo non può avere meno di :min caratteri',
+                'max' => 'Il campo non può avere più di :max caratteri',
+                'email.unique' => 'Esiste già un utente registrato con questa mail',
+                'vat_number.size' => 'La partita Iva deve avere 11 caratteri',
+                'email.email' => 'Non è stata inserita una mail valida'
+            ]
+
+            // TODO - aggiungere messaggi di errore
+        );
     }
 
     /**
