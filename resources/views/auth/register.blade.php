@@ -112,8 +112,7 @@
                                     <div class="d-inline-block">
                                         
                                         <input type="checkbox" name="types[]" id="type{{$loop->iteration}}" value="{{$type->id}}"
-                                        required
-                                        {{-- FIXME - verificare funzionalità checkbox / inserire [] per raccolta checkbox --}}
+                                        @if(in_array($type->id, old('types',[])))checked @endif
                                         >
 
                                         <label class= "col-form-label" for="type{{$loop->iteration}}">
