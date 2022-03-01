@@ -40,7 +40,7 @@
 
 			<div class="mb-4">
 				<label for="price">Prezzo *</label>
-				<input class="form-control" type="number" name="price" id="price" min="0" max="99.90" step="0.1" required>
+				<input class="form-control" type="number" name="price" id="price" min="1" max="99.90" step="0.1" required>
 			</div>
 
 			<div class="mb-4">
@@ -49,14 +49,14 @@
 			</div>
 
 			<div class="mb-4">
-				<label for="thumb">Cover Image</label><span>solo file png/jpg</span>
+				<label for="thumb">Cover Image</label>
+				<p>solo file png/jpg</p>
 				<input class="form-control-file" type="file" name="thumb" id="thumb" accept="image/png, image/jpeg">
 				@error('thumb')
 					<div class="text-danger">{{$message}}</div>
 				@enderror
 			</div>
 
-			{{-- TODO - verificare se devo implementare altro e come nel controller per la gestione della foto --}}
 			<input type="submit" value="Salva nuovo piatto" class="mt-4 btn btn-success">
 		</form>
 
