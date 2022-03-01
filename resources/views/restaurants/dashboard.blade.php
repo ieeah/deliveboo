@@ -15,26 +15,26 @@
 
 
 
-    <div class="general-data col-12">
-        <div class="data-item col-3">
+    <div class="general-data row">
+        <div class="data-item col-lg-3 col-md-6 col-sm-6">
                 <h4 class="text-primary mb-3">Ordini Ricevuti</h4>
                 <h3 class="mb-3">0</h3>
                 <a href=""><button class="btn btn-primary"><i class="fa-solid fa-circle-info"></i> Mostra Lista Ordini</button></a>
         </div>
-        <div class="data-item col-3">
+        <div class="data-item col-lg-3 col-md-6 col-sm-6">
                 <h4 class="text-primary mb-3">Numero dei tuoi Piatti</h4>
                 <h3 class="mb-3">0</h3>
                 <a href="{{route('restaurants.plates.index')}}"><button class="btn btn-primary"><i class="fa-solid fa-circle-info"></i> Mostra i tuoi Piatti</button></a>
         </div>
-        <div class="data-item col-3">
+        <div class="data-item col-lg-3 col-md-6 col-sm-6">
                 <h4 class="text-primary mb-3">Data Ultimo Ordine</h4>
                 <h3 class="mb-3">--</h3>
                 <a href=""><button class="btn btn-primary"><i class="fa-solid fa-circle-info"></i> Mostra Ultimo Ordine</button></a>
         </div>
-        <div class="data-item col-3">
+        <div class="data-item col-lg-3 col-md-6 col-sm-6">
             <h4 class="text-primary mb-3">Guadagno</h4>
             <h3>--</h3>
-    </div>
+        </div>
     </div>
 </div>
     
