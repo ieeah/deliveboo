@@ -17,7 +17,7 @@
 				<label for="thumb">Modifica l'immagine di copertina</label>
 				@if ($user->thumb)
 				<figure class="mb-3">
-					<img width="100%" src="{{asset('storage/'. $user->thumb)}}" alt="{{$user->name}}">
+					<img width="700" src="{{asset('storage/'. $user->thumb)}}" alt="{{$user->name}}">
 				</figure>
 				@endif
 				<input class="form-control-file" type="file" name="thumb" id="thumb" accept="image/png, image/jpeg">
