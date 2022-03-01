@@ -34,7 +34,9 @@
         <div class="data-item col-3">
             <h4 class="text-primary mb-3">Guadagno</h4>
             <h3>--</h3>
-    </div>
+        </div>
+
+        <a href="/restaurants/profile">Modifica dettagli ristorante</a>
     </div>
 </div>
     
