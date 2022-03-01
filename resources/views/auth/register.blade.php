@@ -35,7 +35,7 @@
 
                             <div class="col-md-6">
                                 <input id="email"  class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
-                                {{-- required max="25" type="email" --}}
+                                required max="25" type="email"
                                 autocomplete="email">
 
                                 @error('email')
@@ -51,7 +51,7 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password"
-                                {{-- required min="8" max="255" --}}
+                                required min="8" max="255"
                                 >
 
                                 @error('password')
@@ -67,7 +67,7 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation"
-                                {{-- required min="8" max="25" --}}
+                                required min="8" max="25"
                                  autocomplete="new-password">
                             </div>
                         </div>
@@ -77,7 +77,7 @@
 
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}"
-                                {{-- required min="5" max="255" --}}
+                                required min="5" max="255"
                                 >
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
@@ -92,7 +92,7 @@
 
                             <div class="col-md-6">
                                 <input id="vat_number" type="text" class="form-control @error('vat_number') is-invalid @enderror" name="vat_number" value="{{ old('vat_number') }}"
-                                {{-- required min="11" max="11" --}}
+                                required min="11" max="11"
                                 >
                                 @error('vat_number')
                                     <span class="invalid-feedback" role="alert">
@@ -114,9 +114,8 @@
                                             {{$type['name']}}
                                         </label>
                                         <input type="checkbox" name="types" id="type{{$loop->iteration}}" value="{{$type->id}}"
-                                        {{-- required --}}
+                                        required
                                         {{-- FIXME - verificare funzionalità checkbox / inserire [] per raccolta checkbox --}}
-                                        {{-- TODO - aggiungere validazione front-end --}}
                                         >
                                     </div>
                                 @endforeach
