@@ -3,11 +3,6 @@
 @section('content')
 
 <main class="statistics container">
-    {{-- <div class="chart">
-        <h3 class="text-primary">Statistiche Mensili</h3>
-        <canvas id="monthlyChart" height="100" width="200"></canvas>
-    </div> --}}
-
     <div class="chart">
         <h3 class="text-primary">Statistiche Mensili</h3>
         <canvas id="monthlyChart" height="100" width="200"></canvas>
@@ -19,6 +14,13 @@
         </div>
     </div>
 
+
+    <div class="chart">
+        <h3 class="text-primary">Statistiche Ammontare Vendite</h3>
+        <canvas id="yearlyChart" height="100" width="200"></canvas>
+    </div>
+
+    
     <div class="chart">
         <h3 class="text-primary">Statistiche Ammontare Vendite</h3>
         <canvas id="myChart" height="100" width="200"></canvas>
@@ -226,55 +228,70 @@ buttonRight.addEventListener('click', function() {
 })
 
 
-
-
-
-
-
-
-
-
 //YEARLY CHART
-/* 
-orderYearly = [] */
+let year2022 = []
+let year2023 = []
+let year2024 = []
+let year2025 = []
+let year2026 = []
 
-/* const date = new Date(orders[0].created_at);
-const year = date.getUTCFullYear() + 1;
- */
 
-/* for (let i = 0; i < orders.length; i++) {
-    const date = new Date(orders[0].created_at);
+
+for ( let i = 0; i < orders.length; i++) {
+    const date = new Date(orders[i].created_at);
     const year = date.getUTCFullYear();
-    orderYearly.push(year);
+    console.log(year);
+    switch (year) {
+        case 2022:
+            year2022.push(orders[i]);
+            break;
+        case 2023:
+            year2023.push(orders[i]);
+            break;
+        case 2024:
+            year2024.push(orders[i]);
+            break;
+        case 2025:
+            year2025.push(orders[i]);
+            break;
+        case 2026:
+            year2026.push(orders[i]);
+            break;
+    }
 }
-
-console.log(orderYearly);
-
-
-
 
 let yearlyChart = document.getElementById("yearlyChart").getContext('2d');
 
-let yearPopChart = new Chart(yearlyChart, {
+let massYearChart = new Chart(yearlyChart, {
     type: 'line',
     data: {
         datasets: [{
-            
+            label: [],
             data: {
-                
+                2022: year2022.length,
+                2023: year2023.length,
+                2024: year2024.length,
+                2025: year2025.length,
+                2026: year2026.length, 
             },
             backgroundColor: [
-                'rgba(255, 20, 0, 0.7)',
+                'rgba(0, 100, 0, 0.7)',
             ],
             borderColor: [
-                'rgba(255, 20, 0, 0.7)',
-            ],
-        }]
-    }
+                'rgba(0, 100, 0, 0.7)',
+            ] 
+        }], 
+    },
+    options: {
+    },
 })
 
 
- */
+
+
+
+
+
 
 
 
