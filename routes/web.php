@@ -32,7 +32,8 @@ Route::middleware('auth')
         return view('restaurants.dashboard', compact('today'));
     });
     Route::resource('/plates', 'PlatesController');
-    
+    Route::get('/profile', 'Homecontroller@edit_profile');
+    Route::post('profile', 'Homecontroller@update_profile');
     Route::get('/statistic', 'StatisticController@index');
 });
 

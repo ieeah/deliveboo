@@ -7,5 +7,11 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    //
+    public function edit_profile() {
+        return view('restaurants.public');
+    }
+
+    public function update_profile() {
+        
+    }
 }
