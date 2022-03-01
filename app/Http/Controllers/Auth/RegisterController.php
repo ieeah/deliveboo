@@ -76,7 +76,7 @@ class RegisterController extends Controller
                 'min' => 'Il campo non può avere meno di :min caratteri',
                 'max' => 'Il campo non può avere più di :max caratteri',
                 'email.unique' => 'Esiste già un utente registrato con questa mail',
-                'vat_number.size' => 'La partita Iva deve avere 11 caratteri',
+                'vat_number.size' => 'La partita Iva deve avere esattamente 11 caratteri',
                 'email.email' => 'Non è stata inserita una mail valida'
             ]
         );

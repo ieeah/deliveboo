@@ -48,6 +48,10 @@ class PlatesController extends Controller
             $data['thumb'] = Storage::put('plates_thumbs', $data['thumb']);
         }
 
+        if (!array_key_exists('thumb', $data)) {
+            $data['thumb'] = 'plates_thumbs/food_placeholder.jpg';
+        }
+
         $new_plate->user_id = Auth::user()->id;
         $new_plate->fill($data);
 
@@ -173,21 +177,21 @@ class PlatesController extends Controller
 
     protected function validateRules() {
         return [
-            // 'title' => 'required|max:255',
-            // 'content' => 'required',
-            // 'author' => 'required|max:130',
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'author' => 'required|max:130',
             // 'category_id' => 'nullable|exists:categories,id',
             // 'tags' => 'nullable|exists:tags,id',
-            // 'cover' => 'nullable|file|mimes:jpg,bmp,png',
+            'cover' => 'nullable|file|mimes:jpg,png',
         ];
     }
 
     protected function validateMessages() {
         return [
-            // 'required' => 'The :attribute field is required',
-            // 'max' => 'Max :max characters allowed for this field',
-            // 'category_id.exists' => 'The selected category doesn\'t exists',
-            // 'cover' => 'The :attribute should be a jpg/bmp/png file',
+            'required' => 'The :attribute field is required',
+            'max' => 'Max :max characters allowed for this field',
+            'category_id.exists' => 'The selected category doesn\'t exists',
+            'cover' => 'The :attribute should be a jpg/png file',
         ];
 
     }
