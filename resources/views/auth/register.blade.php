@@ -110,15 +110,25 @@
                             <section>
                                 @foreach($types as $type)
                                     <div class="d-inline-block">
-                                        <label class= "col-form-label" for="type{{$loop->iteration}}">
-                                            {{$type['name']}}
-                                        </label>
-                                        <input type="checkbox" name="types" id="type{{$loop->iteration}}" value="{{$type->id}}"
+                                        
+                                        <input type="checkbox" name="types[]" id="type{{$loop->iteration}}" value="{{$type->id}}"
                                         required
                                         {{-- FIXME - verificare funzionalità checkbox / inserire [] per raccolta checkbox --}}
                                         >
+
+                                        <label class= "col-form-label" for="type{{$loop->iteration}}">
+                                            {{$type->name}}
+                                        </label>
+
                                     </div>
                                 @endforeach
+
+                                @error('types')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
                             </section>
 
                         </div>
