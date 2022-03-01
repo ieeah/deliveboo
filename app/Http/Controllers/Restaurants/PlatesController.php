@@ -73,8 +73,9 @@ class PlatesController extends Controller
 
         if($plate->user_id == Auth::user()->id){
             return view('restaurants.plates.show', compact('plate'));
-        }else{
-            abort(404);
+            dump($plate);
+        } else {
+            return view('restaurants.plates.denied');
         }
     }
 
@@ -94,8 +95,8 @@ class PlatesController extends Controller
         
         if($plate->user_id == Auth::user()->id){
             return view('restaurants.plates.edit', compact('plate'));
-        }else{
-            abort(404);
+        } else {
+            return view('restaurants.plates.denied');
         }
     }
 
