@@ -3,7 +3,7 @@
 		<a href="/" class="brand">
 			<img :src="`/storage/front/brand_logo.jpeg`" alt="">
 		</a>
-		<a class="btn" href="/register">Vendi i tuoi piatti!</a>
+		<a class="btn" href="/restaurants/dashboard">Profilo</a>
 	</header>
 </template>
 
