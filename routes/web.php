@@ -34,8 +34,8 @@ Route::middleware('auth')
     Route::resource('/plates', 'PlatesController');
     Route::get('/profile', 'Homecontroller@edit')->name('edit_profile');
     Route::post('/profile', 'Homecontroller@update')->name('update_profile');
-    Route::get('/statistic', 'StatisticController@index');
-    Route::get('/orders', 'StatisticController@indexOrder');
+    Route::get('/statistic', 'StatisticController@index')->name('statistic');
+    Route::get('/orders', 'StatisticController@indexOrder')->name('order');
 });
 
 

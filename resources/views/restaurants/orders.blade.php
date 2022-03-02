@@ -5,7 +5,7 @@
         <h1 class="text-primary">I Tuoi Ordini</h1>
         <p>Qui puoi vedere tutti i tuoi ordini.</p>
 
-        <button class="btn btn-primary mb-3">Visualizza le Statistiche</button>
+        <a href="{{route('restaurants.statistic')}}"><button class="btn btn-primary mb-3">Visualizza le Statistiche</button></a>
 
         <div class="table-responsive-sm">
             <table class="table table-striped">
