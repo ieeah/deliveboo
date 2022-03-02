@@ -1,6 +1,7 @@
 <template>
 	<div class="col-6 offset-3">
 		<!-- importare qui header generico del front end -->
+			<Header />
 			<router-view></router-view>
 			<h1>ciao</h1>
 			<a href="/restaurants/dashboard">admin</a>
@@ -11,15 +12,28 @@
 </template>
 
 <script>
-// import ExampleComponent from '../components/ExampleComponent.vue';
+import Header from './partials/Header.vue';
 export default {
 	name: 'App',
 	components: {
-		// ExampleComponent,
+		Header,
 	},
 }
 </script>
 
 <style lang="scss">
+@import '../../sass/front.scss';
 
+*,
+*::after,
+*::before {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: $body-bg;
+	font-family: $font-family-sans-serif;
+}
 </style>

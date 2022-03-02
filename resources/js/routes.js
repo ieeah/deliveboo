@@ -15,11 +15,11 @@ const router = new VueRouter({
 	linkExactActiveClass: 'active',
 	routes: [
 		// esempio di rotta
-		// {
-		// 	path: '/',
-		// 	name: 'home',
-		// 	component: Home,
-		// },
+		{
+			path: '/',
+			name: 'home',
+			component: Home,
+		},
 	],
 });
 
