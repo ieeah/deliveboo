@@ -8,10 +8,18 @@
 			<span class="ml-3">Indirizzo {{$user->address}}</span>
 			
 		</div>
-
+		@if (session('error'))
+			<div class="alert alert-danger my-5">
+				<strong>{{session('error')}}</strong>
+			</div>
+			@elseif (session('success'))
+			<div class="alert alert-success my-5">
+				<strong>{{session('success')}}</strong>
+			</div>
+		@endif
 		<form action="/restaurants/profile" class="form" method="POST" enctype="multipart/form-data">
 			@csrf
-			<h2 class="mt-5 mb-4">Modifica i dati relativi al tuo ristorante</h2>
+			<h2 class="@if (!session('error')) mt-5 @endif mb-4">Modifica i dati relativi al tuo ristorante</h2>
 			{{-- thumb --}}
 			<div class="mb-4">
 				<label for="thumb">Modifica l'immagine di copertina</label>
@@ -35,13 +43,11 @@
 				@enderror
 			</div>
 			{{-- gestione tipologia --}}
-			{{-- TODO - inserire caselle di controllo --}}
 			<div class="mb-4">
 				<h5>Tipologie</h5>
 				@foreach ($types as $type)
 					<span class="d-inline-block mr-3">
 						<input type="checkbox" name="types[]" id="type{{$type->id}}" value="{{$type->id}}"
-							{{-- @if (in_array($tag->id, old('tags', []))) checked @endif --}}
 							{{-- va bene per il create ma per l'edit va messo così come sotto --}}
 							@if ($errors->any() && in_array($type->id, old('types')))
 								checked

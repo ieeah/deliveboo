@@ -43,7 +43,6 @@ class HomeController extends Controller
 
         if(!$data['address']) {
             $data['address'] = $user->address;
-            dump($data['address']);
         }
 
         if (!$data['password']) {
@@ -53,43 +52,15 @@ class HomeController extends Controller
         }
 
         
-        // $data['old_password'] = Hash::make($data['old_password']);
-        
         if(Hash::check($data['old_password'], $user->password)) {
             $user->update($data);
-            return 'salvato';
+            $msg = 'Profilo correttamente modificato';
+            return redirect()->route('restaurants.edit_profile')->with('success', $msg);
         }
-        
-        dump('password DB', $user->password);
-        dump('password inserita', $data['old_password']);
-        return 'non salvato';
-        // TODO - elaborare old_password, se è uguale a user->password allora salvare, sennò tornare a pagina edit con errori
-
-        // $data = $request->all();
-        // $user = User::find(Auth::user()->id);
-        // dump($data);
-        // dump($user);
-        // if(array_key_exists('thumb', $data)) {
-        //     if ($user->thumb) {
-        //         Storage::delete($user->thumb);
-        //     }
-        //     $data['thumb'] = Storage::put('users_thumbs', $data['thumb']);
-        // } else {
-        //     $data['thumb'] = $user->thumb;
-        // }
-
-        // if($data['address'] === null) {
-        //     $data['address'] = $user->address;
-        // }
-
-        // if ($data['password'] === null || $data['password'] === '') {
-        //     $data['password'] === $user->password;
-        // }
-
-        // dd($data);
-        // $user->update($data);
-        // return '<a href="/restaurants/profile">edita</a>';
-    }
+        $msg = 'Hai inserito una password non corretta';
+        return redirect()->route('restaurants.edit_profile')->with('error', $msg);
+        // return $msg;
+        }
 
     
 
