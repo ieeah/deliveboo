@@ -15,7 +15,7 @@
             }
             p {
                 font-size: 20px;
-                line-height: 5px;
+                line-height: 20px;
             }
         }
         .date {
@@ -67,3 +67,26 @@
     }
 
 
+@media screen and (max-width: 960px) {
+    .dashboard{
+        .general-data {
+            .data-item {
+                margin-bottom: 20px;
+            &:nth-child(2) {
+                border-right: none;
+                
+            }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard{
+        .general-data {
+            .data-item {
+                border-right: none;
+            }
+        }
+    }
+}
