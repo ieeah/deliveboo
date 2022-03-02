@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 
 // componenti per rotta
 // import Home from './pages/home';
+import Home from './pages/Home.vue';
 
 // attivazione del router
 Vue.use(VueRouter);
