@@ -10,12 +10,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UpdateProfile;
 
 use App\User;
+use App\Type;
 
 class HomeController extends Controller
 {
     public function edit() {
         $user = Auth::user();
-        return view('restaurants.public', compact('user'));
+        $types = Type::all();
+        return view('restaurants.public', compact('user', 'types'));
     }
 
     public function update(Request $request) {
@@ -30,6 +32,13 @@ class HomeController extends Controller
             }
             
             $data['thumb'] = Storage::put('users_thumbs', $data['thumb']);
+        }
+
+        if (array_key_exists('types', $data)) {
+            $user->types()->sync($data['types']);
+        } else {
+            // il metodo detach senza parametri elimina tutte le relazioni dalla tabella pivot
+            $user->types()->detach();
         }
 
         if(!$data['address']) {

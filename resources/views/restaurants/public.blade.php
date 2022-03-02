@@ -36,6 +36,28 @@
 			</div>
 			{{-- gestione tipologia --}}
 			{{-- TODO - inserire caselle di controllo --}}
+			<div class="mb-4">
+				<h5>Tipologie</h5>
+				@foreach ($types as $type)
+					<span class="d-inline-block mr-3">
+						<input type="checkbox" name="types[]" id="type{{$type->id}}" value="{{$type->id}}"
+							{{-- @if (in_array($tag->id, old('tags', []))) checked @endif --}}
+							{{-- va bene per il create ma per l'edit va messo così come sotto --}}
+							@if ($errors->any() && in_array($type->id, old('types')))
+								checked
+							@elseif (! $errors->any() && $user->types->contains($type->id))
+								checked
+							@endif
+						>
+						<label for="type{{$type->id}}">
+							{{$type->name}}
+						</label>
+					</span>
+				@endforeach
+				@error('types')
+					<div class="text-danger">{{$message}}</div>
+				@enderror
+			</div>
 			
 			{{-- nuova password --}}
 			<div class="mb-4">
