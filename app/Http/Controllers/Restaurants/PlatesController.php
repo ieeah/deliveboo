@@ -17,7 +17,7 @@ class PlatesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $plates = Plate::where('user_id', Auth::User()->id)->paginate(5);
+        $plates = Plate::where('user_id', Auth::User()->id)->orderBy('name')->paginate(5);
         return view('restaurants.plates.index', compact('plates'));
     }
 
