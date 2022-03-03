@@ -67,10 +67,12 @@ class RegisterController extends Controller
             $data,
             [
                 'name' => ['required', 'string', 'min:2', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'email' => ['required', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'max:25', 'confirmed'],
+                'password_confirmation' => ['required'],
                 'address' => ['required', 'max:255', 'min:5'],
-                'vat_number' => ['required', 'string', 'size:11']
+                'vat_number' => ['required', 'string', 'size:11'],
+                'types' => 'required',
             ], [
                 'required' => 'Il campo non può essere vuoto',
                 'min' => 'Il campo non può avere meno di :min caratteri',
@@ -88,8 +90,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
+    protected function create(array $data) {
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -98,6 +99,8 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'vat_number' => $data['vat_number'],
         ]);
+
+        // dd('user', $user, 'data', $data);
         $user->types()->attach($data['types']);
 
         return $user;

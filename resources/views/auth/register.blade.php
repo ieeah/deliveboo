@@ -11,16 +11,24 @@
                     <div class="text-danger">tutti i campi sono richiesti</div>
                 </div>
 
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <div class="text-danger">{{$error}}</div>
+                    @endforeach
+                @endif
+
                 <div class="card-body">
                     
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">*{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome Ristorante') }} *</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" required min="5" max="255" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
+                                <input id="name" type="text"
+                                required min="5" max="255" 
+                                class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
 
 
                                 @error('name')
@@ -32,11 +40,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">*{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }} *</label>
 
                             <div class="col-md-6">
 
-                                <input id="email" type="email" required max="255" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
+                                <input id="email" type="email" 
+                                max="255" 
+                                class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -47,11 +57,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">*{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }} *</label>
 
                             <div class="col-md-6">
 
-                                <input id="password" required min="8" max="255" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" 
+                                required min="8" max="255" 
+                                type="password" class="form-control @error('password') is-invalid @enderror" name="password">
 
 
                                 @error('password')
@@ -63,17 +75,19 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">*{{ __('Confirm Password') }}</label>
+                            <label for="password_confirmation" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }} *</label>
 
                             <div class="col-md-6">
 
-                                <input id="password-confirm" required min="8" max="255" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" 
+                                required min="8" max="255" 
+                                type="password" class="form-control" name="password_confirmation">
 
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">*{{ __('Inserisci Indirizzo') }}</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Inserisci Indirizzo') }} *</label>
 
                             <div class="col-md-6">
 
@@ -91,7 +105,7 @@
                         <div class="form-group row">
 
                             <label for="vat_number" class="col-md-4 col-form-label text-md-right">
-                                {{ __('Partita Iva') }}
+                                {{ __('Partita Iva') }} *
                             </label>
                             <div class="col-md-6">
                                 <input id="vat_number" type="text" class="form-control @error('vat_number') is-invalid @enderror" name="vat_number" value="{{ old('vat_number') }}"
@@ -112,18 +126,18 @@
 
                         <div class="form-group row">
                             <p class="col-md-4 col-form-label text-md-right">
-                                *{{ __('tipologia ristorante') }}
+                                {{ __('tipologia ristorante') }} *
                             </p>
                                 
                             <section>
                                 @foreach($types as $type)
-                                    <div class="d-inline-block">
+                                    <div class="d-inline-block @error('types') is-invalid @enderror">
                                         
                                         <input type="checkbox" name="types[]" id="type{{$loop->iteration}}" value="{{$type->id}}"
                                         @if(in_array($type->id, old('types',[])))checked @endif
                                         >
 
-                                        <label class= "col-form-label" for="type{{$loop->iteration}}">
+                                        <label class="col-form-label" for="type{{$loop->iteration}}">
                                             {{$type->name}}
                                         </label>
 
@@ -143,7 +157,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Registrati') }}
                                 </button>
                             </div>
                         </div>

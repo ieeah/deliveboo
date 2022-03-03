@@ -114,7 +114,6 @@ class PlatesController extends Controller
      */
 
     public function update(Request $request, $id) {
-        
         $request->price = intval($request->price);
         $request->validate($this->validateRules(), $this->validateMessages());
 
@@ -143,7 +142,7 @@ class PlatesController extends Controller
         } else {
             $data['visibility'] = false;
         }
-        
+        // dd('data', $data, 'request', $request);
         $plate->update($data);
         
 
@@ -181,11 +180,10 @@ class PlatesController extends Controller
     protected function validateRules() {
         return [
             'name' => 'required|min:2|max:255',
-            'email' => 'required|email',
             'description' => 'max:1000',
             'ingredients' => 'required|max:1000',
             'price' => 'required|numeric',
-            'thumb' => 'image|mimes:jpg,png|size:2000',
+            'thumb' => 'image|mimes:jpg,png|max:2000',
         ];
     }
 
@@ -195,13 +193,11 @@ class PlatesController extends Controller
             'required' => 'Non lasciare vuoto il campo',
             'min' => 'Minimo :min caratteri',
             'max' => 'Massimo :max caratteri',
-            'email' => 'la mail inserita non è valida',
             'mimes' => 'il file inserito non è del formato corretto',
             'numeric' => 'il valore inserito non è un numero',
             'image' => "il file non è un' immagine",
             'mimes' => 'il formato non è corretto',
-            // 'category_id.exists' => 'The selected category doesn\'t exists',
-            'thumb.size' => 'La dimensione massima per la foto è di 2MB',
+            'thumb.max' => 'La dimensione massima per la foto è di 2MB',
 
         ];
 

@@ -17,10 +17,16 @@
 			@csrf
 			@method('PATCH')
 
+			@if ($errors->any())
+				@foreach ($errors->all() as $error)
+					<div class="text-danger">{{$error}}</div>
+				@endforeach
+			@endif
+
 			<div class="mb-4">
 				<label for="name">Nome Piatto *</label>
 				<input class="form-control" type="text" name="name" id="name" value="{{ old('title', $plate->name) }}" 
-				required minlength="2" maxlength="200"
+				{{-- required minlength="2" maxlength="200" --}}
 				>
 				@error('name')
 					<div class="text-danger fw-bold">{{ $message }}</div>
@@ -29,7 +35,7 @@
 			<div class="mb-4">
 				<label for="description">Descrizione</label>
 				<textarea class="form-control" type="text" name="description" id="description" 
-				maxlength="1000"
+				{{-- maxlength="1000" --}}
 				>{{ old('description', $plate->description) }}</textarea>
 				@error('description')
 					<div class="text-danger fw-bold">{{ $message }}</div>
@@ -39,7 +45,7 @@
 			<div class="mb-4">
 				<label for="ingredients">Ingredienti *</label>
 				<textarea class="form-control" type="text" name="ingredients" id="ingredients" 
-				maxlength="1000" required
+				{{-- maxlength="1000" required --}}
 				>{{ old('ingredients', $plate->ingredients) }}</textarea>
 				@error('ingredients')
 					<div class="text-danger fw-bold">{{ $message }}</div>
@@ -48,8 +54,8 @@
 
 			<div class="mb-4">
 				<label for="price">Prezzo *</label>
-				<input class="form-control"  step="0.1" name="price" id="price" type="number"
-				 min="0" max="99.90" required  
+				<input class="form-control" step="0.1" name="price" id="price" type="number"
+				{{-- min="0" max="99.90" required   --}}
 				value="{{ old('price', $plate->price)}}">
 				@error('price')
 					<div class="text-danger">{{$message}}</div>
@@ -68,8 +74,8 @@
 					<img width="300" src="{{asset('storage/' . $plate->thumb)}}" alt="{{$plate->thumb}}">
 				</figure>
 				@endif
-				<input class="form-control-file" type="file" name="thumb" id="thumb" 
-				accept="image/png, image/jpeg"
+				<input class="form-control-file" type="file" name="thumb" id="thumb"
+				accept="image/png, image/jpeg, image/jpg"
 				>
 				@error('thumb')
 					<div class="text-danger">{{$message}}</div>
