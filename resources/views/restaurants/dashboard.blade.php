@@ -38,6 +38,6 @@
     </div>
 
     <a class="btn btn-primary mt-5" href="/restaurants/profile">Modifica dettagli ristorante</a>
+    <a class="btn btn-warning mt-5" href="/restaurants/orders">Visalizza i tuoi ordini</a>
 </div>
-    
 @endsection
