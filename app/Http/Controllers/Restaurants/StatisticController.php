@@ -15,4 +15,15 @@ class StatisticController extends Controller
 
         return view('restaurants.statistic', compact('orders'));
     }
+
+    public function indexOrder() {
+        $orders = Order::all();
+
+        return view('restaurants.orders', compact('orders'));
+    }
+
+
+
+
+
 }

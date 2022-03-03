@@ -253,7 +253,7 @@ let massPopChart = new Chart(monthlyChart, {
                 Maggio: anno[4][0].length,
                 Giugno: anno[5][0].length,
                 Luglio: anno[6][0].length,
-                Agosto: anno[7][0],length,
+                Agosto: anno[7][0].length,
                 Settembre: anno[8][0].length,
                 Ottobre: anno[9][0].length,
                 Novembre: anno[10][0].length,
