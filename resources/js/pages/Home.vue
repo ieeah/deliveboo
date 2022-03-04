@@ -21,7 +21,8 @@
 			</div>
 
 			<div class="types_carousel">
-				<TypeCard v-for="(type, i) in types" :key="'type_' + i" :cover="type.thumb" :name="type.name" />
+				<TypeCard v-for="(type, i) in types" :key="'type_' + i" :cover="type.thumb" :name="type.name" :id="type.id" 
+				/>
 			</div>
 		</section>
 
@@ -57,7 +58,7 @@ export default {
 		}
 	},
 	created() {
-		this.getRestaurants();
+		this.getRestaurants(0);
 		this.getTypes();
 	},
 	methods: {
@@ -81,11 +82,19 @@ export default {
 				});
 			}
 		},
-		getRestaurants() {
-			axios.get('http://127.0.0.1:8000/api/restaurants')
+		getRestaurants(type_id) {
+			
+			let query = 'http://127.0.0.1:8000/api/restaurants/'+ type_id;
+		
+			axios.get(query)
 			.then(response => {
-				console.log(response.data);
-				this.restaurants = response.data;
+				if (type_id != 0) {
+					console.log(response.data[0].users);
+					this.restaurants = response.data[0].users;
+				} else {
+					this.restaurants = response.data;
+				}
+				
 			})
 			.catch(err => {
 				console.log(err);
@@ -161,7 +170,7 @@ export default {
 		scroll-padding: 0 0 0 1.5rem;
 		// hiding scrollbars
 		-ms-overflow-style: none;
-  	scrollbar-width: none;
+		scrollbar-width: none;
 		&::-webkit-scrollbar {
 			display: none;
 		}
