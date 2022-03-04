@@ -25,9 +25,14 @@
 			</div>
 		</section>
 
+		
 		<section class="restaurants_container col-xs-12 col-md-9 mx-auto px-xs-3">
-			<RestaurantCard  v-for="(n, i) in 8" :key="'restaurant_' + i"
-			class="restaurant_card" />
+			<h2 class="section_title">
+				Ordina dai migliori in città
+			</h2>
+			<div class="restaurants_flex">
+				<RestaurantCard v-for="(n, i) in 8" :key="'restaurant_' + i" />
+			</div>
 		</section>
 	</div>
 </template>
@@ -125,7 +130,7 @@ export default {
 	}
 }
 
-.restaurants_container {
+.restaurants_flex {
 	$row: 180px;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);

@@ -24,6 +24,8 @@ export default {
 	border-radius: .8rem;
 	// background-color: $dark-700;
 	position: relative;
+	grid-column: span 1;
+	grid-row: span 1;
 	img {
 		width: 100%;
 		height: 100%;
