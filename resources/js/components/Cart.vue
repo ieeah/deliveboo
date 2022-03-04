@@ -2,7 +2,8 @@
   <div>
       <!-- Quando arriverà il momento ci metto 
       le props e tutti i box li faccio venire fuori
-       con un loop -->
+       con un loop 
+       i riquadri arancioni sono solo di riferimento-->
       <div class="window">
           <div class="top-section">
               <span>Carrello</span>
@@ -10,25 +11,41 @@
 
           <div class="d-flex">
           <div class="big-box"></div>
-          <div class="medium-box d-flex justify-content-center"><div class="middle-box"></div></div>
+          <div class="medium-box d-flex justify-content-center">
+              <div><i class="fa-solid fa-plus"></i></div>
+              <div class="middle-box"></div>
+              <div><i class="fa-solid fa-minus"></i></div>
+              </div>
           <div class="small-box"></div>
           </div>
          
           <div class="d-flex">
           <div class="big-box"></div>
-          <div class="medium-box d-flex justify-content-center"><div class="middle-box"></div></div>
+          <div class="medium-box d-flex justify-content-center">
+              <div><i class="fa-solid fa-plus"></i></div>
+              <div class="middle-box"></div>
+              <div><i class="fa-solid fa-minus"></i></div>
+              </div>
           <div class="small-box"></div>
           </div>
 
           <div class="d-flex">
           <div class="big-box"></div>
-          <div class="medium-box d-flex justify-content-center"><div class="middle-box"></div></div>
+          <div class="medium-box d-flex justify-content-center">
+              <div><i class="fa-solid fa-plus"></i></div>
+              <div class="middle-box"></div>
+              <div><i class="fa-solid fa-minus"></i></div>
+              </div>
           <div class="small-box"></div>
           </div>
 
           <div class="d-flex">
           <div class="big-box"></div>
-          <div class="medium-box d-flex justify-content-center"><div class="middle-box"></div></div>
+          <div class="medium-box d-flex justify-content-center">
+              <div><i class="fa-solid fa-plus"></i></div>
+              <div class="middle-box"></div>
+              <div><i class="fa-solid fa-minus"></i></div>
+              </div>
           <div class="small-box"></div>
           </div>
 
@@ -60,6 +77,7 @@ name:'Cart',
         height:25px;
         background-color:$orange;
         color:white;
+        padding:5px;
     }
     .big-box{
         width:150px;
@@ -71,11 +89,19 @@ name:'Cart',
         width:60px;
         height:30px;
         margin:10px;
-        background-color:#f5c9b3;
+        background-color:$secondary-200;
+        padding:5px;
+        border-radius:5px;
+        i{
+            font-size:10px;
+            color:$blue;
+        }
         .middle-box{
-            width:30px;
+            width:20px;
             height:100%;
-            background-color:$orange;
+            background-color:white;
+            border-radius:5px 0px;
+            margin:0px 5px;
         }
     }
     .small-box{
@@ -89,6 +115,7 @@ name:'Cart',
         height:30px;
         background-color:$orange;
         color:white;
+        padding:5px;
     }
 }
 </style>
