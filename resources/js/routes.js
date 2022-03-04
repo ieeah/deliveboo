@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 // componenti per rotta
 // import Home from './pages/home';
 import Home from './pages/Home.vue';
+import Confirm from './pages/Confirm.vue';
 
 // attivazione del router
 Vue.use(VueRouter);
@@ -19,6 +20,11 @@ const router = new VueRouter({
 			path: '/',
 			name: 'home',
 			component: Home,
+		},
+		{
+			path: '/confirmed',
+			name: 'confirmed-payment',
+			component: Confirm,
 		},
 	],
 });
