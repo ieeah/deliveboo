@@ -21,7 +21,7 @@
 			</div>
 
 			<div class="types_carousel">
-				<TypeCard v-for="(n, i) in 7" :key="'type_' + i" />
+				<TypeCard v-for="(type, i) in types" :key="'type_' + i" :cover="type.thumb" :name="type.name" />
 			</div>
 		</section>
 
@@ -31,13 +31,17 @@
 				Ordina dai migliori in città
 			</h2>
 			<div class="restaurants_flex">
-				<RestaurantCard v-for="(n, i) in 8" :key="'restaurant_' + i" />
+				<RestaurantCard v-for="(restaurant, i) in restaurants"
+				:restaurant_id="restaurant.id"
+				:restaurant_name="restaurant.name"
+				:restaurant_thumb="restaurant.thumb" :key="'restaurant_' + i" />
 			</div>
 		</section>
 	</div>
 </template>
 
 <script>
+import axios from 'axios';
 import TypeCard from '../components/TypeCard.vue';
 import RestaurantCard from '../components/RestaurantCard.vue';
 export default {
@@ -45,6 +49,16 @@ export default {
 	components: {
 		TypeCard,
 		RestaurantCard,
+	},
+	data() {
+		return {
+			restaurants: [],
+			types: [],
+		}
+	},
+	created() {
+		this.getRestaurants();
+		this.getTypes();
 	},
 	methods: {
 		scrollCarousel(quantity, querySelector) {
@@ -66,6 +80,25 @@ export default {
 					behavior: 'smooth',
 				});
 			}
+		},
+		getRestaurants() {
+			axios.get('http://127.0.0.1:8000/api/restaurants')
+			.then(response => {
+				console.log(response.data);
+				this.restaurants = response.data;
+			})
+			.catch(err => {
+				console.log(err);
+			});
+		},
+		getTypes() {
+			axios.get('http://127.0.0.1:8000/api/types')
+			.then(response => {
+				this.types = response.data;
+			})
+			.catch(err => {
+				console.log(err);
+			});
 		}
 	},
 }
