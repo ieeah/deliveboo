@@ -4,6 +4,7 @@
 			<h1 class="hero_title col-xs-12 offset-lg-1 col-lg-5">
 				Il tuo cibo preferito dove vuoi <br> quando vuoi
 			</h1>
+			<img src="/storage/front/burger.png" alt="">
 		</div>
 	</div>
 </template>
@@ -23,14 +24,17 @@ export default {
 	background: linear-gradient(66deg, rgba(243,162,119,1) 0%, rgba(255,141,92,1) 100%);
 	display: flex;
 	align-items: center;
-	background-image: url('/storage/front/burger.png');
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: top right;
+	overflow: hidden;
 	.hero_title {
 		height: fit-content;
 		text-align: right;
 		color: $body-bg;
 	}
+
+		img {
+			height: 140%;
+			transform: rotate(-3deg);
+		}
+
 }
 </style>
