@@ -7,30 +7,39 @@
 			<img src="/storage/front/burger.png" alt="">
 		</div>
 
-		<h2 class="section_title h2 col-md-9 mx-auto">
-			Di cosa hai voglia stasera?
-		</h2>
-		<div class="scrolling_arrows col-md-9 mx-auto">
-			<div class="prev" @click="scrollCarousel(-150, '.types_carousel')">
-				<i class="fa-solid fa-chevron-left"></i>
+		<section class="types_container col-xs-12 col-md-9 mx-auto px-xs-3">
+			<h2 class="section_title h2 ">
+				Di cosa hai voglia stasera?
+			</h2>
+			<div class="scrolling_arrows ">
+				<div class="prev" @click="scrollCarousel(-150, '.types_carousel')">
+					<i class="fa-solid fa-chevron-left"></i>
+				</div>
+				<div class="next" @click="scrollCarousel(150, '.types_carousel')">
+					<i class="fa-solid fa-chevron-right"></i>
+				</div>
 			</div>
-			<div class="next" @click="scrollCarousel(150, '.types_carousel')">
-				<i class="fa-solid fa-chevron-right"></i>
-			</div>
-		</div>
 
-		<div class="types_carousel col-xs-12 col-md-9 mx-auto px-xs-3">
-			<TypeCard v-for="(n, i) in 7" :key="'type_' + i" />
-		</div>
+			<div class="types_carousel">
+				<TypeCard v-for="(n, i) in 7" :key="'type_' + i" />
+			</div>
+		</section>
+
+		<section class="restaurants_container col-xs-12 col-md-9 mx-auto px-xs-3">
+			<RestaurantCard  v-for="(n, i) in 8" :key="'restaurant_' + i"
+			class="restaurant_card" />
+		</section>
 	</div>
 </template>
 
 <script>
 import TypeCard from '../components/TypeCard.vue';
+import RestaurantCard from '../components/RestaurantCard.vue';
 export default {
 	name: 'Home',
 	components: {
 		TypeCard,
+		RestaurantCard,
 	},
 	methods: {
 		scrollCarousel(quantity, querySelector) {
@@ -82,10 +91,8 @@ export default {
 
 }
 
-.section_title {
-		color: $primary-400;
-		margin-block: 2rem 1.5rem;
-	}
+.types_container {
+	margin-bottom: 5rem;
 
 	.scrolling_arrows {
 		display: flex;
@@ -106,14 +113,25 @@ export default {
 		}
 	}
 
-.types_carousel {
-	display: flex;
-	flex-wrap: nowrap;
-	column-gap: max(2vw, 10%);
-	overflow-x: auto;
-	padding-block: .8rem;
-	scroll-snap-type: x mandatory;
-	scroll-padding: 0 .8rem 0 .8rem;
+	.types_carousel {
+		display: flex;
+		flex-wrap: nowrap;
+		column-gap: max(2vw, 10%);
+		overflow-x: auto;
+		padding-block: .8rem;
+		scroll-snap-type: x mandatory;
+		scroll-padding: 0 0 0 .8rem;
 
+	}
+}
+
+.restaurants_container {
+	$row: 180px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: $row;
+	grid-auto-rows: $row;
+	gap: 3.8rem .8rem;
+	padding-bottom: 6.8rem;
 }
 </style>
