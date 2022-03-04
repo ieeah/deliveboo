@@ -6,6 +6,7 @@ import VueRouter from 'vue-router';
 // import Home from './pages/home';
 import Home from './pages/Home.vue';
 import Restaurant from './pages/Restaurant.vue';
+import Checkout from './pages/Checkout.vue';
 
 // attivazione del router
 Vue.use(VueRouter);
@@ -16,6 +17,11 @@ const router = new VueRouter({
 	linkExactActiveClass: 'active',
 	routes: [
 		// esempio di rotta
+		// {
+		// 	path: '/',
+		// 	name: 'home',
+		// 	component: Home,
+		// },
 		{
 			path: '/',
 			name: 'home',
@@ -25,6 +31,11 @@ const router = new VueRouter({
 			path: '/restaurant',
 			name: 'restaurant',
 			component: Restaurant,
+    },
+    {
+			path:'/checkout',
+			name:'checkout',
+			component: Checkout,
 		},
 	],
 });
