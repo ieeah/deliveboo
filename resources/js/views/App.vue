@@ -11,10 +11,12 @@
 
 <script>
 import Header from './partials/Header.vue';
+// import Home from '../pages/Home.vue';
 export default {
 	name: 'App',
 	components: {
 		Header,
+		// Home,
 	},
 }
 </script>
