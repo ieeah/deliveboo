@@ -22,10 +22,15 @@ const router = new VueRouter({
 		// 	component: Home,
 		// },
 		{
+			path: '/',
+			name: 'home',
+			component: Home,
+		},
+		{
 			path:'/checkout',
 			name:'checkout',
 			component: Checkout,
-		}
+		},
 	],
 });
 
