@@ -21,7 +21,10 @@
 			</div>
 
 			<div class="types_carousel">
-				<TypeCard v-for="(type, i) in types" :key="'type_' + i" :cover="type.thumb" :name="type.name" :id="type.id" 
+				<!-- TODO - tasto per azzerare ricerca -->
+				<!-- TODO - evidenziare tipologia attiva -->
+				<TypeCard v-for="(type, i) in types" :key="'type_' + i" 
+				@searchTypes="setTypeId" :cover="type.thumb" :name="type.name" :id="type.id"
 				/>
 			</div>
 		</section>
@@ -62,6 +65,13 @@ export default {
 		this.getTypes();
 	},
 	methods: {
+		setTypeId(id) {
+			console.log(id);
+			this.getRestaurants(id);
+		},
+		debug(x) {
+			console.log(x);
+		},
 		scrollCarousel(quantity, querySelector) {
 			let carousel = document.querySelector(querySelector);
 			let scrolled = carousel.scrollLeft;
