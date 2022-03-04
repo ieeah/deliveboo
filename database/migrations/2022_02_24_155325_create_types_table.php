@@ -18,6 +18,7 @@ class CreateTypesTable extends Migration
             $table->id();
             $table->string('slug', 100);
             $table->string('name', 80);
+            $table->string('thumb');
             $table->timestamps();
         });
     }
