@@ -3,7 +3,11 @@
 		<a href="/" class="brand">
 			<img :src="`/storage/front/brand_logo.jpeg`" alt="">
 		</a>
-		<a class="btn" href="/restaurants/dashboard">Profilo</a>
+		<a class="btn" href="/restaurants/dashboard">
+			<i class="fa-solid fa-circle-user d-md-none"></i>
+			<p class="d-md-block">Profilo</p>
+		</a>
+
 	</header>
 </template>
 
@@ -36,6 +40,9 @@ header {
 		font-weight: bold;
 		text-decoration: none;
 		color: $dark-700;
+		p {
+			display: none;
+		}
 	}
 }
 
