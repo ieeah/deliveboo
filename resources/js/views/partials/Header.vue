@@ -31,10 +31,11 @@ header {
 	}
 
 	.btn {
-		background-color: $secondary-400;
+		background-color: $secondary-200;
 		color: $body-bg;
 		font-weight: bold;
 		text-decoration: none;
+		color: $dark-700;
 	}
 }
 

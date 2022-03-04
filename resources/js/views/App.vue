@@ -1,10 +1,8 @@
 <template>
-	<div class="col-6 offset-3">
+	<div >
 		<!-- importare qui header generico del front end -->
-			<Header />
+			<Header class="col-xs-12 col-md-9 mx-auto px-3" />
 			<router-view></router-view>
-			<h1>ciao</h1>
-			<a href="/restaurants/dashboard">admin</a>
 		<!-- <ExampleComponent /> -->
 
 		<!-- importare qui footer generico per il front end -->
