@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 // componenti per rotta
 // import Home from './pages/home';
 import Home from './pages/Home.vue';
+import Checkout from './pages/Checkout.vue';
 
 // attivazione del router
 Vue.use(VueRouter);
@@ -20,6 +21,11 @@ const router = new VueRouter({
 		// 	name: 'home',
 		// 	component: Home,
 		// },
+		{
+			path:'/checkout',
+			name:'checkout',
+			component: Checkout,
+		}
 	],
 });
 
