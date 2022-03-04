@@ -1,5 +1,5 @@
 <template>
-	<div >
+	<div>
 		<!-- importare qui header generico del front end -->
 			<Header class="col-xs-12 col-md-9 mx-auto px-3" />
 			<router-view></router-view>
