@@ -9,6 +9,17 @@
             <CardRestaurant />
             <CardRestaurant />
             <CardRestaurant />
+            <CardRestaurant />
+            <CardRestaurant />
+            <CardRestaurant />
+            <CardRestaurant />
+            <CardRestaurant />
+            <CardRestaurant />
+            <CardRestaurant />
+            <CardRestaurant />
+            <CardRestaurant />
+            <CardRestaurant />
+            <CardRestaurant />
         </div>
     </section>
 </template>
@@ -27,7 +38,7 @@ export default {
 @import '../../sass/_variables.scss';
 
 .menu-restaurant {
-    padding-top: 50px;
+    padding: 10px;
     h4 {
         color: $primary-400;
     }
