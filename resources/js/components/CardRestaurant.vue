@@ -49,7 +49,7 @@ export default {
                 }
             }
             .info {
-                padding: 5px;
+                padding: 5px 10px;
                 width: 55%;
                 position: relative;
                 h5 {
@@ -62,14 +62,12 @@ export default {
                 }
                 span {
                     position: absolute;
-                    right: 0;
+                    right: 10px;
                     font-size: 14px;
                     font-weight: 600;
                     bottom: 10px;
                 }
             }
-
-
             &:hover {
                 transform: scale(105%);
                 box-shadow: 0px 0px 30px $primary-400;
