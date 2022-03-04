@@ -1,6 +1,6 @@
 <template>
 	<footer class="">
-		<div class="footer container pb-5">
+		<div class="footer container pb-5 col-xs-12 col-md-9 mx-auto px-xs-3">
 			<div class="row pt-5">
 				<div class="item-container col-md-3 col-sm-12">
 					<div class="item">
@@ -101,7 +101,7 @@ footer {
 			.item-container {
 				padding: 10px;
 				.item {
-					background-color: $clear-100;
+					background-color: $body-bg;
 					padding: 10px;
 					ul {
 						list-style: none;
@@ -118,16 +118,19 @@ footer {
 						display: flex;
 						align-items: center;
 						a {
-							padding: 15px;
+							height: 45px;
+							aspect-ratio: 1;
 							background-color: $primary-400;
-							border-radius: 100%;
+							border-radius: 50%;
 							margin-left: 15px;
-							i {
-								color: white;
-							}
+							display: grid;
+							place-content: center;
+							text-decoration: none;
 							&:first-child {
-								padding: 15px 18px;
 								margin-left: 0;
+							}
+							i {
+								color: $body-bg;
 							}
 						}
 					}

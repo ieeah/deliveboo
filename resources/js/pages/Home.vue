@@ -125,8 +125,13 @@ export default {
 		overflow-x: auto;
 		padding-block: .8rem;
 		scroll-snap-type: x mandatory;
-		scroll-padding: 0 0 0 .8rem;
-
+		scroll-padding: 0 0 0 1.5rem;
+		// hiding scrollbars
+		-ms-overflow-style: none;
+  	scrollbar-width: none;
+		&::-webkit-scrollbar {
+			display: none;
+		}
 	}
 }
 

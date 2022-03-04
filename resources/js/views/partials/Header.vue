@@ -1,5 +1,5 @@
 <template>
-	<header>
+	<header class="py-lg-2">
 		<a href="/" class="brand">
 			<img :src="`/storage/front/brand_logo.jpeg`" alt="">
 		</a>
