@@ -5,8 +5,10 @@ import VueRouter from 'vue-router';
 // componenti per rotta
 // import Home from './pages/home';
 import Home from './pages/Home.vue';
+import Confirm from './pages/Confirm.vue';
 import Restaurant from './pages/Restaurant.vue';
 import Checkout from './pages/Checkout.vue';
+
 
 // attivazione del router
 Vue.use(VueRouter);
@@ -28,6 +30,11 @@ const router = new VueRouter({
 			component: Home,
 		},
 		{
+			path: '/confirmed',
+			name: 'confirmed-payment',
+			component: Confirm,
+    },
+    {
 			path: '/restaurant',
 			name: 'restaurant',
 			component: Restaurant,
