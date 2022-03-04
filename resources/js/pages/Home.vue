@@ -11,15 +11,15 @@
 			Di cosa hai voglia stasera?
 		</h2>
 		<div class="scrolling_arrows col-md-9 mx-auto">
-			<div class="prev">
+			<div class="prev" @click="scrollCarousel(-150, '.types_carousel')">
 				<i class="fa-solid fa-chevron-left"></i>
 			</div>
-			<div class="next">
+			<div class="next" @click="scrollCarousel(150, '.types_carousel')">
 				<i class="fa-solid fa-chevron-right"></i>
 			</div>
 		</div>
 
-		<div class="types col-xs-12 col-md-9 mx-auto px-xs-3">
+		<div class="types_carousel col-xs-12 col-md-9 mx-auto px-xs-3">
 			<TypeCard v-for="(n, i) in 7" :key="'type_' + i" />
 		</div>
 	</div>
@@ -31,6 +31,28 @@ export default {
 	name: 'Home',
 	components: {
 		TypeCard,
+	},
+	methods: {
+		scrollCarousel(quantity, querySelector) {
+			let carousel = document.querySelector(querySelector);
+			let scrolled = carousel.scrollLeft;
+			if (quantity < 0 && scrolled + (quantity) < 0) {
+				carousel.scroll({
+					left: 0,
+					behavior: 'smooth',
+				});
+			} else if (quantity > 0 && scrolled + (quantity) > carousel.scrollLeftMax) {
+				carousel.scroll({
+					left: carousel.scrollLeftMax,
+					behavior: 'smooth',
+				});
+			} else {
+				carousel.scroll({
+					left: scrolled + (quantity),
+					behavior: 'smooth',
+				});
+			}
+		}
 	},
 }
 </script>
@@ -84,7 +106,7 @@ export default {
 		}
 	}
 
-.types {
+.types_carousel {
 	display: flex;
 	flex-wrap: nowrap;
 	column-gap: max(2vw, 10%);
