@@ -1,25 +1,28 @@
 <template>
     <section class="cart-restaurant col-md-6 col-sm-12 mb-5">
-        <h4>Carrello</h4>
-        <div class="cart">
-            <div class="cart-item">
-                <div class="item-name">
-                    <p>Tagliatelle al Ragù</p>
-                </div>
-                <div class="buttons">
-                    <button>-</button>
-                    <span>0</span>
-                    <button>+</button>
-                </div>
-                <div class="item-price">
-                    <p>11,20 €</p>
+        <div class="cart-container">
+            <h4>Carrello</h4>
+            <div class="cart">
+                <div class="cart-item">
+                    <div class="item-name">
+                        <p>Tagliatelle al Ragù</p>
+                    </div>
+                    <div class="buttons">
+                        <button>-</button>
+                        <span>0</span>
+                        <button>+</button>
+                    </div>
+                    <div class="item-price">
+                        <p>11,20 €</p>
+                    </div>
                 </div>
             </div>
+            <div class="total-price">
+                    <h3>Tot</h3>
+                    <h3>€€</h3>
+            </div>
         </div>
-        <div class="total-price">
-                <h3>Tot</h3>
-                <h3>€€</h3>
-        </div>
+            <button class="payment">Procedi con il Pagamento</button>
     </section>
 </template>
 
@@ -32,13 +35,15 @@ export default {
 <style lang="scss" scoped>
 @import '../../sass/_variables.scss';
 .cart-restaurant {
-    height: 500px;
-    background-color: $primary-400;
-    border-radius: 20px;
-    position: sticky;
-    top: 20px;
-    padding: 10px;
-    h4 {
+    height: 580px;
+        position: sticky;
+        top: 20px;
+    .cart-container {
+        border-radius: 20px;
+        padding: 10px;
+        background-color: $primary-400;
+        height: 90%;
+        h4 {
         color: $clear-100;
     }
     .cart {
@@ -99,6 +104,21 @@ export default {
         }
         h3:first-child {
             flex-grow: 1;
+        }
+        
+    }
+    }
+    .payment {
+        margin-top: 10px;
+        border: none;
+        background-color: $secondary-200;
+        padding: 10px 20px;
+        font-weight: 600;
+        font-size: 15px;
+        border-radius: 10px;
+        cursor: pointer;
+        &:active {
+            background-color: $secondary-400;
         }
         
     }
