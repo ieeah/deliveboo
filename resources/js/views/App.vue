@@ -6,17 +6,19 @@
 		<!-- <ExampleComponent /> -->
 
 		<!-- importare qui footer generico per il front end -->
+		<Footer />
 	</div>
 </template>
 
 <script>
 import Header from './partials/Header.vue';
+import Footer from './partials/Footer.vue';
 // import Home from '../pages/Home.vue';
 export default {
 	name: 'App',
 	components: {
 		Header,
-		// Home,
+		Footer,
 	},
 }
 </script>
