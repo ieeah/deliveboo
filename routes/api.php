@@ -22,4 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::namespace('Api')->group(function(){
     //Orders
     Route::get('/orders','OrderController@index');
+    Route::get('/restaurants', 'RestaurantsController@index');
+    Route::get('/restaurants/{id}', 'RestaurantsController@type');
+    Route::get('/types', 'CategoriesController@index');
 });

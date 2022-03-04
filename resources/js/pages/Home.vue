@@ -21,7 +21,11 @@
 			</div>
 
 			<div class="types_carousel">
-				<TypeCard v-for="(n, i) in 7" :key="'type_' + i" />
+				<!-- TODO - tasto per azzerare ricerca -->
+				<!-- TODO - evidenziare tipologia attiva -->
+				<TypeCard v-for="(type, i) in types" :key="'type_' + i" 
+				@searchTypes="setTypeId" :cover="type.thumb" :name="type.name" :id="type.id"
+				/>
 			</div>
 		</section>
 
@@ -31,13 +35,17 @@
 				Ordina dai migliori in città
 			</h2>
 			<div class="restaurants_flex">
-				<RestaurantCard v-for="(n, i) in 8" :key="'restaurant_' + i" />
+				<RestaurantCard v-for="(restaurant, i) in restaurants"
+				:restaurant_id="restaurant.id"
+				:restaurant_name="restaurant.name"
+				:restaurant_thumb="restaurant.thumb" :key="'restaurant_' + i" />
 			</div>
 		</section>
 	</div>
 </template>
 
 <script>
+import axios from 'axios';
 import TypeCard from '../components/TypeCard.vue';
 import RestaurantCard from '../components/RestaurantCard.vue';
 export default {
@@ -46,7 +54,24 @@ export default {
 		TypeCard,
 		RestaurantCard,
 	},
+	data() {
+		return {
+			restaurants: [],
+			types: [],
+		}
+	},
+	created() {
+		this.getRestaurants(0);
+		this.getTypes();
+	},
 	methods: {
+		setTypeId(id) {
+			console.log(id);
+			this.getRestaurants(id);
+		},
+		debug(x) {
+			console.log(x);
+		},
 		scrollCarousel(quantity, querySelector) {
 			let carousel = document.querySelector(querySelector);
 			let scrolled = carousel.scrollLeft;
@@ -66,6 +91,33 @@ export default {
 					behavior: 'smooth',
 				});
 			}
+		},
+		getRestaurants(type_id) {
+			
+			let query = 'http://127.0.0.1:8000/api/restaurants/'+ type_id;
+		
+			axios.get(query)
+			.then(response => {
+				if (type_id != 0) {
+					console.log(response.data[0].users);
+					this.restaurants = response.data[0].users;
+				} else {
+					this.restaurants = response.data;
+				}
+				
+			})
+			.catch(err => {
+				console.log(err);
+			});
+		},
+		getTypes() {
+			axios.get('http://127.0.0.1:8000/api/types')
+			.then(response => {
+				this.types = response.data;
+			})
+			.catch(err => {
+				console.log(err);
+			});
 		}
 	},
 }
@@ -128,7 +180,7 @@ export default {
 		scroll-padding: 0 0 0 1.5rem;
 		// hiding scrollbars
 		-ms-overflow-style: none;
-  	scrollbar-width: none;
+		scrollbar-width: none;
 		&::-webkit-scrollbar {
 			display: none;
 		}

@@ -1,18 +1,19 @@
 <template>
-	<div class="type_card">
+	<div class="type_card" @click="$emit('searchTypes', id)">
 		<!-- <img :src="cover" :alt="name + ' type'"> -->
 		<img src="https://images.unsplash.com/photo-1646243375307-3f6a0b03a664?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=700&q=60" alt="">
-		<div class="type_name h4">alberto</div>
+		<div class="type_name h4">{{name}}</div>
 	</div>
 </template>
 
 <script>
 export default {
 	name: 'TypeCard',
-	// props: {
-	// 	cover: String,
-	// 	name: String,
-	// },
+	props: {
+		cover: String,
+		name: String,
+		id: Number,
+	},
 }
 </script>
 

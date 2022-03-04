@@ -14,11 +14,6 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        // for ($i=0; $i < 10; $i++) { 
-        //     $new = new User();
-
-        //     $new->name = 'password' => Hash::make($request->newPassword);
-        // }
         $users = config('restaurants');
         foreach ($users as $user) {
             $new = new User();
@@ -29,6 +24,11 @@ class UsersSeeder extends Seeder
             $new->password = Hash::make($user['password']);
             $new->address = $user['address'];
             $new->vat_number = $user['vat_number'];
+            if (array_key_exists('thumb', $user)) {
+                $new->thumb = $user->thumb;
+            } else {
+                $new->thumb = 'users_thumbs/food_placeholder.jpg';
+            }
             $new->save();
         }
     }

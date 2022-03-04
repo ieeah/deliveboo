@@ -2,7 +2,7 @@
 	<div class="restaurant_card">
 		<img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=700&q=60" alt="">
 		<div class="restaurant_card__name">
-			Nome Ristorante
+			{{`${restaurant_name}`}}
 		</div>
 	</div>
 </template>
@@ -13,7 +13,7 @@ export default {
 	props: {
 		restaurant_id: Number,
 		restaurant_name: String,
-		restaurant_cover: String,
+		restaurant_thumb: String,
 	},
 }
 </script>
