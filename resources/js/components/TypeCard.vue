@@ -1,6 +1,6 @@
 <template>
 	<div class="type_card" @click="$emit('searchTypes', id)">
-		<!-- <img :src="cover" :alt="name + ' type'"> -->
+		<!-- <img :src="thumb" :alt="name + ' type'"> -->
 		<img src="https://images.unsplash.com/photo-1646243375307-3f6a0b03a664?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=700&q=60" alt="">
 		<div class="type_name h4">{{name}}</div>
 	</div>
@@ -10,7 +10,7 @@
 export default {
 	name: 'TypeCard',
 	props: {
-		cover: String,
+		thumb: String,
 		name: String,
 		id: Number,
 	},
@@ -21,9 +21,14 @@ export default {
 @import '../../sass/front.scss';
 	.type_card {
 		position: relative;
-		width: clamp(150px, 19%, 300px);
 		flex-shrink: 0;
-		scroll-snap-align: start;
+		scroll-snap-align: end;
+		width: clamp(180px, 33% , 350px);
+		cursor: pointer;
+		&.disabled {
+			opacity: .5;
+			pointer-events: none;
+		}
 		img {
 			width: 100%;
 			height: 100%;

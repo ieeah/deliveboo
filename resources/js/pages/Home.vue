@@ -12,19 +12,23 @@
 				Di cosa hai voglia stasera?
 			</h2>
 			<div class="scrolling_arrows ">
-				<div class="prev" @click="scrollCarousel(-150, '.types_carousel')">
+				<div class="prev" @click="scrollCarousel(-220, '.types_carousel')">
 					<i class="fa-solid fa-chevron-left"></i>
 				</div>
-				<div class="next" @click="scrollCarousel(150, '.types_carousel')">
+				<div class="next" @click="scrollCarousel(220, '.types_carousel')">
 					<i class="fa-solid fa-chevron-right"></i>
+				</div>
+				<div class="btn btn-primary" v-show="active_type_id != 0"
+				@click="setTypeId(0)"
+				>
+					Vedi tutti i ristoranti
 				</div>
 			</div>
 
 			<div class="types_carousel">
-				<!-- TODO - tasto per azzerare ricerca -->
 				<!-- TODO - evidenziare tipologia attiva -->
-				<TypeCard v-for="(type, i) in types" :key="'type_' + i" 
-				@searchTypes="setTypeId" :cover="type.thumb" :name="type.name" :id="type.id"
+				<TypeCard v-for="(type, i) in types" :key="'type_' + i" :class="{disabled: active_type_id == i + 1}"
+				@searchTypes="setTypeId" :thumb="type.thumb" :name="type.name" :id="type.id"
 				/>
 			</div>
 		</section>
@@ -58,6 +62,7 @@ export default {
 		return {
 			restaurants: [],
 			types: [],
+			active_type_id: 0,
 		}
 	},
 	created() {
@@ -66,7 +71,7 @@ export default {
 	},
 	methods: {
 		setTypeId(id) {
-			console.log(id);
+			this.active_type_id = id;
 			this.getRestaurants(id);
 		},
 		debug(x) {
@@ -173,11 +178,11 @@ export default {
 	.types_carousel {
 		display: flex;
 		flex-wrap: nowrap;
-		column-gap: max(2vw, 10%);
+		column-gap: max(1.5vw, 50px);
 		overflow-x: auto;
 		padding-block: .8rem;
 		scroll-snap-type: x mandatory;
-		scroll-padding: 0 0 0 1.5rem;
+		scroll-padding: 0 0 0 1rem;
 		// hiding scrollbars
 		-ms-overflow-style: none;
 		scrollbar-width: none;
