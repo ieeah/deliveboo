@@ -63,6 +63,7 @@ export default {
 			restaurants: [],
 			types: [],
 			active_type_id: 0,
+			logged: false,
 		}
 	},
 	created() {
@@ -123,7 +124,8 @@ export default {
 			.catch(err => {
 				console.log(err);
 			});
-		}
+		},
+		
 	},
 }
 </script>
