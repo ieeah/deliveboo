@@ -22,8 +22,8 @@ export default {
 	.type_card {
 		position: relative;
 		flex-shrink: 0;
-		scroll-snap-align: end;
-		width: clamp(180px, 33% , 350px);
+		scroll-snap-align: center;
+		width: clamp(180px, 33% , 280px);
 		cursor: pointer;
 		&.disabled {
 			opacity: .5;

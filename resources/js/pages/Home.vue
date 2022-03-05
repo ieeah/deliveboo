@@ -18,7 +18,7 @@
 				<div class="next" @click="scrollCarousel(220, '.types_carousel')">
 					<i class="fa-solid fa-chevron-right"></i>
 				</div>
-				<div class="btn btn-primary" v-show="active_type_id != 0"
+				<div class="reset_btn" v-show="active_type_id != 0"
 				@click="setTypeId(0)"
 				>
 					Vedi tutti i ristoranti
@@ -172,6 +172,15 @@ export default {
 		}
 		.prev {
 			margin-right: 1.5rem;
+		}
+		.reset_btn {
+			padding: .5rem 1rem;
+			background-color: $secondary-200;
+			color: $dark-700;
+			font-weight: bold;
+			margin-left: 3rem;
+			border-radius: .5rem;
+			cursor: pointer;
 		}
 	}
 
