@@ -48,11 +48,17 @@ export default {
             .then(result => {
                 this.restaurant = result.data[0];
             })
+            .catch(err => {
+                console.log(err);
+            })
         },
         getPlates() {
             axios.get(`http://localhost:8000/api/plates/${this.$route.params.id}`)
             .then(result => {
                 this.plate = result.data;
+            })
+            .catch(err => {
+                console.log(err);
             })
         },
 
