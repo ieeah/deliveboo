@@ -16,12 +16,12 @@
     <div class="general-data col-12 row">
         <div class="data-item col-sm-12 col-md-6 col-lg-3">
                 <h4 class="text-primary mb-3">Ordini Ricevuti</h4>
-                <h3 class="mb-3">0</h3>
-                <a href=""><button class="btn btn-primary"><i class="fa-solid fa-circle-info"></i> Mostra Lista Ordini</button></a>
+                <h3 class="mb-3">{{count($orders)}}</h3>
+                <a href="/restaurants/orders"><button class="btn btn-primary"><i class="fa-solid fa-circle-info"></i> Mostra Lista Ordini</button></a>
         </div>
         <div class="data-item col-sm-12 col-md-6 col-lg-3">
                 <h4 class="text-primary mb-3">Numero dei tuoi Piatti</h4>
-                <h3 class="mb-3">0</h3>
+                <h3 class="mb-3">{{count($plates)}}</h3>
                 <a href="{{route('restaurants.plates.index')}}"><button class="btn btn-primary"><i class="fa-solid fa-circle-info"></i> Mostra i tuoi Piatti</button></a>
         </div>
         <div class="data-item col-sm-12 col-md-6 col-lg-3">
@@ -38,6 +38,5 @@
     </div>
 
     <a class="btn btn-primary mt-5" href="/restaurants/profile">Modifica dettagli ristorante</a>
-    <a class="btn btn-warning mt-5" href="/restaurants/orders">Visalizza i tuoi ordini</a>
 </div>
 @endsection

@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateProfile;
-
+use Carbon\Carbon;
 use App\User;
 use App\Type;
+use App\Order;
+use App\Plate;
 
 class HomeController extends Controller
 {
@@ -82,5 +84,14 @@ class HomeController extends Controller
             'min' => 'Minimo :min caratteri',
             // 'old_password.password' => 'La password inserita non è corretta',
         ];
+    }
+
+    public function dashboard() {
+        $now = Carbon::now();
+        $today = $now->toDateString();
+        $orders = Order::where('user_id', Auth::user()->id)->get();
+        $plates = Plate::where('user_id', Auth::user()->id)->get();
+
+        return view('restaurants.dashboard', compact('today', 'orders', 'plates'));
     }
 }

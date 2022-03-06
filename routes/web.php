@@ -26,12 +26,13 @@ Route::middleware('auth')
     ->prefix('restaurants')
     ->group(function() {
     
-    Route::get('/dashboard', function() {
+   /*  Route::get('/dashboard', function() {
         $now = Carbon::now();
         $today = $now->toDateString();
         return view('restaurants.dashboard', compact('today'));
-    });
+    }); */
     Route::resource('/plates', 'PlatesController');
+    Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     Route::get('/profile', 'Homecontroller@edit')->name('edit_profile');
     Route::post('/profile', 'Homecontroller@update')->name('update_profile');
     Route::get('/statistic', 'StatisticController@index')->name('statistic');
