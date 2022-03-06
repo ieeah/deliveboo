@@ -21,6 +21,7 @@ export default {
 <style scoped lang="scss">
 @import '../../sass/front.scss';
 .restaurant_card {
+	height: 100%;
 	border-radius: .8rem;
 	// background-color: $dark-700;
 	position: relative;

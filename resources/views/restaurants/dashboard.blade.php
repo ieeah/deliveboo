@@ -33,10 +33,7 @@
             <h4 class="text-primary mb-3">Guadagno</h4>
             <h3>--</h3>
         </div>
-
-        
     </div>
-
     <a class="btn btn-primary mt-5" href="/restaurants/profile">Modifica dettagli ristorante</a>
 </div>
 @endsection

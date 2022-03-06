@@ -3,23 +3,6 @@
         <h4>Menù</h4>
         <div class="menu-container">
             <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
-            <CardRestaurant />
         </div>
     </section>
 </template>

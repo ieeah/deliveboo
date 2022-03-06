@@ -35,7 +35,7 @@ const router = new VueRouter({
 			component: Confirm,
     },
     {
-			path: '/restaurant',
+			path: '/restaurant/:slug',
 			name: 'restaurant',
 			component: Restaurant,
     },
