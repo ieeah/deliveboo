@@ -39,7 +39,7 @@
 				Ordina dai migliori in città
 			</h2>
 			<div class="restaurants_flex">
-				<router-link :to="{name: 'restaurant', params: {slug: restaurant.slug}}" v-for="(restaurant, i) in restaurants" :key="'restaurant_' + i">
+				<router-link :to="{name: 'restaurant', params: {id: restaurant.id}}" v-for="(restaurant, i) in restaurants" :key="'restaurant_' + i">
 					<RestaurantCard
 					:restaurant_id="restaurant.id"
 					:restaurant_name="restaurant.name"
