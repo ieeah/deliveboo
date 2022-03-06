@@ -5,7 +5,8 @@
 		</a>
 		<a class="btn" href="/restaurants/dashboard">
 			<i class="fa-solid fa-circle-user d-md-none"></i>
-			<p class="d-md-block">Profilo</p>
+			<p v-if="!logged" class="d-md-block">Accedi/Registrati</p>
+			<p v-else class="d-md-block">Profilo</p>
 		</a>
 
 	</header>
@@ -14,6 +15,21 @@
 <script>
 export default {
 	name: 'Header',
+	data() {
+		return {
+			meta: document.querySelector('meta[name=login-status]').content,
+			logged: null,
+		}
+	},
+	created() {
+		this.setLogged();
+	},
+	methods: {
+		setLogged() {
+			if (this.meta) this.logged = true;
+			if (!this.meta) this.logged = false;
+		}
+	},
 }
 </script>
 
