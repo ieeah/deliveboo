@@ -59,7 +59,6 @@ class HomeController extends Controller
         }
         $msg = 'Hai inserito una password non corretta';
         return redirect()->route('restaurants.edit_profile')->with('error', $msg);
-        // return $msg;
         }
 
     
