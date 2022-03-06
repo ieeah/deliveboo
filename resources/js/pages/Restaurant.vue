@@ -25,6 +25,15 @@ export default {
         InfoRestaurant,
         MenuRestaurant,
         CartRestaurant,
+    },
+    data() {
+        return {
+            plate: null,
+        }
+    },
+
+    methods: {
+        
     }
  
 
