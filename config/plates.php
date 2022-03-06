@@ -79,12 +79,6 @@ return [
 		'visibility' => true,
 	],
 	[
-		'name' => 'London Burger',
-		'description' => '',
-		'ingredients' => 'Burger di orata 200gr, maionese al limone, patate lesse, insalata',
-		'visibility' => true,
-	],
-	[
 		'name' => 'Rome Burger',
 		'description' => '',
 		'ingredients' => 'Burger di manzo 200gr, salsa di carciofi, cipolla, gouda, pomodoro',

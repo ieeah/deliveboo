@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             PlatesSeeder::class,
             TypesTableSeeder::class,
+            OrderTableSeeder::class,
         ]);
     }
 }

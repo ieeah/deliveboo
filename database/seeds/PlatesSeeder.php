@@ -28,7 +28,7 @@ class PlatesSeeder extends Seeder
             $new->ingredients = $plate['ingredients'];
             $new->price = rand(5, 25);
             $new->visibility = $plate['visibility'];
-            $new->user_id = rand(1, 3);
+            $new->user_id = rand(1, 16);
             $new->save();
         }
     }
