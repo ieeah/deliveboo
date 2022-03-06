@@ -46,9 +46,9 @@
         </div>
     </div>
 
-    <div class="col-lg-6 col-12">
-        <Cart />
-    </div>
+
+    <CartRestaurant class="col-xs-12 col-md-6" />
+
 
 </div>
 
@@ -57,12 +57,12 @@
 </template>
 
 <script>
-import Cart from '../components/Cart'
+import CartRestaurant from '../components/CartRestaurant';
 import Loader from '../components/Loader';
 export default {
 name:'Checkout',
 components:{
-    Cart,
+    CartRestaurant,
     Loader,
 }
 }

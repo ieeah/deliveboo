@@ -17,7 +17,7 @@ class OrderController extends Controller
     }
 
     //BRAINTREE TOKEN GENERATION
-    public function generate(Request $request,Gateway $gateway){
+    public function generate(Request $request, Gateway $gateway){
         $token = $gateway->clientToken()->generate();
 
         $data = [
