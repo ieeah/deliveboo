@@ -23,6 +23,7 @@ Route::namespace('Api')->group(function(){
     //Orders
     Route::get('/orders','OrderController@index');
     Route::get('/restaurants', 'RestaurantsController@index');
+    Route::get('/restaurant/{id}', 'RestaurantsController@restaurant');
     Route::get('/restaurants/{id}', 'RestaurantsController@type');
     Route::get('/types', 'CategoriesController@index');
     Route::get('/plates/{id}', 'PlateController@index');

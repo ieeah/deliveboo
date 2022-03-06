@@ -1,6 +1,8 @@
 <template>
     <section class="restaurant">
-        <InfoRestaurant />
+        <InfoRestaurant 
+        :restaurantInfo="restaurant"
+        />
         
         <div class="container restaurant-container">
         <div class="row">
@@ -30,11 +32,13 @@ export default {
     data() {
         return {
             plate: null,
+            restaurant: null
         }
     },
 
     created() {
         this.getPlates()
+        this.getRestaurant()
     },
 
     methods: {
@@ -44,7 +48,14 @@ export default {
                 this.plate = result.data;
                 console.log(this.plate);
             })
-            
+        },
+
+        getRestaurant() {
+            axios.get(`http://localhost:8000/api/restaurant/${this.$route.params.id}`)
+            .then(result => {
+                this.restaurant = result.data[0];
+                console.log(this.restaurant);
+            })
         }
     }
  
