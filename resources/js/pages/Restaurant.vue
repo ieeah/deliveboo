@@ -1,8 +1,9 @@
 <template>
     <section class="restaurant">
-        <InfoRestaurant 
+        <InfoRestaurant v-if="this.restaurant"
         :restaurantInfo="restaurant"
         />
+        <p v-else>Loading...</p>
         
         <div class="container restaurant-container">
         <div class="row">
@@ -42,21 +43,19 @@ export default {
     },
 
     methods: {
-        getPlates() {
-            axios.get(`http://localhost:8000/api/plates/${this.$route.params.id}`)
-            .then(result => {
-                this.plate = result.data;
-                console.log(this.plate);
-            })
-        },
-
         getRestaurant() {
             axios.get(`http://localhost:8000/api/restaurant/${this.$route.params.id}`)
             .then(result => {
                 this.restaurant = result.data[0];
-                console.log(this.restaurant);
             })
-        }
+        },
+        getPlates() {
+            axios.get(`http://localhost:8000/api/plates/${this.$route.params.id}`)
+            .then(result => {
+                this.plate = result.data;
+            })
+        },
+
     }
  
 
@@ -65,6 +64,9 @@ export default {
 
 <style scoped lang="scss">
 .restaurant {
+    p {
+        text-align: center;
+    }
     .restaurant-container {
         padding-top: 50px;
     }
