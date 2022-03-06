@@ -4,7 +4,7 @@
         
         <div class="container restaurant-container">
         <div class="row">
-            <MenuRestaurant />
+            <MenuRestaurant :plate="plate"/>
             <CartRestaurant />
         </div>
             
@@ -19,6 +19,7 @@
 import InfoRestaurant from '../components/InfoRestaurant.vue'
 import MenuRestaurant from '../components/MenuRestaurant.vue'
 import CartRestaurant from '../components/CartRestaurant.vue'
+import axios from 'axios'
 export default {
     name: 'Restaurant',
     components: {
@@ -32,8 +33,19 @@ export default {
         }
     },
 
+    created() {
+        this.getPlates()
+    },
+
     methods: {
-        
+        getPlates() {
+            axios.get(`http://localhost:8000/api/plates/${this.$route.params.id}`)
+            .then(result => {
+                this.plate = result.data;
+                console.log(this.plate);
+            })
+            
+        }
     }
  
 

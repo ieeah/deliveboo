@@ -8,11 +8,11 @@ use App\Plate;
 
 class PlateController extends Controller
 {
-    public function index() {
+    public function index($id) {
 
         
 
-        $plates = Plate::all();
+        $plates = Plate::where('user_id', $id)->get();
         return response()->json($plates);
     }
 }

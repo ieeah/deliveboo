@@ -2,7 +2,11 @@
     <section class="menu-restaurant col-md-6 col-sm-12">
         <h4>Menù</h4>
         <div class="menu-container">
-            <CardRestaurant />
+            <CardRestaurant v-for="(item, index) in plate" :key="`plate-${index}`"
+            :name="item.name"
+            :ingredients="item.ingredients"
+            :price="item.price"
+            />
         </div>
     </section>
 </template>
@@ -13,6 +17,9 @@ export default {
     name: 'MenuRestaurant',
     components: {
         CardRestaurant,
+    },
+    props: {
+        plate: Array,
     }
 }
 </script>

@@ -216,7 +216,6 @@ export default {
 	a {
 		height: 180px;
 		width: 100%;
-
 	}
 }
 </style>

@@ -5,9 +5,9 @@
                 <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8cGl6emF8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="">
             </div>
             <div class="info">
-                <h5>Capricciosa</h5>
-                <p>Salsiccia, Carciofi, Olive, Funghi</p>
-                <span>7.50 €</span>
+                <h5>{{name}}</h5>
+                <p>{{ingredients}}</p>
+                <span>{{price}}</span>
             </div>
 
 
@@ -17,7 +17,12 @@
 
 <script>
 export default {
-    name: 'CardRestaurant'
+    name: 'CardRestaurant',
+    props: {
+        name: String,
+        ingredients: String,
+        price: String,
+    }
 }
 </script>
 
@@ -56,7 +61,7 @@ export default {
                     font-size: 16px;
                 }
                 p { 
-                    padding-top: 15px;
+                    padding-top: 0px;
                     font-size: 13px;
                     font-weight: 300;
                 }

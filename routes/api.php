@@ -25,7 +25,7 @@ Route::namespace('Api')->group(function(){
     Route::get('/restaurants', 'RestaurantsController@index');
     Route::get('/restaurants/{id}', 'RestaurantsController@type');
     Route::get('/types', 'CategoriesController@index');
-    Route::get('/plates', 'PlateController@index');
+    Route::get('/plates/{id}', 'PlateController@index');
 
     //Braintree
     Route::get('/orders/generate','OrderController@generate');
