@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "chart.js": "^3.7.1",
+        "vue-braintree": "^2.1.0",
         "vue-router": "^3.5.3"
     }
 }
