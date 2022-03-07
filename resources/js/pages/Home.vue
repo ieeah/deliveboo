@@ -39,10 +39,12 @@
 				Ordina dai migliori in città
 			</h2>
 			<div class="restaurants_flex">
-				<RestaurantCard v-for="(restaurant, i) in restaurants"
-				:restaurant_id="restaurant.id"
-				:restaurant_name="restaurant.name"
-				:restaurant_thumb="restaurant.thumb" :key="'restaurant_' + i" />
+				<router-link :to="{name: 'restaurant', params: {id: restaurant.id}}" v-for="(restaurant, i) in restaurants" :key="'restaurant_' + i">
+					<RestaurantCard
+					:restaurant_id="restaurant.id"
+					:restaurant_name="restaurant.name"
+					:restaurant_thumb="restaurant.thumb" />
+				</router-link>
 			</div>
 		</section>
 	</div>
@@ -211,5 +213,9 @@ export default {
 	grid-auto-rows: $row;
 	gap: 3.8rem .8rem;
 	padding-bottom: 6.8rem;
+	a {
+		height: 180px;
+		width: 100%;
+	}
 }
 </style>

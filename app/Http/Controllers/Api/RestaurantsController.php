@@ -25,4 +25,9 @@ class RestaurantsController extends Controller
         $restaurants = Type::where('id', $id)->with('users')->get();
         return response()->json($restaurants);
     }
+
+    public function restaurant($id) {
+        $restaurant = User::where('id', $id)->get();
+        return response()->json($restaurant);
+    }
 }
