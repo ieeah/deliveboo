@@ -11,12 +11,6 @@
                     <div class="text-danger">tutti i campi sono richiesti</div>
                 </div>
 
-                @if ($errors->any())
-                    @foreach ($errors->all() as $error)
-                        <div class="text-danger">{{$error}}</div>
-                    @endforeach
-                @endif
-
                 <div class="card-body">
                     
                     <form method="POST" action="{{ route('register') }}">
@@ -27,7 +21,7 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text"
-                                required min="5" max="255" 
+                                required min="5" max="255"
                                 class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
 
 
