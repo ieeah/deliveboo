@@ -33,7 +33,8 @@ export default {
     data() {
         return {
             plate: null,
-            restaurant: null
+            restaurant: null,
+            cart: {},
         }
     },
 
@@ -61,9 +62,27 @@ export default {
                 console.log(err);
             })
         },
+        toggleToCart(plateName) {
+            if(!plateName in this.cart) {
+                this.cart[plateName] = {
+                prezzo: 10,
+                quantity: 1,
+                };
+            } else delete this.cart[plateName];
+        },
+        plusQuantity(plateName) {
+            if(plateName in this.cart) {
+                // se presente, allora aumento/diminuisco la sua quantità (serviranno due funzioni separate)
+                this.cart[plateName].quantity++;
+            }
+        },
+        lessQuantity(plateName) {
+            if(plateName in this.cart) {
+                (this.cart[plateName].quantity > 1) ? this.cart[plateName].quantity-- : delete this.cart[plateName];
+            }
+        },
 
     }
- 
 
 }
 </script>
