@@ -13,6 +13,8 @@
 
 <script>
 import CardRestaurant from './CardRestaurant.vue';
+
+
 export default {
     name: 'MenuRestaurant',
     components: {
