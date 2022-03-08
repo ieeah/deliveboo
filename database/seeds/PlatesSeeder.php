@@ -26,7 +26,7 @@ class PlatesSeeder extends Seeder
             }
             if($plate['thumb'] === '') {
                 $new->thumb = 'plates_thumbs/food_placeholder.jpg';
-            }
+            } else $new->thumb = $plate['thumb'];
             $new->ingredients = $plate['ingredients'];
             $new->price = rand(5, 25);
             $new->visibility = $plate['visibility'];

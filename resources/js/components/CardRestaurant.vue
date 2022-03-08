@@ -2,15 +2,14 @@
   <section class="card-restaurant">
         <div class="card">
             <div class="thumb">
-                <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8cGl6emF8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="">
+                <img v-if="plate.thumb == 'plates_thumbs/food_placeholder.jpg'" src="/storage/plates_thumbs/food_placeholder.jpg" alt="">
+                <img v-else :src="plate.thumb" alt="">
             </div>
             <div class="info">
                 <h5>{{name}}</h5>
                 <p>{{ingredients}}</p>
                 <span>{{price}}</span>
             </div>
-
-
         </div>
   </section>
 </template>
@@ -22,6 +21,8 @@ export default {
         name: String,
         ingredients: String,
         price: String,
+        thumb: String,
+        plate: Object,
     }
 }
 </script>
