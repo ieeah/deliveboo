@@ -24,7 +24,9 @@ class PlatesSeeder extends Seeder
             if (array_key_exists('description', $plate)) {
                 $new->description = $plate['description'];
             }
-            $new->thumb = 'plates_thumbs/food_placeholder.jpg';
+            if($plate['thumb'] === '') {
+                $new->thumb = 'plates_thumbs/food_placeholder.jpg';
+            }
             $new->ingredients = $plate['ingredients'];
             $new->price = rand(5, 25);
             $new->visibility = $plate['visibility'];
