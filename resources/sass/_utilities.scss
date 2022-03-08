@@ -2,44 +2,43 @@
 
 h1,
 .h1 {
-	// font-size: 3.052rem;
-	font-size: clamp(2rem, 5vw, 3.052rem);
-	
+    // font-size: 3.052rem;
+    font-size: clamp(2rem, 5vw, 3.052rem);
 }
 
 h2,
 .h2 {
-	font-size: clamp(1.7rem, 4vw, 2.441rem);
+    font-size: clamp(1.7rem, 4vw, 2.441rem);
 }
 
 h3,
 .h3 {
-	font-size: 1.953rem;
+    font-size: 1.953rem;
 }
 
 h4,
 .h4 {
-	font-size: 1.563rem;
+    font-size: 1.563rem;
 }
 
 h5,
 .h5 {
-	font-size: 1.25rem;
+    font-size: 1.25rem;
 }
 
 small,
 .text_small {
-	font-size: 0.8rem;
+    font-size: 0.8rem;
 }
 
 .section_title {
-	color: $primary-400;
-	margin-block: 2rem 1.5rem;
+    color: $primary-400;
+    margin-block: 2rem 1.5rem;
 }
 
 // styling
 
 .btn {
-	padding: .6rem .8rem;
-	border-radius: .5rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 0.5rem;
 }
