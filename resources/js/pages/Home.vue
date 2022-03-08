@@ -6,7 +6,7 @@
 			</h1>
 			<img src="/storage/front/burger.png" alt="">
 		</div>
-
+ 
 		<section class="types_container col-xs-12 col-md-9 mx-auto px-xs-3">
 			<h2 class="section_title h2 ">
 				Di cosa hai voglia stasera?
