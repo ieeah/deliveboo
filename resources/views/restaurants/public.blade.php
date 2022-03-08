@@ -49,9 +49,9 @@
 					<span class="d-inline-block mr-3">
 						<input type="checkbox" name="types[]" id="type{{$type->id}}" value="{{$type->id}}"
 							{{-- va bene per il create ma per l'edit va messo così come sotto --}}
-							@if ($errors->any() && in_array($type->id, old('types')))
+							@if ($errors->any() && in_array($type->id, old('types', [])))
 								checked
-							@elseif (! $errors->any() && $user->types->contains($type->id))
+							@elseif (!$errors->any() && $user->types->contains($type->id))
 								checked
 							@endif
 						>
