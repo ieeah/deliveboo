@@ -3,7 +3,7 @@
         <div class="cart-container">
             <h4>Carrello</h4>
             <div class="cart">
-                <div class="cart-items">
+                <div class="cart-items" v-if="carrello.length > 0">
                     <div class="cart-item"
                     v-for="(x, i) in carrello" :key="x.id">
                         <p class="item-name">
@@ -21,11 +21,12 @@
                         </p>
                     </div>
                 </div>
+                <div v-else >Nessun articolo nel carrello</div>
             </div>
             <div class="total-price">
                     <h3>Tot</h3>
                     <h3>
-                        <!--TODO - STAMPA TOTALE -->
+                        {{tot}}€
                     </h3>
             </div>
         </div>
@@ -42,19 +43,19 @@ export default {
     props: {
         carrello: Array,
     },
+    data() {
+        return {
+            tot: cartLS.total(),
+        }
+    },
     methods: {
         addQuantity(id, index) {
-            // if(cartLS.exists(id)) {
-            //     let qt = cartLS.get(id).quantity;
-            //     qt++;
-            //     this.carrello[index]['quantity']++;
-            //     cartLS.update(1,'quantity', qt);
-            // }
             let q = this.carrello[index]['quantity'];
             if (cartLS.exists(id)) {
                 q++;
                 cartLS.update(id,'quantity', q);
                 this.carrello[index]['quantity'] = q;
+                this.tot = cartLS.total();
             }
         },
         removeQuantity(id, index) {
@@ -63,14 +64,13 @@ export default {
                 this.carrello[index]['quantity']--;
                 q--;
                 cartLS.update(id,'quantity', q);
+                this.tot = cartLS.total();
             } else {
                 this.carrello.splice(index, 1);
                 cartLS.remove(id);
+                this.tot = cartLS.total();
             }
         },
-        getTotal() {
-            // calcolare il totale ad ogni interazione sul carrello e stampare il risultato sul CartRestaurant
-        }
     },
 }
 </script>
