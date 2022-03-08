@@ -15,6 +15,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         $users = config('restaurants');
+        
         foreach ($users as $user) {
             $new = new User();
 
