@@ -134,7 +134,8 @@ export default {
                 }
             }
             .item-price {
-                padding-left: 30px;
+                text-align: right;
+                min-width: 15%;
             }
         }
     }

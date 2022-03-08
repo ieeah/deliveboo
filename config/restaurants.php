@@ -8,13 +8,15 @@ return [
 		'password' => '12345678',
 		'address' => 'Via cibium, 1',
 		'vat_number' => '5563248',
+		'thumb' => 'https://unsplash.com/photos/kC1-9Snr9hI',
 	],
 	[
-		'name' => 'Hamburgerium',
+		'name' => 'Betty\'s burger',
 		'email' => 'hambuerger@test.it',
 		'password' => '12345678',
 		'address' => 'Via hamburger, 1',
 		'vat_number' => '48241225',
+		'thumb' => 'https://unsplash.com/photos/F2GzZ08O6eQ',
 	],
 	[
 		'name' => 'Pastium',
@@ -22,6 +24,7 @@ return [
 		'password' => '12345678',
 		'address' => 'Via pasta, 1',
 		'vat_number' => '6358895',
+		'thumb' => 'https://unsplash.com/photos/q03ZLncun2Y',
 	],
 	[
 		'name' => 'Trattoria Lucana',
@@ -29,6 +32,7 @@ return [
 		'password' => '12345678',
 		'address' => 'Via Lucana, 1',
 		'vat_number' => '25796451325',
+		'thumb' => 'https://unsplash.com/photos/BpugFbwxOfw',
 	],
 	[
 		'name' => 'Dedalo',
@@ -36,6 +40,7 @@ return [
 		'password' => '12345678',
 		'address' => 'Via Caduti di Nassiria, 14',
 		'vat_number' => '39846821486',
+		'thumb' => 'https://unsplash.com/photos/mYK3JCevRTk',
 	],
 	[
 		'name' => 'Dimora Ulmo',
@@ -43,6 +48,7 @@ return [
 		'password' => '12345678',
 		'address' => 'Via Giuseppe Garibaldio, 68',
 		'vat_number' => '47869132578',
+		'thumb' => 'https://unsplash.com/photos/v4LQkXJPK0o',
 	],
 	[
 		'name' => 'Dim Sum',
@@ -50,6 +56,7 @@ return [
 		'password' => '12345678',
 		'address' => 'Via Arno, 45',
 		'vat_number' => '49832579849',
+		'thumb' => 'https://unsplash.com/photos/sHp2LtuC7Co',
 	],
 	[
 		'name' => 'Woko One',
@@ -57,6 +64,7 @@ return [
 		'password' => '12345678',
 		'address' => 'Via Federico II, 36',
 		'vat_number' => '59831459725',
+		'thumb' => 'https://unsplash.com/photos/EHK-EH1SRzQ',
 	],
 	[
 		'name' => 'Sushi Koto',
@@ -64,6 +72,7 @@ return [
 		'password' => '12345678',
 		'address' => 'Via Don Luigi Sturzo, 12',
 		'vat_number' => '45973256488',
+		'thumb' => 'https://unsplash.com/photos/a5ToDH34m0I',
 	],
 	[
 		'name' => 'Sushi Stone',
@@ -71,6 +80,7 @@ return [
 		'password' => '12345678',
 		'address' => 'Via Taranto, 1',
 		'vat_number' => '25973654987',
+		'thumb' => 'https://unsplash.com/photos/BLV9FXiw9lw',
 	],
 	[
 		'name' => 'Il Guru',
@@ -78,6 +88,7 @@ return [
 		'password' => '12345678',
 		'address' => 'Via Carlo Levi, 78',
 		'vat_number' => '25791463258',
+		'thumb' => 'https://unsplash.com/photos/nmpW_WwwVSc',
 	],
 	[
 		'name' => 'Tara',
@@ -85,6 +96,7 @@ return [
 		'password' => '12345678',
 		'address' => 'Via Degli Aragonesi, 6',
 		'vat_number' => '47936578945',
+		'thumb' => 'https://unsplash.com/photos/yzM66Y_D3Dc',
 	],
 	[
 		'name' => 'Il Naan',
@@ -92,6 +104,7 @@ return [
 		'password' => '12345678',
 		'address' => 'Via Venezia, 27',
 		'vat_number' => '76148935478',
+		'thumb' => '',
 	],
 	[
 		'name' => 'Snack House',
@@ -99,6 +112,7 @@ return [
 		'password' => '12345678',
 		'address' => 'Via Dei Pesci, 67',
 		'vat_number' => '47525836974',
+		'thumb' => 'https://unsplash.com/photos/1H30uRC1plc',
 	],
 	[
 		'name' => 'Bloody Mary ',
@@ -106,6 +120,7 @@ return [
 		'password' => '12345678',
 		'address' => 'Via Riscatto, 54',
 		'vat_number' => '25473698754',
+		'thumb' => 'https://unsplash.com/photos/S6atLH5Rf0U',
 	],
 	[
 		'name' => 'Gambero Rosso',
@@ -113,6 +128,7 @@ return [
 		'password' => '12345678',
 		'address' => 'Via Tevere, 19',
 		'vat_number' => '24836972458',
+		'thumb' => 'https://unsplash.com/photos/jTzT09l-nw4',
 	],
 	
 ];

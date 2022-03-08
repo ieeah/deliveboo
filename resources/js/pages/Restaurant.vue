@@ -44,8 +44,11 @@ export default {
         this.getPlates();
         this.getRestaurant();
         this.getLocalStorage();
+        
     },
-
+    mounted() {
+        this.checkCartRestaurant();
+    },
     methods: {
         getRestaurant() {
             axios.get(`http://localhost:8000/api/restaurant/${this.$route.params.id}`)
@@ -68,15 +71,32 @@ export default {
         toggleToCart(plate) {
             if (cartLS.exists(plate.id)) {
                 cartLS.remove(plate.id);
+                cartLS.list().length == 0 ? window.localStorage.setItem('restaurant_id', '0') : console.log('ok');
             } else {
                 let piatto = {id: plate.id, name: plate.name, price: plate.price};
                 cartLS.add(piatto);
+                window.localStorage.setItem('restaurant_id', this.restaurant.id.toString());
             }
             this.cart = JSON.parse(window.localStorage.__cart);
         },
         getLocalStorage() {
             this.cart = JSON.parse(window.localStorage.__cart);
             console.log(this.cart);
+        },
+        checkCartRestaurant() {
+            if(window.localStorage.restaurant_id == '0' || window.localStorage.restaurant_id == this.$route.params.id) {
+                return console.log('no problemo amico');
+            } else {
+                let ok = confirm('nel carrello sono presenti piatti di un altro ristorante\n se procedi, verrà svuotato');
+                    if (ok) {
+                        window.localStorage.setItem('__cart', '[]');
+                        window.localStorage.setItem('restaurant_id', '0');
+                        this.cart = [];
+                        cartLS.list().forEach(item => cartLS.remove(item.id));
+                    } else {
+                        window.location.href = '/';
+                    }
+            }
         }
 
     }
