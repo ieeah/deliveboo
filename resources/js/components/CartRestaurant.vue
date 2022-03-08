@@ -3,32 +3,75 @@
         <div class="cart-container">
             <h4>Carrello</h4>
             <div class="cart">
-                <div class="cart-item">
-                    <div class="item-name">
-                        <p>Tagliatelle al Ragù</p>
-                    </div>
-                    <div class="buttons">
-                        <button>-</button>
-                        <span>0</span>
-                        <button>+</button>
-                    </div>
-                    <div class="item-price">
-                        <p>11,20 €</p>
+                <div class="cart-items">
+                    <div class="cart-item"
+                    v-for="(x, i) in carrello" :key="x.id">
+                        <p class="item-name">
+                            {{carrello[i].name}}
+                        </p>
+                        <div class="buttons">
+                            <button @click="removeQuantity(carrello[i].id, i)">-</button>
+                            <span>
+                                {{carrello[i].quantity}}
+                            </span>
+                            <button @click="addQuantity(carrello[i].id, i)">+</button>
+                        </div>
+                        <p class="item-price">
+                            {{carrello[i].quantity * carrello[i].price}}€
+                        </p>
                     </div>
                 </div>
             </div>
             <div class="total-price">
                     <h3>Tot</h3>
-                    <h3>€€</h3>
+                    <h3>
+                        <!--TODO - STAMPA TOTALE -->
+                    </h3>
             </div>
         </div>
-            <button class="payment">Procedi con il Pagamento</button>
+        <button class="payment">Procedi con il Pagamento</button>
     </section>
+
+    <!-- FIXME - quando si esce dalla pagina del ristorante si deve distruggere il carrello, il comando per farlo è cartLS.destroy(), ma dobbiamo capire quale è il momento in cui viene abbandonata la pagina mi pare che possiamo usare window.location o qualcosa del genere 
+    e chiedere conferma all'utente prima di procedere -->
 </template>
 
 <script>
 export default {
-    name: 'CartRestaurant'
+    name: 'CartRestaurant',
+    props: {
+        carrello: Array,
+    },
+    methods: {
+        addQuantity(id, index) {
+            // if(cartLS.exists(id)) {
+            //     let qt = cartLS.get(id).quantity;
+            //     qt++;
+            //     this.carrello[index]['quantity']++;
+            //     cartLS.update(1,'quantity', qt);
+            // }
+            let q = this.carrello[index]['quantity'];
+            if (cartLS.exists(id)) {
+                q++;
+                cartLS.update(id,'quantity', q);
+                this.carrello[index]['quantity'] = q;
+            }
+        },
+        removeQuantity(id, index) {
+            let q = this.carrello[index]['quantity'];
+            if(q > 1) {
+                this.carrello[index]['quantity']--;
+                q--;
+                cartLS.update(id,'quantity', q);
+            } else {
+                this.carrello.splice(index, 1);
+                cartLS.remove(id);
+            }
+        },
+        getTotal() {
+            // calcolare il totale ad ogni interazione sul carrello e stampare il risultato sul CartRestaurant
+        }
+    },
 }
 </script>
 
