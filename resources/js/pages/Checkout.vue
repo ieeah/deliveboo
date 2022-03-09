@@ -63,7 +63,7 @@
 					</div>
 				</div>
 			</div>
-			<CartRestaurant class="col-xs-12 col-md-6" :carrello="cart" />
+			<CartRestaurant class="col-xs-12 col-md-6 cart" :carrello="cart" />
 		</div>
 	</section>
 </template>
@@ -181,6 +181,11 @@ body {
 .row {
 	margin-top: 5rem;
 }
+
+.cart {
+	position: sticky;top: 20px;
+}
+
 .window{
 	.top-section{
 		color: $primary-400;
