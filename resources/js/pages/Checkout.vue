@@ -38,15 +38,10 @@
 								<input type="text" id="address" v-model="address" autocomplete="off"
 								required minlength="8" maxlength="255"
 								>
-								<input v-if="showCheckOut" type="submit" value="Procedi al pagamento" @click="saveOrderData()">
+								<input v-if="showCheckOut" type="submit" value="Procedi al pagamento" @click.prevent="saveOrderData()">
 								<Loader />
 
-								<v-braintree v-if="paymentToken && dataIsProcessed"
-									:authorization="paymentToken"
-									locale="it_IT"
-									@success="onPaymentSuccess"
-									@error="onPaymentError">
-								</v-braintree>
+								
 								
 								<!-- loader apparirà al click e error message dentro il form-->
 								
@@ -58,6 +53,13 @@
 									<p >Non siamo stati in grado di procedere con il pagamento, verifica di aver inserito correttamente il numero della tua carta di credito.</p>
 								</div> -->
 							</form>
+
+							<v-braintree v-if="paymentToken && dataIsProcessed"
+									:authorization="paymentToken"
+									locale="it_IT"
+									@success="onPaymentSuccess"
+									@error="onPaymentError">
+								</v-braintree>
 					</div>
 				</div>
 			</div>
@@ -115,16 +117,36 @@ components:{
 		// qui verrà gestito il caso di successo del pagamento
 		onPaymentSuccess (payload) {
 			let nonce = payload.nonce;
-			console.log('payload', payload, 'nonce', nonce);
+			let amount = cartLS.total();
+			axios.get(`http://127.0.0.1:8000/api/sale/${amount}/${nonce}`)
+			.then(({
+				data
+			}) => {
+				if(data.success) {
+					// svuotiamo il carrello nel localStorage
+					window.localStorage.setItem('__cart', '[]');
+					// settiamo su "null" il restaurant_id del localStorage
+					window.localStorage.setItem('restaurant_id', '0');
+					// svuotiamo il carrello di cartLS
+					cartLS.list().forEach(item => cartLS.remove(item.id));
+					// andiamo alla pagina di conferma dell'ordine
+					window.location.href = '/confirmed';
+				}
+			})
+			.catch(err => {
+				console.error(err);
+			});
+			// console.log('payload', payload, 'nonce', nonce);
+			
 		},
 		// qui verrà gestito il caso di errore
 		onPaymentError (error) {
 			let message = error.message;
+			// TODO - rendere visibile messaggio di errore
 			console.log('message', message,'error', error);
 		},
 		getLocalStorage() {
 				this.cart = JSON.parse(window.localStorage.__cart);
-				console.log(this.cart);
 		},
 		saveOrderData() {
 			let orderData = {
@@ -135,12 +157,11 @@ components:{
 				address: this.address,
 				tot: cartLS.total(),
 			};
-			window.localStorage.setItem('order_data', JSON.stringify(orderData));
+			localStorage.setItem('order_data', JSON.stringify(orderData));
 			this.dataIsProcessed = true;
 			console.log(orderData);
+			document.querySelector('form').style = "display: none;";
 		},
-
-		//mostriamo il metodo di pagamento alla compilazione dei campi
 	
 	},
 }

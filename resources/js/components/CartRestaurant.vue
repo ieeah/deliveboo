@@ -39,6 +39,7 @@ export default {
     name: 'CartRestaurant',
     props: {
         carrello: Array,
+        tot: Number,
     },
     data() {
         return {

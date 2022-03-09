@@ -8,21 +8,21 @@
                 <div class="col">
                     <h3 class="mb-3">Ordine effettuato!</h3>
                     <div class="text d-flex flex-column align-items-center">
-                        <strong class="mb-2">Nome ristorante ha appena ricevuto il tuo ordine</strong><br>
+                        <strong class="mb-2">Abbiamo appena confermato il tuo ordine!</strong><br>
                         <strong>mettiti comodo, la tua cena è in arrivo!</strong>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="data d-flex">
-                <p>Totale ordine:  23.00€</p>
+                <p>Totale ordine: {{tot}}€</p>
                 <div class="date-h d-flex ml-5">
-                    <p>04/03/2022</p>
-                    <p class="ml-4">19:33</p>
+                    <p>{{today}}</p>
+                    <p class="ml-4">{{time}}</p>
                 </div>
             </div>
             </div>
-            <a href="#">Torna alla lista dei ristoranti</a>
+            <a href="/">Torna alla lista dei ristoranti</a>
         </div>
     </div>
 </template>
@@ -30,6 +30,16 @@
 <script>
 export default {
     name: 'Confirm',
+    data() {
+        return {
+            tot: JSON.parse(localStorage.order_data).tot,
+            today: new Date().toLocaleDateString(),
+            time: new Date().toLocaleTimeString('it-IT', { hour: "numeric", minute: "numeric"}),
+        }
+    },
+    created() {
+        console.log(window.localStorage);
+    }
 }
 </script>
 
