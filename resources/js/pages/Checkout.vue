@@ -39,7 +39,6 @@
 								required minlength="8" maxlength="255"
 								>
 								<input v-if="showCheckOut" type="submit" value="Procedi al pagamento" @click.prevent="saveOrderData()">
-								<Loader />
 
 								
 								
@@ -54,12 +53,13 @@
 								</div> -->
 							</form>
 
-							<v-braintree v-if="paymentToken && dataIsProcessed"
+							<v-braintree v-if="paymentToken && (this.name !== '' && this.lastname !== '' && this.phone !== '' && this.email !== '' && this.address !== '')"
 									:authorization="paymentToken"
 									locale="it_IT"
 									@success="onPaymentSuccess"
 									@error="onPaymentError">
-								</v-braintree>
+							</v-braintree>
+							<Loader v-else/>
 					</div>
 				</div>
 			</div>
@@ -81,9 +81,9 @@ components:{
 	computed: {
 		showPayment() {
 			if (this.name !== '' && this.lastname !== '' && this.phone !== '' && this.email !== '' && this.address !== '') {
-				return this.showCheckOut = true
+				return this.dataIsProcessed = true
 			}
-			return this.showCheckOut = false
+			return this.dataIsProcessed = false
 		}
 	},
 	data() {
