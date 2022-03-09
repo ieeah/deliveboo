@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 use App\Order;
 use Braintree\Gateway;
 
-use App\Mail\MailGuest;
-use App\Mail\MailRestaurant;
-use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -20,7 +17,3 @@ class OrderController extends Controller
     }
 
 }
-
-
-/* Mail::to('email@utente.it')->send(new MailGuest()) */
-/* Mail::to('email@ristornate.it')->send(new MailRestaurant()) */
