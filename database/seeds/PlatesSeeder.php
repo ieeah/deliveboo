@@ -25,7 +25,7 @@ class PlatesSeeder extends Seeder
                 $new->description = $plate['description'];
             }
             if($plate['thumb'] === '') {
-                $new->thumb = 'plates_thumbs/food_placeholder.jpg';
+                $new->thumb = 'https://myben.it/wp-content/uploads/2019/11/placeholder-images-image_large.png';
             } else $new->thumb = $plate['thumb'];
             $new->ingredients = $plate['ingredients'];
             $new->price = rand(5, 25);
