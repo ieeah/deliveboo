@@ -1,6 +1,9 @@
 <template>
-  <div>
-      <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+  <div class="wrapper">
+    <p>
+      In attesa dei dati di pagamento
+    </p>
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
   </div>
 </template>
 
@@ -11,6 +14,10 @@ name:'Loader',
 </script>
 
 <style scoped lang="scss">
+
+.wrapper {
+  margin-top: 2rem;
+}
   .lds-ellipsis {
   display: inline-block;
   position: relative;
