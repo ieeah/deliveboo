@@ -30,11 +30,8 @@
                     </h3>
             </div>
         </div>
-        <button class="payment">Procedi con il Pagamento</button>
+        <a v-show="this.$route.name != 'checkout'" href="/checkout" class="payment">Procedi con il Pagamento</a>
     </section>
-
-    <!-- FIXME - quando si esce dalla pagina del ristorante si deve distruggere il carrello, il comando per farlo è cartLS.destroy(), ma dobbiamo capire quale è il momento in cui viene abbandonata la pagina mi pare che possiamo usare window.location o qualcosa del genere 
-    e chiedere conferma all'utente prima di procedere -->
 </template>
 
 <script>
@@ -42,6 +39,7 @@ export default {
     name: 'CartRestaurant',
     props: {
         carrello: Array,
+        tot: Number,
     },
     data() {
         return {
@@ -83,6 +81,7 @@ export default {
         top: 20px;
     .cart-container {
         border-radius: 20px;
+        margin-bottom: 1.5rem;
         padding: 10px;
         background-color: $primary-400;
         height: 90%;
@@ -93,7 +92,7 @@ export default {
         overflow: auto;
         height: 80%;
         padding: 20px;
-        background-color: $clear-100;
+        background-color: $body-bg;
         border-radius: 15px;
         margin-top: 10px;
         .cart-item {
@@ -153,13 +152,13 @@ export default {
     }
     }
     .payment {
-        margin-top: 10px;
         border: none;
         background-color: $secondary-200;
         padding: 10px 20px;
         font-weight: 600;
         font-size: 15px;
         border-radius: 10px;
+        text-decoration: none;
         cursor: pointer;
         &:active {
             background-color: $secondary-400;

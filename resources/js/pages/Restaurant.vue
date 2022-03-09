@@ -12,6 +12,7 @@
                 :name="plate.name"
                 :ingredients="plate.ingredients"
                 :price="plate.price"
+                :plate="plate"
                 @click.native="toggleToCart(plate)"/>
             </div>
             <CartRestaurant class="col-sm-12 col-md-6" :carrello="cart" />
@@ -94,7 +95,8 @@ export default {
                         this.cart = [];
                         cartLS.list().forEach(item => cartLS.remove(item.id));
                     } else {
-                        window.location.href = '/';
+                        const url = `/restaurant/${window.localStorage.restaurant_id}`;
+                        window.location.href = url;
                     }
             }
         }
@@ -107,7 +109,7 @@ export default {
 <style scoped lang="scss">
 
 .restaurant-container {
-    margin-top: 150px;
+    margin-block: 19rem 5rem;
     display: flex;
     align-items: flex-start;
     .plates_container {

@@ -1,6 +1,6 @@
 <template>
 	<div class="restaurant_card">
-		<img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=700&q=60" alt="">
+		<img :src="restaurant_thumb" :alt="restaurant_name">
 		<div class="restaurant_card__name">
 			{{`${restaurant_name}`}}
 		</div>
