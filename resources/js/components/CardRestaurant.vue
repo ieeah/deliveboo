@@ -34,17 +34,18 @@ export default {
         min-width: 50%;
         width: 50%;
         padding: 5px;
+        min-height:150px;
         .card {
             border: 2px solid $primary-400;
             border-radius: 20px;
-            height: 120px;
+            height: 100%;
             cursor: pointer;
             transition: all 0.5s ease;
-            padding: 3px;
+            padding: 10px;
             display: flex;
 
             .thumb {
-                height: 100%;
+                height: 100px;
                 width: 45%;
                 border-radius: 15px;
                 overflow: hidden;
@@ -61,17 +62,15 @@ export default {
                 h5 {
                     font-size: 16px;
                 }
-                p { 
+                p {
                     padding-top: 0px;
                     font-size: 13px;
                     font-weight: 300;
                 }
                 span {
-                    position: absolute;
                     right: 10px;
                     font-size: 14px;
                     font-weight: 600;
-                    bottom: 10px;
                 }
             }
             &:hover {
