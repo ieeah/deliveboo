@@ -26,7 +26,7 @@
             <div class="total-price">
                     <h3>Tot</h3>
                     <h3>
-                        {{tot}}€
+                        {{tot}} €
                     </h3>
             </div>
         </div>
@@ -39,13 +39,14 @@ export default {
     name: 'CartRestaurant',
     props: {
         carrello: Array,
-        tot: Number,
+        /* tot: Number, */
     },
     data() {
         return {
             tot: cartLS.total(),
         }
     },
+
     methods: {
         addQuantity(id, index) {
             let q = this.carrello[index]['quantity'];

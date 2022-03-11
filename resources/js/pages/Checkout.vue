@@ -15,7 +15,7 @@
 					<div class="form">
 						
 							<!-- @submit.prevent="sendEmail" -->
-							<form action=""
+							<form action="" @submit.prevent="saveOrderDB()"
 							
 							>
 								<label for="name">Nome *</label>
@@ -38,14 +38,13 @@
 								<input type="text" id="address" v-model="address" autocomplete="off"
 								required minlength="8" maxlength="255"
 								>
-								<input v-if="showCheckOut" type="submit" value="Procedi al pagamento" @click.prevent="saveOrderData()">
-								<Loader />
+								<input v-if="this.name !== '' && this.lastname !== '' && this.phone !== '' && this.email !== '' && this.address !== ''" 
+								type="submit" value="Procedi al pagamento" @click.prevent="saveOrderData()">
 
 								
 								
 								<!-- loader apparirà al click e error message dentro il form-->
-								
-								<!-- <div class="error">
+								<!-- <div class="error" v-show="error">
 									<div class="d-flex justify-content-center p-2">
 										<i class="fa-solid fa-circle-xmark"></i>
 									</div>
@@ -59,11 +58,12 @@
 									locale="it_IT"
 									@success="onPaymentSuccess"
 									@error="onPaymentError">
-								</v-braintree>
+							</v-braintree>
+							<Loader v-else/>
 					</div>
 				</div>
 			</div>
-			<CartRestaurant class="col-xs-12 col-md-6" :carrello="cart" />
+			<CartRestaurant class="col-xs-12 col-md-6 cart" :carrello="cart" />
 		</div>
 	</section>
 </template>
@@ -96,6 +96,7 @@ components:{
 			phone: '',
 			address: '',
 			cart: null,
+			error: false,
 			showCheckOut: null,
 			dataIsProcessed: false,
 		}
@@ -140,7 +141,7 @@ components:{
 			
 		},
 		// qui verrà gestito il caso di errore
-		onPaymentError (error) {
+		onPaymentError(error) {
 			let message = error.message;
 			// TODO - rendere visibile messaggio di errore
 			console.log('message', message,'error', error);
@@ -161,8 +162,24 @@ components:{
 			this.dataIsProcessed = true;
 			console.log(orderData);
 			document.querySelector('form').style = "display: none;";
+			console.log(window.localStorage);
+
+				axios.post('http://127.0.0.1:8000/api/save', {
+				name: this.name,
+				lastname: this.lastname,
+				email: this.email,
+				phone: this.phone,
+				address: this.address,
+			})
+			.then(res => {
+				console.log('order',res.data)
+			})
+			.catch(err => {
+				console.log(err);
+			})
+
 		},
-	
+
 	},
 }
 </script>
@@ -181,6 +198,11 @@ body {
 .row {
 	margin-top: 5rem;
 }
+
+.cart {
+	position: sticky;top: 20px;
+}
+
 .window{
 	.top-section{
 		color: $primary-400;

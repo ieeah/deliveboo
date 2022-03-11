@@ -28,9 +28,12 @@ Route::namespace('Api')->group(function(){
     Route::get('/types', 'CategoriesController@index');
     Route::get('/plates/{id}', 'PlateController@index');
 
+    Route::post('/save', 'OrderController@store');
+
     //Braintree
 
     Route::get('/token', 'BraintreeController@token');
     // quando facciamo la chiamata axios per effettuare il pagamento questa è la struttura per la chiamata API
     Route::get('/sale/{amount}/{nonce}', 'BraintreeController@sale');
+
 });

@@ -6,6 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Braintree\Gateway;
 
+use App\Order;
+use App\Restaurant;
+use App\Mail\MailGuest;
+use App\Mail\MailRestaurant;
+use Illuminate\Support\Facades\Mail;
+
+
 class BrainTreeController extends Controller
 {
     // nel momento in cui la pagina "checkout" del front end finisce di essere renderizzata, viene fatta una richiesta a questa API che restituisce un token, (il nonce) che viene poi utilizzato per effettuare il pagamento vero e proprio
