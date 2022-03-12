@@ -15,9 +15,7 @@
 					<div class="form">
 						
 							<!-- @submit.prevent="sendEmail" -->
-							<form action="" @submit.prevent="saveOrderDB()"
-							
-							>
+							<form action="">
 								<label for="name">Nome *</label>
 								<input type="text" id="name" v-model="name" autofocus
 								required minlength="2" maxlength="255" 
@@ -40,23 +38,22 @@
 								>
 								<input v-if="showPaymentButton" type="submit" value="Procedi al pagamento" @click.prevent="saveOrderData">
 
-								
-								<div class="error" v-show="error">
-									<div class="d-flex justify-content-center p-2">
-										<i class="fa-solid fa-circle-xmark"></i>
-									</div>
-									<h5>Messaggio di errore</h5>
-									<p>{{error_message}}</p>
-								</div>
 							</form>
 
-							<v-braintree v-if="paymentToken && dataIsProcessed"
+							<div class="error" v-show="error">
+								<div class="d-flex justify-content-center p-2">
+									<i class="fa-solid fa-circle-xmark"></i>
+								</div>
+								<h5>Transazione Negata</h5>
+								<p>{{error_message}}</p>
+							</div>
+
+							<v-braintree v-if="paymentToken && dataIsProcessed && !error"
 									:authorization="paymentToken"
 									locale="it_IT"
 									@success="onPaymentSuccess"
 									@error="onPaymentError">
 							</v-braintree>
-							<Loader v-else/>
 					</div>
 				</div>
 			</div>
@@ -131,20 +128,26 @@ components:{
 					window.localStorage.setItem('restaurant_id', '0');
 					// svuotiamo il carrello di cartLS
 					cartLS.list().forEach(item => cartLS.remove(item.id));
+					// salvataggio dati ordine a DB
+					this.axiosPost();
 					// andiamo alla pagina di conferma dell'ordine
 					window.location.href = '/confirmed';
+				}
+				else {
+					let message = data.message;
+					this.error_message = message;
+					this.error = true;
 				}
 			})
 			.catch(err => {
 				console.error(err);
 			});
+
 			
 		},
 		// qui verrà gestito il caso di errore
-		onPaymentError(error) {
-			let message = error.message;
-			this.error_message = message;
-			this.error = true;
+		onPaymentError() {
+			console.log('scatenato errore');
 		},
 		getLocalStorage() {
 				this.cart = JSON.parse(window.localStorage.__cart);
@@ -163,12 +166,9 @@ components:{
 			localStorage.setItem('order_data', JSON.stringify(this.orderData));
 			document.querySelector('form').style = "display: none;";
 			this.dataIsProcessed = true;
-
-			this.axiosPost(this.APIsave);
-
 		},
-		axiosPost(APIaddress) {
-			axios.post(APIaddress, {
+		axiosPost() {
+			axios.get('http://127.0.0.1:8000/api/save', {
 				params: {
 					name: this.name,
 					lastName: this.lastname,
@@ -185,7 +185,7 @@ components:{
 			.catch(err => {
 				console.log(err);
 			})
-		}
+		},
 		
 
 	},

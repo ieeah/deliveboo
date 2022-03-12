@@ -38,7 +38,13 @@ export default {
         }
     },
     created() {
-        console.log(window.localStorage);
+        setTimeout(this.clearLocalStorage(), 5000);
+    },
+    methods: {
+        clearLocalStorage() {
+            window.localStorage.setItem('order_data', '[]');
+            window.localStorage.setItem('total_cart', '0');
+        },
     }
 }
 </script>
