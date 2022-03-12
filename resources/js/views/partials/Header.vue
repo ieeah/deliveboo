@@ -39,6 +39,7 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	
 
 	.brand {
 		height: 55px;
@@ -58,6 +59,19 @@ header {
 		color: $dark-700;
 		p {
 			display: none;
+		}
+	}
+}
+
+@media screen and (max-width: 767px) {
+	header {
+		padding-top: 1.5rem;
+		.btn {
+			height: 50px;
+			aspect-ratio: 1;
+			display: grid;
+			place-content: center;
+			font-size: 2rem;
 		}
 	}
 }

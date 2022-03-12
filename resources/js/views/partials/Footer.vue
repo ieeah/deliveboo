@@ -10,16 +10,16 @@
 								<a href="">Chi Siamo</a>
 							</li>
 							<li>
-								<a href="">Chi Siamo</a>
+								<a href="">Ristoranti</a>
 							</li>
 							<li>
-								<a href="">Chi Siamo</a>
+								<a href="">Lavora con noi</a>
 							</li>
 							<li>
-								<a href="">Chi Siamo</a>
+								<a href="">Design</a>
 							</li>
 							<li>
-								<a href="">Chi Siamo</a>
+								<a href="">Diventa nostro partner</a>
 							</li>
 							<h5 class="mt-4">#restaconnesso</h5>
 							<div class="socials">
@@ -58,7 +58,7 @@
 									<a href="">FAQ</a>
 								</li>
 								<li>
-									<a href="">Tipologia di Cucina</a>
+									<a href="">Tipologie di Cucina</a>
 								</li>
 								<li>
 									<a href="">Sitemap</a>
@@ -69,13 +69,13 @@
 				</div>
 				<div class="authors col-md-6 col-sm-12">
 					<h5>Coded by</h5>
-					<ul>
-						<li>Francesco Luca Labianca</li>
-						<li>Aurora Grippaudo</li>
-						<li>Dario Di Cuia</li>
-						<li>Roberto Dottori</li>
-						<li>Abdelilah El Hajji</li>
-					</ul>
+					<div class="d-flex flex-column align-items-center">
+						<a href="">Francesco Luca Labianca</a>
+						<a href="">Aurora Grippaudo</a>
+						<a href="">Dario Di Cuia</a>
+						<a href="">Roberto Dottori</a>
+						<a href="">Abdelilah El Hajji</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -110,6 +110,13 @@ footer {
 								text-decoration: none;
 								color: $dark-900;
 								font-size: 14px;
+								transition: color .15s ease-in;
+								position: relative;
+								font-weight: 600;
+								&:hover {
+									left: .6rem;
+									color: $secondary-400;
+								}
 							}
 						}
 					}
@@ -126,6 +133,15 @@ footer {
 							display: grid;
 							place-content: center;
 							text-decoration: none;
+							transition: transform .35s ease-in-out;
+							transition: background-color .2s ease-in;
+							&:hover {
+								transform: scale(1.25);
+								background-color: $secondary-400;
+								i {
+									font-size: 1.8rem;
+								}
+							}
 							&:first-child {
 								margin-left: 0;
 							}
@@ -141,21 +157,14 @@ footer {
 				flex-direction: column;
 				align-items: center;
 				justify-content: center;
-				ul {
-					list-style: none;
-					li {
-						margin-top: 10px;
-						text-align: center;
-					}
+				a {
+					margin-top: .8rem;
+					color: $dark-700;
+					font-weight: 600;
 				}
 			}
 		}
 	}
-
-
-	
-
-
 }
 
 

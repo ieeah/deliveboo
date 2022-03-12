@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('customer_address', 150);
             $table->string('customer_email', 80);
             $table->string('customer_phone', 20);
-            $table->decimal('total_price', 4,2);
+            $table->decimal('total_price', 7,2);
             $table->timestamps();
         });
     }

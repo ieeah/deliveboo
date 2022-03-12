@@ -2,7 +2,9 @@
 	<div class="home_page">
 		<div class="hero_banner col-12 d-md-flex">
 			<h1 class="hero_title col-xs-12 col-md-5 offset-lg-1 col-lg-5">
-				Il tuo cibo preferito dove vuoi <br> quando vuoi
+				<div>Il tuo cibo preferito</div>
+				<div>dove vuoi</div>
+				<div>quando vuoi</div>
 			</h1>
 			<img src="/storage/front/burger.png" alt="">
 		</div>
@@ -12,10 +14,10 @@
 				Di cosa hai voglia stasera?
 			</h2>
 			<div class="scrolling_arrows ">
-				<div class="prev" @click="scrollCarousel(-220, '.types_carousel')">
+				<div class="prev" @click="scrollCarousel(-240, '.types_carousel')">
 					<i class="fa-solid fa-chevron-left"></i>
 				</div>
-				<div class="next" @click="scrollCarousel(220, '.types_carousel')">
+				<div class="next" @click="scrollCarousel(240, '.types_carousel')">
 					<i class="fa-solid fa-chevron-right"></i>
 				</div>
 				<div class="reset_btn" v-show="active_type_id != 0"
@@ -43,7 +45,8 @@
 					<RestaurantCard
 					:restaurant_id="restaurant.id"
 					:restaurant_name="restaurant.name"
-					:restaurant_thumb="restaurant.thumb" />
+					:restaurant_thumb="restaurant.thumb" 
+					class="col-12"/>
 				</router-link>
 			</div>
 		</section>

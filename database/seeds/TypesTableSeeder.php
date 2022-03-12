@@ -14,13 +14,15 @@ class TypesTableSeeder extends Seeder
     public function run()
     {
         //RESTAURANT TYPE TABLE SEEDER
-        $types = ['Italian','Chinese','Japanese','Indian','International'];
+        $types = config('types');
 
         foreach($types as $type){
             $new_type = new Type();
-            $new_type->thumb = 'users_thumbs/food_placeholder';
-            $new_type->name = $type;
-            $new_type->slug = Str::slug($type,'-');
+            if(array_key_exists('thumb', $type)) {
+                $new_type->thumb = $type['thumb'];
+            } else $new_type->thumb = 'users_thumbs/food_placeholder';
+            $new_type->name = $type['name'];
+            $new_type->slug = Str::slug($type['name'],'-');
 
             $new_type->save();
         }

@@ -20,37 +20,34 @@
 							>
 								<label for="name">Nome *</label>
 								<input type="text" id="name" v-model="name" autofocus
-								required minlength="2" maxlength="255"
+								required minlength="2" maxlength="255" 
 								>
 								<label for="lastname">Cognome *</label>
 								<input type="text" id="lastname" v-model="lastname" autocomplete="off"
-								required minlength="2" maxlength="255"
+								required minlength="2" maxlength="255" 
 								>
 								<label for="email">Email *</label>
 								<input type="email" id="email" v-model="email" autocomplete="off"
-								required minlength="2" maxlength="80"
+								required minlength="2" maxlength="80" ref="emailNode"
 								>
 								<label for="phone">N.Telefono *</label>
 								<input type="phone" id="phone" v-model="phone" autocomplete="off"
-								required minlength="10" maxlength="12"
+								required minlength="10" maxlength="12" 
 								>
 								<label for="address">Indirizzo di Consegna *</label>
 								<input type="text" id="address" v-model="address" autocomplete="off"
-								required minlength="8" maxlength="255"
+								required minlength="8" maxlength="255" 
 								>
-								<input v-if="this.name !== '' && this.lastname !== '' && this.phone !== '' && this.email !== '' && this.address !== ''" 
-								type="submit" value="Procedi al pagamento" @click.prevent="saveOrderData()">
+								<input v-if="showPaymentButton" type="submit" value="Procedi al pagamento" @click.prevent="saveOrderData">
 
 								
-								
-								<!-- loader apparirà al click e error message dentro il form-->
-								<!-- <div class="error" v-show="error">
+								<div class="error" v-show="error">
 									<div class="d-flex justify-content-center p-2">
 										<i class="fa-solid fa-circle-xmark"></i>
 									</div>
 									<h5>Messaggio di errore</h5>
-									<p >Non siamo stati in grado di procedere con il pagamento, verifica di aver inserito correttamente il numero della tua carta di credito.</p>
-								</div> -->
+									<p>{{error_message}}</p>
+								</div>
 							</form>
 
 							<v-braintree v-if="paymentToken && dataIsProcessed"
@@ -79,12 +76,12 @@ components:{
 	Loader,
 	},
 	computed: {
-		showPayment() {
-			if (this.name !== '' && this.lastname !== '' && this.phone !== '' && this.email !== '' && this.address !== '') {
-				return this.showCheckOut = true
+		showPaymentButton() {
+			if (this.name.length > 1 && this.lastname.length > 1 && this.phone.length > 9 && this.email.includes('@') && this.email.includes('.') && this.address.length > 7) {
+				return true
 			}
-			return this.showCheckOut = false
-		}
+			return false
+		},
 	},
 	data() {
 		return {
@@ -97,8 +94,11 @@ components:{
 			address: '',
 			cart: null,
 			error: false,
+			error_message: null,
 			showCheckOut: null,
 			dataIsProcessed: false,
+			APIsave: 'http://127.0.0.1:8000/api/save',
+			orderData: null,
 		}
 	},
 	async created() {
@@ -119,6 +119,7 @@ components:{
 		onPaymentSuccess (payload) {
 			let nonce = payload.nonce;
 			let amount = cartLS.total();
+			console.log(nonce);
 			axios.get(`http://127.0.0.1:8000/api/sale/${amount}/${nonce}`)
 			.then(({
 				data
@@ -126,7 +127,7 @@ components:{
 				if(data.success) {
 					// svuotiamo il carrello nel localStorage
 					window.localStorage.setItem('__cart', '[]');
-					// settiamo su "null" il restaurant_id del localStorage
+					// settiamo a zero il restaurant_id del localStorage
 					window.localStorage.setItem('restaurant_id', '0');
 					// svuotiamo il carrello di cartLS
 					cartLS.list().forEach(item => cartLS.remove(item.id));
@@ -137,48 +138,55 @@ components:{
 			.catch(err => {
 				console.error(err);
 			});
-			// console.log('payload', payload, 'nonce', nonce);
 			
 		},
 		// qui verrà gestito il caso di errore
 		onPaymentError(error) {
 			let message = error.message;
-			// TODO - rendere visibile messaggio di errore
-			console.log('message', message,'error', error);
+			this.error_message = message;
+			this.error = true;
 		},
 		getLocalStorage() {
 				this.cart = JSON.parse(window.localStorage.__cart);
 		},
 		saveOrderData() {
-			let orderData = {
+			this.orderData = {
 				name: this.name,
 				lastName: this.lastname,
 				email: this.email,
 				phone: this.phone,
 				address: this.address,
 				tot: cartLS.total(),
+				user_id: JSON.parse(window.localStorage.getItem('restaurant_id')),
 			};
-			localStorage.setItem('order_data', JSON.stringify(orderData));
-			this.dataIsProcessed = true;
-			console.log(orderData);
-			document.querySelector('form').style = "display: none;";
-			console.log(window.localStorage);
 
-				axios.post('http://127.0.0.1:8000/api/save', {
-				name: this.name,
-				lastname: this.lastname,
-				email: this.email,
-				phone: this.phone,
-				address: this.address,
+			localStorage.setItem('order_data', JSON.stringify(this.orderData));
+			document.querySelector('form').style = "display: none;";
+			this.dataIsProcessed = true;
+
+			this.axiosPost(this.APIsave);
+
+		},
+		axiosPost(APIaddress) {
+			axios.post(APIaddress, {
+				params: {
+					name: this.name,
+					lastName: this.lastname,
+					email: this.email,
+					phone: this.phone,
+					address: this.address,
+					tot: cartLS.total(),
+					user_id: JSON.parse(window.localStorage.getItem('restaurant_id')),
+				}
 			})
 			.then(res => {
-				console.log('order',res.data)
+				console.log('order', res.data);
 			})
 			.catch(err => {
 				console.log(err);
 			})
-
-		},
+		}
+		
 
 	},
 }

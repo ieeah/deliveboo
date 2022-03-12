@@ -49,7 +49,6 @@ class BrainTreeController extends Controller
                 'submitForSettlement' => true
             ]
         ]);
-        
         return response()->json($result);
     }
 }

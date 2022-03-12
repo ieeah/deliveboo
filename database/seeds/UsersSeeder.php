@@ -18,7 +18,6 @@ class UsersSeeder extends Seeder
 
         foreach ($users as $user) {
             $new = new User();
-
             $new->name = $user['name'];
             $new->slug = Str::slug($user['name'], '-');
             $new->email = $user['email'];
@@ -30,7 +29,14 @@ class UsersSeeder extends Seeder
             } else {
                 $new->thumb = 'users_thumbs/food_placeholder.jpg';
             }
+            
             $new->save();
+
+            if(array_key_exists('type', $user)) {
+                foreach ($user['type'] as $type) {
+                    $new->types()->attach($type);
+                }
+            }
         }
     }
 }

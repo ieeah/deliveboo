@@ -1,7 +1,7 @@
 <template>
 	<div class="type_card" @click="$emit('searchTypes', id)">
 		<!-- <img :src="thumb" :alt="name + ' type'"> -->
-		<img src="https://images.unsplash.com/photo-1646243375307-3f6a0b03a664?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=700&q=60" alt="">
+		<img :src="thumb" alt="">
 		<div class="type_name h4">{{name}}</div>
 	</div>
 </template>
@@ -22,12 +22,19 @@ export default {
 	.type_card {
 		position: relative;
 		flex-shrink: 0;
-		scroll-snap-align: center;
-		width: clamp(180px, 33% , 280px);
+		scroll-snap-align: end;
+		@media screen and (max-width: 450px) {
+			scroll-snap-align: end;
+		}
+		width: min(200px, 40%);
+		max-height: 350px;
+		border-radius: .8rem;
+		overflow: hidden;
 		cursor: pointer;
 		&.disabled {
-			opacity: .5;
+			opacity: .7;
 			pointer-events: none;
+			box-shadow: 0 0 1rem $secondary-400;
 		}
 		img {
 			width: 100%;
@@ -35,7 +42,7 @@ export default {
 			object-fit: cover;
 			object-position: center;
 			filter: brightness(80%);
-			border-radius: .8rem;
+			// border-radius: .8rem;
 		}
 		.type_name {
 			position: absolute;
@@ -44,6 +51,7 @@ export default {
 			transform: translate(-50%, -50%);
 			color: $body-bg;
 			font-weight: bold;
+			font-size: clamp(16px, 3vw, 25px);
 		}
 	}
 </style>
