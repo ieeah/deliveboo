@@ -72,7 +72,7 @@ export default {
         toggleToCart(plate) {
             if (cartLS.exists(plate.id)) {
                 cartLS.remove(plate.id);
-                cartLS.list().length == 0 ? window.localStorage.setItem('restaurant_id', '0') : console.log('ok');
+                if (cartLS.list().length == 0) window.localStorage.setItem('restaurant_id', '0');
             } else {
                 let piatto = {id: plate.id, name: plate.name, price: plate.price};
                 cartLS.add(piatto);

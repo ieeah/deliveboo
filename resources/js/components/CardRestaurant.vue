@@ -45,8 +45,8 @@ export default {
             display: flex;
 
             .thumb {
-                height: 100px;
-                width: 45%;
+                height: 150px;
+                aspect-ratio: 1;
                 border-radius: 15px;
                 overflow: hidden;
                 img {
