@@ -7,19 +7,35 @@
                     <div class="cart-item"
                     v-for="(x, i) in carrello" :key="x.id">
                         <p class="item-name">
-                            {{carrello[i].name}}
+                            {{x.name}}
                         </p>
                         <div class="buttons">
-                            <button @click="removeQuantity(carrello[i].id, i)">-</button>
+                            <button @click="removeQuantity(x.id, i)">-</button>
                             <span>
-                                {{carrello[i].quantity}}
+                                {{x.quantity}}
                             </span>
-                            <button @click="addQuantity(carrello[i].id, i)">+</button>
+                            <button @click="addQuantity(x.id, i)">+</button>
                         </div>
                         <p class="item-price">
-                            {{carrello[i].quantity * carrello[i].price}}€
+                            {{x.quantity * x.price}}€
                         </p>
                     </div>
+
+                    <!-- <div v-for="(plate, j) in menu" :key="`plate_${j}`" class="cart-item">
+                        <p class="item-name">
+                            {{plate.name}}
+                        </p>
+                        <div class="buttons">
+                            <button @click="removeQuantity(plate.id, i)">-</button>
+                            <span>
+                                {{plate.quantity}}
+                            </span>
+                            <button @click="addQuantity(plate.id, i)">+</button>
+                        </div>
+                        <p class="item-price">
+                            {{plate.quantity * plate.price}}€
+                        </p>
+                    </div> -->
                 </div>
                 <div v-else >Nessun articolo nel carrello</div>
             </div>
@@ -39,14 +55,15 @@ export default {
     name: 'CartRestaurant',
     props: {
         carrello: Array,
-        /* tot: Number, */
+        total: Number,
+        menu: Array,
     },
     data() {
         return {
-            tot: cartLS.total(),
+            tot: JSON.parse(window.localStorage.total_cart),
+            plates_list: this.menu,
         }
     },
-
     methods: {
         addQuantity(id, index) {
             let q = this.carrello[index]['quantity'];
@@ -54,7 +71,8 @@ export default {
                 q++;
                 cartLS.update(id,'quantity', q);
                 this.carrello[index]['quantity'] = q;
-                this.tot = cartLS.total();
+                window.localStorage.setItem('total_cart', JSON.stringify(cartLS.total()));
+                this.tot = JSON.parse(window.localStorage.total_cart);
             }
         },
         removeQuantity(id, index) {
@@ -63,11 +81,13 @@ export default {
                 this.carrello[index]['quantity']--;
                 q--;
                 cartLS.update(id,'quantity', q);
-                this.tot = cartLS.total();
+                window.localStorage.setItem('total_cart', JSON.stringify(cartLS.total()));
+                this.tot = JSON.parse(window.localStorage.total_cart);
             } else {
                 this.carrello.splice(index, 1);
                 cartLS.remove(id);
-                this.tot = cartLS.total();
+                window.localStorage.setItem('total_cart', JSON.stringify(cartLS.total()));
+                this.tot = JSON.parse(window.localStorage.total_cart);
             }
         },
     },

@@ -17,7 +17,7 @@
                 @click.native="toggleToCart(plate)"/>
             </div>
             <div class="col-sm-12 col-md-5 px-md-0">
-                <CartRestaurant :carrello="cart" />
+                <CartRestaurant :carrello="cart" :total="tot" :menu="plates" />
             </div>
         </div>
         </div>
@@ -43,6 +43,7 @@ export default {
             plates: null,
             restaurant: null,
             cart: null,
+            tot: cartLS.total(),
         }
     },
     created() {
@@ -76,11 +77,18 @@ export default {
         toggleToCart(plate) {
             if (cartLS.exists(plate.id)) {
                 cartLS.remove(plate.id);
-                if (cartLS.list().length == 0) window.localStorage.setItem('restaurant_id', '0');
+                
+                if (cartLS.list().length == 0) {
+                    window.localStorage.setItem('restaurant_id', '0');
+                }
+                window.localStorage.setItem('total_cart', JSON.stringify(cartLS.total()));
+                this.$children[0].$data.tot = cartLS.total();
             } else {
                 let piatto = {id: plate.id, name: plate.name, price: plate.price};
                 cartLS.add(piatto);
+                window.localStorage.setItem('total_cart', JSON.stringify(cartLS.total()));
                 window.localStorage.setItem('restaurant_id', this.restaurant.id.toString());
+                this.$children[0].$data.tot = cartLS.total();
             }
             this.cart = JSON.parse(window.localStorage.__cart);
         },
