@@ -98,20 +98,19 @@ export default {
 @import '../../sass/_variables.scss';
 .cart-restaurant {
     height: 580px;
-        position: sticky;
-        top: 20px;
+    position: sticky;
+    top: 20px;
     .cart-container {
         border-radius: 20px;
         margin-bottom: 1.5rem;
         padding: 10px;
         background-color: $primary-400;
-        height: 90%;
         h4 {
         color: $clear-100;
     }
     .cart {
         overflow: auto;
-        height: 80%;
+        min-height: 200px;
         padding: 20px;
         background-color: $body-bg;
         border-radius: 15px;
@@ -161,8 +160,8 @@ export default {
     }
     .total-price {
         width: 100%;
-        margin-top: 20px;
         display: flex;
+        transform: translateY(10px);
         h3 {
             color: $clear-100;
         }

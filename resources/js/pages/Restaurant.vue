@@ -16,7 +16,7 @@
                 :plate="plate"
                 @click.native="toggleToCart(plate)"/>
             </div>
-            <div class="col-sm-12 col-md-5 px-md-0">
+            <div class="col-sm-12 col-md-4 offset-md-1 px-md-0">
                 <CartRestaurant :carrello="cart" :total="tot" :menu="plates" />
             </div>
         </div>
