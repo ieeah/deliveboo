@@ -1,5 +1,5 @@
 <template>
-    <section class="cart-restaurant col-sm-12 col-md-9 mb-5">
+    <section class="cart-restaurant">
         <div class="cart-container">
             <h4>Carrello</h4>
             <div class="cart">

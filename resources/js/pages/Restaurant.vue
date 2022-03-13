@@ -1,23 +1,23 @@
 <template>
     <section class="restaurant">
-        <div class="container-fluid">
+        <div class="col-xs-12 px-xs-3 col-md-10 px-md-0 mx-md-auto col-lg-10">
         <InfoRestaurant v-if="this.restaurant"
         :restaurantInfo="restaurant"
         />
         <p v-else>Loading...</p>
         <div class="restaurant-container row">
-                <!-- <MenuRestaurant :plate="plate"/> -->
-            <div class="col-sm-12 col-md-6 plates_container mb-4">
+            <div class="col-sm-12 col-md-7 plates_container mb-4 px-md-0">
                 <CardRestaurant v-for="(plate, i) in plates" :key="`plate_${i}`"
                 v-show="plate.visibility"
+                class="col-xs-12 col-sm-6 col-md-12 col-lg-6"
                 :name="plate.name"
                 :ingredients="plate.ingredients"
                 :price="plate.price"
                 :plate="plate"
                 @click.native="toggleToCart(plate)"/>
             </div>
-            <div class=" col-sm-12 col-md-6 ">
-                <CartRestaurant  :carrello="cart" />
+            <div class="col-sm-12 col-md-5 px-md-0">
+                <CartRestaurant :carrello="cart" />
             </div>
         </div>
         </div>

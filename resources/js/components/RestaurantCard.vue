@@ -46,6 +46,7 @@ export default {
 		bottom: - 1.8rem;
 		text-transform: uppercase;
 		font-weight: bold;
+		color: $dark-700;
 	}
 }
 </style>
