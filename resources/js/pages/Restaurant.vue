@@ -16,7 +16,7 @@
                 :plate="plate"
                 @click.native="toggleToCart(plate)"/>
             </div>
-            <div class="col-sm-12 col-md-5 px-md-0">
+            <div class="col-sm-12 col-md-4 offset-md-1 px-md-0">
                 <CartRestaurant :carrello="cart" :total="tot" :menu="plates" />
             </div>
         </div>
@@ -50,7 +50,7 @@ export default {
         this.getPlates();
         this.getRestaurant();
         this.getLocalStorage();
-
+        this.setCartComponentTotal();
     },
     mounted() {
         this.checkCartRestaurant();
@@ -106,12 +106,16 @@ export default {
                         window.localStorage.setItem('restaurant_id', '0');
                         this.cart = [];
                         cartLS.list().forEach(item => cartLS.remove(item.id));
+                        this.$children[0].$data.tot = cartLS.total();
                     } else {
                         const url = `/restaurant/${window.localStorage.restaurant_id}`;
                         window.location.href = url;
                     }
             }
-        }
+        },
+        setCartComponentTotal() {
+            this.$children[0].$data.tot = cartLS.total();
+        },
 
     }
 

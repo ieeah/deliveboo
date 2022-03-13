@@ -36,11 +36,11 @@ class OrderController extends Controller
         $new_order->user_id = $order['user_id'];
 
         //prendiamo la mail del ristorante
-        // $restaurant = User::where('id', $new_order->user_id)->first()->get();
+        // $restaurant = User::where('id', $order['user_id'])->first()->get();
         // $email_restaurant = $restaurant->email;
 
         //inviamo le email
-        // Mail::to($new_order->customer_address)->send(new MailGuest());
+        // Mail::to($new_order['email'])->send(new MailGuest());
         // Mail::to($email_restaurant)->send(new MailRestaurant());
 
         //salviamo l'ordine a DB
