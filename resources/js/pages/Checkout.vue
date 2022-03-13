@@ -46,6 +46,8 @@
 								</div>
 								<h5>Transazione Negata</h5>
 								<p>{{error_message}}</p>
+
+								<a href="/checkout" v-show="error">Riprova</a>
 							</div>
 
 							<v-braintree v-if="paymentToken && dataIsProcessed && !error"
@@ -57,7 +59,7 @@
 					</div>
 				</div>
 			</div>
-			<CartRestaurant class="col-xs-12 col-md-6 cart" :carrello="cart" />
+			<CartRestaurant class="col-xs-12 col-md-6 cart" :carrello="cart" v-show="!dataIsProcessed"/>
 		</div>
 	</section>
 </template>
@@ -126,10 +128,13 @@ components:{
 					window.localStorage.setItem('__cart', '[]');
 					// settiamo a zero il restaurant_id del localStorage
 					window.localStorage.setItem('restaurant_id', '0');
+					// settiamo a zero il totale dell'ordine sul localStorage
+					window.localStorage.setItem('total_cart', '0');
 					// svuotiamo il carrello di cartLS
 					cartLS.list().forEach(item => cartLS.remove(item.id));
 					// salvataggio dati ordine a DB
 					this.axiosPost();
+					console.log('inviata richiesta axios');
 					// andiamo alla pagina di conferma dell'ordine
 					window.location.href = '/confirmed';
 				}
@@ -169,15 +174,7 @@ components:{
 		},
 		axiosPost() {
 			axios.get('http://127.0.0.1:8000/api/save', {
-				params: {
-					name: this.name,
-					lastName: this.lastname,
-					email: this.email,
-					phone: this.phone,
-					address: this.address,
-					tot: cartLS.total(),
-					user_id: JSON.parse(window.localStorage.getItem('restaurant_id')),
-				}
+				params: JSON.parse(window.localStorage.order_data)
 			})
 			.then(res => {
 				console.log('order', res.data);

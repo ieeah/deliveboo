@@ -50,7 +50,7 @@ export default {
         this.getPlates();
         this.getRestaurant();
         this.getLocalStorage();
-
+        this.setCartComponentTotal();
     },
     mounted() {
         this.checkCartRestaurant();
@@ -112,7 +112,10 @@ export default {
                         window.location.href = url;
                     }
             }
-        }
+        },
+        setCartComponentTotal() {
+            this.$children[0].$data.tot = cartLS.total();
+        },
 
     }
 
