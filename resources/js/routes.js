@@ -8,7 +8,7 @@ import Home from './pages/Home.vue';
 import Confirm from './pages/Confirm.vue';
 import Restaurant from './pages/Restaurant.vue';
 import Checkout from './pages/Checkout.vue';
-
+import Test from './pages/Test.vue';
 
 // attivazione del router
 Vue.use(VueRouter);
@@ -33,16 +33,21 @@ const router = new VueRouter({
 			path: '/confirmed',
 			name: 'confirmed-payment',
 			component: Confirm,
-    },
-    {
+		},
+		{
 			path: '/restaurant/:id',
 			name: 'restaurant',
 			component: Restaurant,
-    },
-    {
+		},
+		{
 			path:'/checkout',
 			name:'checkout',
 			component: Checkout,
+		},
+		{
+			path:'/test',
+			name:'test',
+			component: Test,
 		},
 	],
 });

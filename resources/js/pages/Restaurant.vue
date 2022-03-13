@@ -106,6 +106,7 @@ export default {
                         window.localStorage.setItem('restaurant_id', '0');
                         this.cart = [];
                         cartLS.list().forEach(item => cartLS.remove(item.id));
+                        this.$children[0].$data.tot = cartLS.total();
                     } else {
                         const url = `/restaurant/${window.localStorage.restaurant_id}`;
                         window.location.href = url;

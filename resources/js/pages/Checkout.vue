@@ -146,8 +146,8 @@ components:{
 			
 		},
 		// qui verrà gestito il caso di errore
-		onPaymentError() {
-			console.log('scatenato errore');
+		onPaymentError(error) {
+			console.log('errore: ', error );
 		},
 		getLocalStorage() {
 				this.cart = JSON.parse(window.localStorage.__cart);
