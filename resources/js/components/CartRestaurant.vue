@@ -1,5 +1,5 @@
 <template>
-    <section class="cart-restaurant col-md-6 col-sm-12 mb-5">
+    <section class="cart-restaurant col-sm-12 col-md-9 mb-5">
         <div class="cart-container">
             <h4>Carrello</h4>
             <div class="cart">
@@ -149,7 +149,7 @@ export default {
         h3:first-child {
             flex-grow: 1;
         }
-        
+
     }
     }
     .payment {
@@ -164,7 +164,7 @@ export default {
         &:active {
             background-color: $secondary-400;
         }
-        
+
     }
 }
 

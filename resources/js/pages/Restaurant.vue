@@ -1,12 +1,13 @@
 <template>
     <section class="restaurant">
+        <div class="container-fluid">
         <InfoRestaurant v-if="this.restaurant"
         :restaurantInfo="restaurant"
         />
         <p v-else>Loading...</p>
-        <div class="restaurant-container col-xs-12 col-md-9 mx-auto px-xs-3">
+        <div class="restaurant-container row">
                 <!-- <MenuRestaurant :plate="plate"/> -->
-            <div class="col-sm-12 col-md-6 plates_container">
+            <div class="col-sm-12 col-md-6 plates_container mb-4">
                 <CardRestaurant v-for="(plate, i) in plates" :key="`plate_${i}`"
                 v-show="plate.visibility"
                 :name="plate.name"
@@ -15,7 +16,10 @@
                 :plate="plate"
                 @click.native="toggleToCart(plate)"/>
             </div>
-            <CartRestaurant class="col-sm-12 col-md-6" :carrello="cart" />
+            <div class=" col-sm-12 col-md-6 ">
+                <CartRestaurant  :carrello="cart" />
+            </div>
+        </div>
         </div>
     </section>
 </template>
@@ -45,7 +49,7 @@ export default {
         this.getPlates();
         this.getRestaurant();
         this.getLocalStorage();
-        
+
     },
     mounted() {
         this.checkCartRestaurant();
