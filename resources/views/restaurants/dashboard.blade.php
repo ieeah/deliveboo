@@ -32,7 +32,7 @@
                 @if ($last_order === null) 
                     <h5>Non ci sono Ordini</h5>
                 @else
-                <h3>$last_order->created_at->format('d M Y')</h3>
+                <h3>{{ $last_order->created_at->format('d M Y') }}</h3>
                 @endif
 
 
