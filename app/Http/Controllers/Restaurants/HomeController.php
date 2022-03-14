@@ -91,7 +91,9 @@ class HomeController extends Controller
         $today = $now->toDateString();
         $orders = Order::where('user_id', Auth::user()->id)->get();
         $plates = Plate::where('user_id', Auth::user()->id)->get();
+        $user = Auth::user();
 
-        return view('restaurants.dashboard', compact('today', 'orders', 'plates'));
+        $last_order = Order::where('user_id', $user->id)->orderBy('created_at', 'desc')->first();
+        return view('restaurants.dashboard', compact('today', 'orders', 'plates', 'last_order'));
     }
 }

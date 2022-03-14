@@ -4,6 +4,8 @@
 
 <main class="statistics container mt-3">
     <h1 class="text-primary">Statistiche</h1>
+    <a href="/restaurants/orders"><button class="btn btn-primary">Torna alla pagina degli Ordini</button></a>
+    <a href="/restaurants/dashboard"><button class="btn btn-secondary">Torna alla Dashboard</button></a>
     <div class="select">
         <h5 class="text-primary">Seleziona L'anno</h5>
         <div class="buttons">
