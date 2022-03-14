@@ -167,10 +167,8 @@ components:{
 				address: this.address,
 				tot: cartLS.total(),
 				user_id: JSON.parse(window.localStorage.getItem('restaurant_id')),
-				plates: cartLS.list(),
+				plates: JSON.stringify(window.localStorage.__cart),
 			};
-
-			
 
 			localStorage.setItem('order_data', JSON.stringify(this.orderData));
 			document.querySelector('form').style = "display: none;";
