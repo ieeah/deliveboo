@@ -44,21 +44,21 @@ class OrderController extends Controller
 
 
 
-        // inviamo le email
-        Mail::to($new_order->customer_email)->send(new MailGuest($new_order->customer_name, $new_order->customer_address, $new_order->total_price, $restaurant->name));
-        Mail::to($email_restaurant)->send(new MailRestaurant($order['name'], $order['lastName'], $order['address'], $order['tot'], $order['phone'], $order['email'], $restaurant->name));
-
+        
         
         // //salviamo l'ordine a DB
         $new_order->save();
-
-
+        
+        
         // salvare la relazione tra piatti e ordini nella tabella order_plates
         $plates_decode = json_decode(json_decode($plates));
         foreach($plates_decode as $plate) {
             $new_order->plates()->attach([$plate->id => ['quantity' => $plate->quantity]]);
         };
-
+        
+        // inviamo le email
+        Mail::to($new_order->customer_email)->send(new MailGuest($new_order->customer_name, $new_order->customer_address, $new_order->total_price, $restaurant->name, $plates_decode));
+        Mail::to($email_restaurant)->send(new MailRestaurant($order['name'], $order['lastName'], $order['address'], $order['tot'], $order['phone'], $order['email'], $restaurant->name, $plates_decode));
 
         return response()->json($plates_decode);
     }
