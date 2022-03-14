@@ -1,18 +1,9 @@
-# Grazie per averci scelto **{Nome utente}**!
+# Grazie per averci scelto **{{$name}}**!
 ## Il tuo ordine è già in lavorazione!
 
 
 
-### Hai ordinato i seguenti piatti presso **{nome_ristorante}**
+### Hai ordinato i seguenti piatti presso **{{$restaurant_name}}** per un totale di **{{$total}}€**
 
-
-#### Riepilogo:
-- {quantità} nome piatto
-- {quantità} nome piatto
-- {quantità} nome piatto
-- {quantità} nome piatto
-- {quantità} nome piatto
-- {quantità} nome piatto
-- {quantità} nome piatto
-
-## Totale Pagamento: **{Totale Prezzo}**
+## Il ristorante consegnerà il prima possibile il tuo ordine al tuo indirizzo:
+**{{$address}}**

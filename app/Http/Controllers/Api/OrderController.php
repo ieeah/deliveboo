@@ -36,15 +36,15 @@ class OrderController extends Controller
         $new_order->user_id = $order['user_id'];
 
         //prendiamo la mail del ristorante
-        // $restaurant = User::where('id', $order['user_id'])->first()->get();
-        // $email_restaurant = $restaurant->email;
+        $restaurant = User::where('id', $order['user_id'])->first();
+        $email_restaurant = $restaurant->email;
 
         //inviamo le email
-        // Mail::to($new_order['email'])->send(new MailGuest());
-        // Mail::to($email_restaurant)->send(new MailRestaurant());
+        Mail::to($new_order->customer_email)->send(new MailGuest($new_order->customer_name, $new_order->customer_address, $new_order->total_price, $restaurant->name));
+        Mail::to($email_restaurant)->send(new MailRestaurant($order['name'], $order['lastName'], $order['address'], $order['tot'], $order['phone'], $order['email'], $restaurant->name));
 
         //salviamo l'ordine a DB
         $new_order->save();
-        return response()->json('salvataggio a DB effettuato');
+        return response()->json('salvataggio effettuato');
     }
 }
