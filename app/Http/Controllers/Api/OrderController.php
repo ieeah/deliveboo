@@ -22,7 +22,7 @@ class OrderController extends Controller
     public function store(Request $request) {
         //prendiamo i dati
         $order = $request->all();
-
+        
         //creiamo un nuovo ordine
         $new_order = new Order();
 
@@ -34,17 +34,26 @@ class OrderController extends Controller
         $new_order->customer_phone = $order['phone'];
         $new_order->total_price = $order['tot'];
         $new_order->user_id = $order['user_id'];
+        $plates = $order['plates'];
+
+        foreach ($plates as $plate) {
+            $quantity = $plate->quantity;
+            $new_order->plates()->attach($plate['id']);
+        }
 
         //prendiamo la mail del ristorante
-        $restaurant = User::where('id', $order['user_id'])->first();
-        $email_restaurant = $restaurant->email;
+        // $restaurant = User::where('id', $order['user_id'])->first();
+        // $email_restaurant = $restaurant->email;
 
-        //inviamo le email
-        Mail::to($new_order->customer_email)->send(new MailGuest($new_order->customer_name, $new_order->customer_address, $new_order->total_price, $restaurant->name));
-        Mail::to($email_restaurant)->send(new MailRestaurant($order['name'], $order['lastName'], $order['address'], $order['tot'], $order['phone'], $order['email'], $restaurant->name));
+        // //inviamo le email
+        // Mail::to($new_order->customer_email)->send(new MailGuest($new_order->customer_name, $new_order->customer_address, $new_order->total_price, $restaurant->name));
+        // Mail::to($email_restaurant)->send(new MailRestaurant($order['name'], $order['lastName'], $order['address'], $order['tot'], $order['phone'], $order['email'], $restaurant->name));
 
-        //salviamo l'ordine a DB
-        $new_order->save();
-        return response()->json('salvataggio effettuato');
+        // //salviamo l'ordine a DB
+        // $new_order->save();
+
+        // salvare la relazione tra piatti e ordini nella tabella order_plates
+
+        return response()->json($plates);
     }
 }

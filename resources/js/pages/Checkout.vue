@@ -98,6 +98,7 @@ components:{
 			dataIsProcessed: false,
 			APIsave: 'http://127.0.0.1:8000/api/save',
 			orderData: null,
+			plates: null,
 		}
 	},
 	async created() {
@@ -166,7 +167,10 @@ components:{
 				address: this.address,
 				tot: cartLS.total(),
 				user_id: JSON.parse(window.localStorage.getItem('restaurant_id')),
+				plates: cartLS.list(),
 			};
+
+			
 
 			localStorage.setItem('order_data', JSON.stringify(this.orderData));
 			document.querySelector('form').style = "display: none;";
@@ -177,7 +181,7 @@ components:{
 				params: JSON.parse(window.localStorage.order_data)
 			})
 			.then(res => {
-				console.log('order', res.data);
+				console.log('order', res);
 			})
 			.catch(err => {
 				console.log(err);
