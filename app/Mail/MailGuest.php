@@ -15,18 +15,20 @@ class MailGuest extends Mailable
     private $address;
     private $total;
     private $restaurant_name;
+    private $plates_decode;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name, $address, $total, $restaurant_name)
+    public function __construct($name, $address, $total, $restaurant_name, $plates_decode)
     {
         $this->name = $name;
         $this->address = $address;
         $this->total = $total;
         $this->restaurant_name = $restaurant_name;
+        $this->plates_decode = $plates_decode;
     }
 
     /**
@@ -42,6 +44,7 @@ class MailGuest extends Mailable
             'address' => $this->address,
             'total' => $this->total,
             'restaurant_name' => $this->restaurant_name,
+            'plates_decode' => $this->plates_decode
         ]);
     }
 }
