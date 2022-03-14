@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <div class="dashboard container mt-3">
     <div class="info mb-5">
         <div class="name">
@@ -26,12 +27,12 @@
         </div>
         <div class="data-item col-sm-12 col-md-6 col-lg-3">
                 <h4 class="text-primary mb-3">Data Ultimo Ordine</h4>
-                <h3 class="mb-3">--</h3>
-                <a href=""><button class="btn btn-primary"><i class="fa-solid fa-circle-info"></i> Mostra Ultimo Ordine</button></a>
+                <h3 class="mb-3">{{$last_order->created_at->toDateString()}}</h3>
+                {{-- <a href=""><button class="btn btn-primary"><i class="fa-solid fa-circle-info"></i> Mostra Ultimo Ordine</button></a> --}}
         </div>
         <div class="data-item col-sm-12 col-md-6 col-lg-3">
             <h4 class="text-primary mb-3">Guadagno</h4>
-            <h3>--</h3>
+            <h3>{{$last_order->total_price}} €</h3>
         </div>
     </div>
     <a class="btn btn-primary mt-5" href="/restaurants/profile">Modifica dettagli ristorante</a>

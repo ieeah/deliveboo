@@ -6,6 +6,7 @@
         <p>Qui puoi vedere tutti i tuoi ordini.</p>
 
         <a href="{{route('restaurants.statistic')}}"><button class="btn btn-primary mb-3">Visualizza le Statistiche</button></a>
+        <a href="{{route('restaurants.dashboard')}}"><button class="btn btn-secondary mb-3">Torna alla Dashboard</button></a>
 
         <div class="table-responsive-sm">
             <table class="table table-striped">
