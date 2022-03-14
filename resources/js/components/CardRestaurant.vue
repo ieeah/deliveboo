@@ -58,7 +58,6 @@ export default {
                 max-height: 100%;
                 h5 {
                     font-size: 16px;
-                    max-height: 25%;
                 }
                 p {
                     padding-top: 0px;

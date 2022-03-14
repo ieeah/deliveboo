@@ -173,13 +173,14 @@ components:{
 			localStorage.setItem('order_data', JSON.stringify(this.orderData));
 			document.querySelector('form').style = "display: none;";
 			this.dataIsProcessed = true;
+			this.axiosPost();
 		},
 		axiosPost() {
 			axios.get('http://127.0.0.1:8000/api/save', {
 				params: JSON.parse(window.localStorage.order_data)
 			})
 			.then(res => {
-				console.log('order', res);
+				console.log('order', res.data);
 			})
 			.catch(err => {
 				console.log(err);
