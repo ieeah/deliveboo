@@ -51,11 +51,11 @@ class OrderController extends Controller
 
         // salvataggio relazione piatti ordine in pivot table
         //ancora non va sto facendo altre prove
-        foreach ($plates as $plate) {
-            $quantity = $plate->quantity;
-            $new_order->plates()->attach([$plate['id'] => ['quantity' => $quantity]]);
-            $new_order->id;
-        }
+        // foreach ($plates as $plate) {
+        //     $quantity = $plate->quantity;
+        //     $new_order->plates()->attach([$plate['id'] => ['quantity' => $quantity]]);
+        //     $new_order->id;
+        // }
 
         return response()->json($plates);
     }
