@@ -36,10 +36,7 @@ class OrderController extends Controller
         $new_order->user_id = $order['user_id'];
         $plates = $order['plates'];
 
-        foreach ($plates as $plate) {
-            $quantity = $plate->quantity;
-            $new_order->plates()->attach($plate['id']);
-        }
+        // dd($plates);
 
         //prendiamo la mail del ristorante
         // $restaurant = User::where('id', $order['user_id'])->first();
@@ -52,7 +49,12 @@ class OrderController extends Controller
         // //salviamo l'ordine a DB
         // $new_order->save();
 
-        // salvare la relazione tra piatti e ordini nella tabella order_plates
+        // salvataggio relazione piatti ordine in pivot table
+        // foreach ($plates as $plate) {
+        //     $quantity = $plate->quantity;
+        //     $new_order->plates()->attach($plate['id']);
+        //     $new_order->id
+        // }
 
         return response()->json($plates);
     }
