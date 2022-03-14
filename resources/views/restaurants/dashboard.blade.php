@@ -27,12 +27,25 @@
         </div>
         <div class="data-item col-sm-12 col-md-6 col-lg-3">
                 <h4 class="text-primary mb-3">Data Ultimo Ordine</h4>
-                <h3 class="mb-3">{{$last_order->created_at->toDateString()}}</h3>
+
+                @if ($last_order === null) 
+                    <h5>Non ci sono Ordini</h5>
+                @else
+                <h3>$last_order->created_at->format('d M Y')</h3>
+                @endif
+
+
+                <h3 class="mb-3"></h3>
                 {{-- <a href=""><button class="btn btn-primary"><i class="fa-solid fa-circle-info"></i> Mostra Ultimo Ordine</button></a> --}}
         </div>
         <div class="data-item col-sm-12 col-md-6 col-lg-3">
             <h4 class="text-primary mb-3">Guadagno</h4>
+
+            @if ($last_order === null) 
+                    <h5>0 €</h5>
+            @else
             <h3>{{$last_order->total_price}} €</h3>
+            @endif
         </div>
     </div>
     <a class="btn btn-primary mt-5" href="/restaurants/profile">Modifica dettagli ristorante</a>
