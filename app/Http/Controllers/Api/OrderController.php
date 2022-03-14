@@ -22,7 +22,7 @@ class OrderController extends Controller
     public function store(Request $request) {
         //prendiamo i dati
         $order = $request->all();
-        
+
         //creiamo un nuovo ordine
         $new_order = new Order();
 
@@ -39,21 +39,22 @@ class OrderController extends Controller
         // dd($plates);
 
         //prendiamo la mail del ristorante
-        // $restaurant = User::where('id', $order['user_id'])->first();
-        // $email_restaurant = $restaurant->email;
+        $restaurant = User::where('id', $order['user_id'])->first();
+        $email_restaurant = $restaurant->email;
 
         // //inviamo le email
-        // Mail::to($new_order->customer_email)->send(new MailGuest($new_order->customer_name, $new_order->customer_address, $new_order->total_price, $restaurant->name));
-        // Mail::to($email_restaurant)->send(new MailRestaurant($order['name'], $order['lastName'], $order['address'], $order['tot'], $order['phone'], $order['email'], $restaurant->name));
+        Mail::to($new_order->customer_email)->send(new MailGuest($new_order->customer_name, $new_order->customer_address, $new_order->total_price, $restaurant->name));
+        Mail::to($email_restaurant)->send(new MailRestaurant($order['name'], $order['lastName'], $order['address'], $order['tot'], $order['phone'], $order['email'], $restaurant->name));
 
         // //salviamo l'ordine a DB
-        // $new_order->save();
+        $new_order->save();
 
         // salvataggio relazione piatti ordine in pivot table
+        //ancora non va sto facendo altre prove
         // foreach ($plates as $plate) {
         //     $quantity = $plate->quantity;
-        //     $new_order->plates()->attach($plate['id']);
-        //     $new_order->id
+        //     $new_order->plates()->attach([$plate['id'] => ['quantity' => $quantity]]);
+        //     $new_order->id;
         // }
 
         return response()->json($plates);

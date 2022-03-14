@@ -2,7 +2,7 @@
 	<footer class="">
 		<div class="footer container pb-5 col-xs-12 col-md-9 mx-auto px-xs-3">
 			<div class="row pt-5">
-				<div class="item-container col-md-3 col-sm-12">
+				<div class="item-container col-md-4 col-sm-12">
 					<div class="item">
 						<h5 class="mb-3">Su Di Noi</h5>
 						<ul>
@@ -67,14 +67,14 @@
 						</div>
 					</div>
 				</div>
-				<div class="authors col-md-6 col-sm-12">
+				<div class="authors col-md-5 col-sm-12">
 					<h5>Coded by</h5>
 					<div class="d-flex flex-column align-items-center">
-						<a href="">Francesco Luca Labianca</a>
-						<a href="">Aurora Grippaudo</a>
-						<a href="">Dario Di Cuia</a>
-						<a href="">Roberto Dottori</a>
-						<a href="">Abdelilah El Hajji</a>
+						<a href="https://github.com/ieeah">Francesco Luca Labianca</a>
+						<a href="https://github.com/rorins">Aurora Grippaudo</a>
+						<a href="https://github.com/Dario0199">Dario Di Cuia</a>
+						<a href="https://github.com/dokkalemon">Roberto Dottori</a>
+						<a href="https://github.com/abdi-El">Abdelilah El Hajji</a>
 					</div>
 				</div>
 			</div>

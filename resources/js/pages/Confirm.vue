@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="data d-flex">
+                <div class="data d-flex p-4">
                 <p>Totale ordine: {{tot}}€</p>
                 <div class="date-h d-flex ml-5">
                     <p>{{today}}</p>
