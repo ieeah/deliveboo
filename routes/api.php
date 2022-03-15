@@ -29,11 +29,11 @@ Route::namespace('Api')->group(function(){
     Route::get('/plates/{id}', 'PlateController@index');
 
     Route::get('/save', 'OrderController@store');
+    Route::get('/validation', 'OrderController@serverValidation');
 
     //Braintree
 
     Route::get('/token', 'BraintreeController@token');
-    // quando facciamo la chiamata axios per effettuare il pagamento questa è la struttura per la chiamata API
     Route::get('/sale/{amount}/{nonce}', 'BraintreeController@sale');
 
 });
