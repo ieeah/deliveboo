@@ -3,7 +3,8 @@
         <div class="card">
             <div class="thumb col-xs-4 col-md-6 px-0">
                 <img v-if="plate.thumb == 'plates_thumbs/food_placeholder.jpg'" src="/storage/plates_thumbs/food_placeholder.jpg" alt="">
-                <img v-else :src="plate.thumb" alt="">
+                <img v-if="plate.thumb.substring(0, 5) == 'https'" :src="plate.thumb" alt="">
+                <img v-else :src="`/storage/${plate.thumb}`" alt="">
             </div>
             <div class="info col-xs-8 col-md-6">
                 <h5 class="mb-xs-1 mb-md-0">{{name}}</h5>

@@ -54,8 +54,11 @@ class OrderController extends Controller
         // salvare la relazione tra piatti e ordini nella tabella order_plates
         $plates_decode = json_decode(json_decode($plates));
         foreach($plates_decode as $plate) {
-            $new_order->plates()->attach([$plate->id => ['quantity' => $plate->quantity]]);
-            
+            $new_order->plates()->attach([$plate->id => [
+                'quantity' => $plate->quantity,
+                'created_at' => $new_order->created_at
+            ]]);
+
         };
         
         // inviamo le email
