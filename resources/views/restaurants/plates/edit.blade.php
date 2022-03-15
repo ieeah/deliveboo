@@ -66,7 +66,7 @@
                 <label for="thumb">Cover Image</label>
                 @if ($plate->thumb)
                     <figure class="mb-3">
-                        <img width="300" src="{{ asset('storage/' . $plate->thumb) }}" alt="{{ $plate->thumb }}">
+                        <img width="300" src="{{ $plate->thumb }}" alt="{{ $plate->thumb }}">
                     </figure>
                 @endif
                 <input class="form-control-file" type="file" name="thumb" id="thumb"
