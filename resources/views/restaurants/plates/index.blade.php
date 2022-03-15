@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container plates_container">
         <div class="heading mb-5">
             <h1 class="mb-2">
                 {{ Auth::user()->name }}
@@ -21,9 +21,13 @@
                 </div>
             @endif
 
-            <a href="{{ route('restaurants.plates.create') }}" class="btn btn-primary mb-4">
-                Inserisci nuovo Piatto
-            </a>
+            <div class="d-flex action_btns mb-4">
+                <a href="{{ route('restaurants.plates.create') }}" class="btn btn-primary">
+                    Inserisci nuovo Piatto
+                </a>
+
+                <a class="ml-3 btn btn-secondary" href="/restaurants/dashboard">Torna alla Dashboard</a>
+            </div>
 
             <div class="table-responsive-md">
                 <table class="table">
@@ -71,8 +75,6 @@
             </div>
             {{ $plates->links() }}
         </div>
-
-        <a class="ml-3" href="/restaurants/dashboard">Torna alla Dashboard</a>
 
     </div>
 @endsection
