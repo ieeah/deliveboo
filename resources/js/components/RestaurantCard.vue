@@ -1,8 +1,9 @@
 <template>
 	<div class="restaurant_card">
-		<img :src="restaurant_thumb" :alt="restaurant_name">
+		<img v-if="restaurant_thumb.substring(0, 5) == 'https'" :src="restaurant_thumb" :alt="restaurant_name">
+		<img v-else :src="`/storage/${restaurant_thumb}`" alt="">
 		<div class="restaurant_card__name">
-			{{`${restaurant_name}`}}
+			{{restaurant_name}}
 		</div>
 	</div>
 </template>
@@ -23,7 +24,6 @@ export default {
 .restaurant_card {
 	height: 100%;
 	border-radius: .8rem;
-	// background-color: $dark-700;
 	position: relative;
 	grid-column: span 1;
 	grid-row: span 1;

@@ -142,7 +142,6 @@ class PlatesController extends Controller
         } else {
             $data['visibility'] = false;
         }
-        // dd('data', $data, 'request', $request);
         $plate->update($data);
         
 

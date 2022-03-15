@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Order;
 use Braintree\Gateway;
 use App\User;
@@ -53,7 +54,11 @@ class OrderController extends Controller
         // salvare la relazione tra piatti e ordini nella tabella order_plates
         $plates_decode = json_decode(json_decode($plates));
         foreach($plates_decode as $plate) {
-            $new_order->plates()->attach([$plate->id => ['quantity' => $plate->quantity]]);
+            $new_order->plates()->attach([$plate->id => [
+                'quantity' => $plate->quantity,
+                'created_at' => $new_order->created_at
+            ]]);
+
         };
         
         // inviamo le email
@@ -61,5 +66,31 @@ class OrderController extends Controller
         Mail::to($email_restaurant)->send(new MailRestaurant($order['name'], $order['lastName'], $order['address'], $order['tot'], $order['phone'], $order['email'], $restaurant->name, $plates_decode));
 
         return response()->json($plates_decode);
+    }
+
+    public function serverValidation(Request $request) {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:2|max:255',
+            'lastname' => 'required|min:2|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|numeric|digits_between:10,12',
+            'address' => 'required|min:8|max:255'
+        ],[
+                'required' => 'Non lasciare vuoto il campo',
+                'min' => 'Minimo :min caratteri',
+                'max' => 'Maximo :max caratteri',
+                'email' => 'Non è stata inserita una mail corretta',
+                'numeric' => 'Il valore inserito non è un numero',
+                'digits_between' => 'Il numero di telefono può avere tra le 10 e 12 cifre',
+            ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 401);
+        }
+        return response()->json();
+
+
+        
     }
 }

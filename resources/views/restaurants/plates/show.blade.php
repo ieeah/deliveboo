@@ -22,7 +22,7 @@
                         <img class='img-fluid' width="400" src="{{asset('storage/'. $plate->thumb)}}" alt="{{$plate->thumb}}">
                     </div>
                     <a href="{{route('restaurants.plates.edit', $plate->id)}}" class="btn btn-warning">Modifica</a>
-                    <a href="{{route('restaurants.plates.index')}}" class="btn btn-success">Torna alla list piatti</a>
+                    <a href="{{route('restaurants.plates.index')}}" class="btn btn-success">Torna alla lista piatti</a>
                 </div>
             </div>
         @else

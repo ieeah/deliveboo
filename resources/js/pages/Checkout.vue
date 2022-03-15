@@ -16,26 +16,72 @@
 						
 							<!-- @submit.prevent="sendEmail" -->
 							<form action="">
-								<label for="name">Nome *</label>
-								<input type="text" id="name" v-model="name" autofocus
-								required minlength="2" maxlength="255" 
-								>
-								<label for="lastname">Cognome *</label>
-								<input type="text" id="lastname" v-model="lastname" autocomplete="off"
-								required minlength="2" maxlength="255" 
-								>
-								<label for="email">Email *</label>
-								<input type="email" id="email" v-model="email" autocomplete="off"
-								required minlength="2" maxlength="80" ref="emailNode"
-								>
-								<label for="phone">N.Telefono *</label>
-								<input type="phone" id="phone" v-model="phone" autocomplete="off"
-								required minlength="10" maxlength="12" 
-								>
-								<label for="address">Indirizzo di Consegna *</label>
-								<input type="text" id="address" v-model="address" autocomplete="off"
-								required minlength="8" maxlength="255" 
-								>
+								<div class="field">
+									<label for="name">Nome *</label>
+									<input type="text" id="name" v-model="name" autofocus
+									required minlength="2" maxlength="255"
+									>
+									<div class="validation_error">
+										<div v-show="verror.name" v-for="(error, i) in verror.name" :key="`${error}_${i}`">
+											{{verror.name[i]}}
+											<i class="fa-solid fa-circle-xmark"></i>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="field">
+									<label for="lastname">Cognome *</label>
+									<input type="text" id="lastname" v-model="lastname" autocomplete="off"
+									required minlength="2" maxlength="255" 
+									>
+									<div class="validation_error">
+										<div v-show="verror.lastname" v-for="(error, i) in verror.lastname" :key="`${error}_${i}`">
+											{{verror.lastname[i]}}
+											<i class="fa-solid fa-circle-xmark"></i>
+										</div>
+									</div>
+								</div>
+								
+								<div class="field">
+									<label for="email">Email *</label>
+									<input type="email" id="email" v-model="email" autocomplete="off"
+									required minlength="2" maxlength="80" ref="emailNode"
+									>
+									<div class="validation_error">
+										<div v-show="verror.email" v-for="(error, i) in verror.email" :key="`${error}_${i}`">
+											{{verror.email[i]}}
+											<i class="fa-solid fa-circle-xmark"></i>
+										</div>
+									</div>
+								</div>
+
+								<div class="field">
+									<label for="phone">N.Telefono *</label>
+									<input type="number" id="phone" v-model="phone" autocomplete="off"
+									required minlength="10" maxlength="12"
+									>
+									<div class="validation_error">
+										<div v-show="verror.phone" v-for="(error, i) in verror.phone" :key="`${error}_${i}`">
+											{{verror.phone[i]}}
+											<i class="fa-solid fa-circle-xmark"></i>
+										</div>
+									</div>
+								</div>
+								
+								<div class="field">
+									<label for="address">Indirizzo di Consegna *</label>
+									<input type="text" id="address" v-model="address" autocomplete="off"
+									required minlength="8" maxlength="255"
+									>
+									<div class="validation_error">
+										<div v-show="verror.address" v-for="(error, i) in verror.address" :key="`${error}_${i}`">
+											{{verror.address[i]}}
+											<i class="fa-solid fa-circle-xmark"></i>
+										</div>
+									</div>
+								</div>
+
 								<input v-if="showPaymentButton" type="submit" value="Procedi al pagamento" @click.prevent="saveOrderData">
 
 							</form>
@@ -50,7 +96,7 @@
 								<a href="/checkout" v-show="error">Riprova</a>
 							</div>
 
-							<v-braintree v-if="paymentToken && dataIsProcessed && !error"
+							<v-braintree v-if="paymentToken && dataIsProcessed && !error && noValidationErrors"
 									:authorization="paymentToken"
 									locale="it_IT"
 									@success="onPaymentSuccess"
@@ -81,6 +127,10 @@ components:{
 			}
 			return false
 		},
+		noValidationErrors() {
+			if(Object.keys(this.verror).length === 0) return true;
+			return false;
+		},
 	},
 	data() {
 		return {
@@ -99,6 +149,7 @@ components:{
 			APIsave: 'http://127.0.0.1:8000/api/save',
 			orderData: null,
 			plates: null,
+			verror: {},
 		}
 	},
 	async created() {
@@ -133,9 +184,6 @@ components:{
 					window.localStorage.setItem('total_cart', '0');
 					// svuotiamo il carrello di cartLS
 					cartLS.list().forEach(item => cartLS.remove(item.id));
-					// salvataggio dati ordine a DB
-					this.axiosPost();
-					console.log('inviata richiesta axios');
 					// andiamo alla pagina di conferma dell'ordine
 					window.location.href = '/confirmed';
 				}
@@ -148,7 +196,6 @@ components:{
 			.catch(err => {
 				console.error(err);
 			});
-
 			
 		},
 		// qui verrà gestito il caso di errore
@@ -173,7 +220,7 @@ components:{
 			localStorage.setItem('order_data', JSON.stringify(this.orderData));
 			document.querySelector('form').style = "display: none;";
 			this.dataIsProcessed = true;
-			this.axiosPost();
+			this.validateForm();
 		},
 		axiosPost() {
 			axios.get('http://127.0.0.1:8000/api/save', {
@@ -185,6 +232,25 @@ components:{
 			.catch(err => {
 				console.log(err);
 			})
+		},
+		validateForm() {
+			axios.get('http://127.0.0.1:8000/api/validation', {
+				params: {
+					name: this.name,
+					lastname: this.lastname,
+					email: this.email,
+					phone: this.phone,
+					address: this.address,
+				}
+			})
+			.then(res => {
+				this.axiosPost();
+			})
+			.catch(error => {
+				this.verror = error.response.data.error;
+				console.error(this.verror);
+				document.querySelector('form').style = "display: block;";
+			});
 		},
 		
 
@@ -223,23 +289,26 @@ body {
 			margin-bottom: .5rem;
 		}
 	}
-	.form{
+	.form {
 		form {
 			input {
 				display: block;
 				width: 100%;
 				font-size: 17px;
-				margin-block: .5rem 1.5rem;
 				height: 35px;
 				border: 1px solid lightgrey;
 				border-radius: .8rem;
 				padding: 3px 0 3px .5rem;
 				background-color: $clear-100;
-				&:valid {
-					border: 1px solid lightgreen;
-				}
-				&:invalid {
-					border: 1px solid $primary-400;
+				margin-top: .3rem;
+				border: 1px solid $primary-400;
+				&[type="number"] {
+					-moz-appearance: textfield;
+					&::-webkit-outer-spin-button,
+					&::-webkit-inner-spin-button {
+						-webkit-appearance: none;
+						margin: 0;
+					}
 				}
 				&:focus {
 					outline: none;
@@ -258,26 +327,33 @@ body {
 		text-decoration: none;
 		color: $primary-400;
 		color: $orange;
-	}
-	.pay,
-	.cancel{
-		margin-top:10px;
-		text-decoration: none;
-	}
-	.error{
-		width:350px;
-		border:5px solid $orange;
-		border-radius:10px;
-		padding:10px;
-		text-align: center;
-		.fa-circle-xmark{
-			font-size:50px;
+		}
+		.pay,
+		.cancel{
+			margin-top:10px;
+			text-decoration: none;
+		}
+		.error {
+			border: 5px solid $primary-400;
+			border-radius: .5rem;
+			text-align: center;
+			.fa-circle-xmark{
+				margin-block: .8rem;
+				font-size: 3rem;
+				color:$red;
+			}
+			p{
+				padding:10px 0px;
+			}
+		}
+		.validation_error{
 			color:$red;
+			font-size: .9rem;
+			margin-block: .3rem 1.5rem;
+			.fa-circle-xmark{
+				font-size: .75rem;
+			}
 		}
-		p{
-			padding:10px 0px;
-		}
-	}
 	}
 }
 </style>
