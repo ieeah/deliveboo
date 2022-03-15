@@ -6,9 +6,9 @@
                 <img v-else :src="plate.thumb" alt="">
             </div>
             <div class="info col-xs-8 col-md-6">
-                <h5 class="mb-xs-1 mb-md-0">{{name}}</h5>
-                <p>{{ingredients}}</p>
-                <span>{{price}}</span>
+                <h5 class="mb-xs-1 mb-md-0">{{plate.name}}</h5>
+                <p>{{plate.ingredients}}</p>
+                <span>{{plate.price}}</span>
             </div>
         </div>
   </section>
@@ -18,10 +18,6 @@
 export default {
     name: 'CardRestaurant',
     props: {
-        name: String,
-        ingredients: String,
-        price: String,
-        thumb: String,
         plate: Object,
     }
 }

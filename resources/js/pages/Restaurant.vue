@@ -1,25 +1,22 @@
 <template>
     <section class="restaurant">
         <div class="col-xs-12 px-xs-3 col-md-10 px-md-0 mx-md-auto col-lg-10">
-        <InfoRestaurant v-if="this.restaurant"
-        :restaurantInfo="restaurant"
-        />
-        <p v-else>Loading...</p>
-        <div class="restaurant-container row">
-            <div class="col-sm-12 col-md-7 plates_container mb-4 px-md-0">
-                <CardRestaurant v-for="(plate, i) in plates" :key="`plate_${i}`"
-                v-show="plate.visibility"
-                class="col-xs-12 col-sm-6 col-md-12 col-lg-6"
-                :name="plate.name"
-                :ingredients="plate.ingredients"
-                :price="plate.price"
-                :plate="plate"
-                @click.native="toggleToCart(plate)"/>
+            <InfoRestaurant v-if="this.restaurant"
+            :restaurantInfo="restaurant"
+            />
+            <p v-else>Loading...</p>
+            <div class="restaurant-container row">
+                <div class="col-sm-12 col-md-7 plates_container mb-4 px-md-0">
+                    <CardRestaurant v-for="(plate, i) in plates" :key="`plate_${i}`"
+                    v-show="plate.visibility"
+                    class="col-xs-12 col-sm-6 col-md-12 col-lg-6"
+                    :plate="plate"
+                    @click.native="toggleToCart(plate)"/>
+                </div>
+                <div class="col-sm-12 col-md-4 offset-md-1 px-md-0">
+                    <CartRestaurant :carrello="cart" :total="tot" :menu="plates" />
+                </div>
             </div>
-            <div class="col-sm-12 col-md-4 offset-md-1 px-md-0">
-                <CartRestaurant :carrello="cart" :total="tot" :menu="plates" />
-            </div>
-        </div>
         </div>
     </section>
 </template>
@@ -125,7 +122,7 @@ export default {
 <style scoped lang="scss">
 
 .restaurant-container {
-    margin-block: 19rem 5rem;
+    margin-block: 10rem 5rem;
     display: flex;
     align-items: flex-start;
     .plates_container {
